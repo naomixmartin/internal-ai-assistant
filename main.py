@@ -1,21 +1,19 @@
 import os
 import streamlit as st
 from dotenv import load_dotenv
-from google import genai
 from supabase import create_client
 from context_manager import build_context, update_summary
 from retrieval import retrieve_chunks, build_document_context
 from router import route_query
+from llm import generate_response
 
 
-# load keys
+# load environment variables
 load_dotenv()
-api_key = os.getenv("GEMINI_API_KEY")
 supabase_url = os.getenv("SUPABASE_URL")
 supabase_key = os.getenv("SUPABASE_KEY")
 
-# create Gemini and supabase clients
-client = genai.Client(api_key=api_key)
+# create supabase client
 supabase = create_client(supabase_url, supabase_key)
 
 # initialize authentication state
@@ -157,24 +155,21 @@ if user_message:
     # update the summary if a full batch has accumulated
     summary, last_summarized_id = update_summary(
         supabase,
-        client,
         st.session_state.conversation_id,
         st.session_state.messages
     )
 
     # build context from messages that have not been summarized
-    gemini_history = build_context(
+    llm_history = build_context(
         st.session_state.messages,
         last_summarized_id
     )
 
     # add the older conversation summary to the context
     if summary:
-        gemini_history.insert(0, {
+        llm_history.insert(0, {
             "role": "user",
-            "parts": [{
-                "text": f"Earlier conversation summary:\n{summary}"
-            }]
+            "content": f"Earlier conversation summary:\n{summary}"
         })
 
     # give the router recent conversation context
@@ -184,47 +179,41 @@ if user_message:
     )
 
     # decide whether company documents are needed
-    route, retrieval_query = route_query(client, user_message, conversation_context)
+    route, retrieval_query = route_query(user_message, conversation_context)
 
     # retrieve company information only when needed
     if route == "COMPANY_CONTEXT_REQUIRED":
         retrieved_chunks = retrieve_chunks(retrieval_query)
         document_context = build_document_context(retrieved_chunks)
 
-        gemini_history.insert(0, {
+        llm_history.insert(0, {
             "role": "user",
-            "parts": [{
-                "text": f"""
-                Relevant company information:
+            "content": f"""
+            Relevant company information:
 
-                {document_context}
+            {document_context}
 
-                Use this information when it is relevant to the user's question.
-                Cite factual claims from company documents using the provided source,
-                for example [EmployeeHandbook.md].
-                """
-            }]
+            Use this information when it is relevant to the user's question.
+            Cite factual claims from company documents using the provided source,
+            for example [EmployeeHandbook.md].
+            """
         })
 
-    # send the managed context to gemini
-    response = client.models.generate_content(
-        model="gemini-3.5-flash-lite",
-        contents=gemini_history
-    )
+    # send the managed context to the llm
+    response = generate_response(llm_history)
 
     # save the assistant's message to the database
     result = supabase.table("messages").insert({
         "conversation_id": st.session_state.conversation_id,
         "role": "assistant",
-        "content": response.text
+        "content": response
     }).execute()
     assistant_message_id = result.data[0]["id"]
 
     # generate a title after the first user-assistant exchange
     if len(st.session_state.messages) == 1:
-        title_response = client.models.generate_content(
-            model="gemini-3.5-flash-lite",
-            contents=f"""
+        title_response = generate_response(
+            f"""
             Create a short title for this conversation.
             Use at most 5 words.
             Return only the title.
@@ -233,11 +222,11 @@ if user_message:
             {user_message}
 
             Assistant:
-            {response.text}
+            {response}
             """
         )
 
-        conversation_title = title_response.text.strip()
+        conversation_title = title_response.strip()
 
         supabase.table("conversations").update({
             "title": conversation_title
@@ -249,9 +238,9 @@ if user_message:
     st.session_state.messages.append({
         "id": assistant_message_id,
         "role": "assistant",
-        "content": response.text
+        "content": response
     })
-    st.chat_message("assistant").write(response.text)
+    st.chat_message("assistant").write(response)
 
     # refresh the sidebar after the first exchange
     if len(st.session_state.messages) == 2:

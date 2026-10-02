@@ -1,3 +1,4 @@
+from llm import generate_response
 
 SUMMARY_BATCH_SIZE = 20
 
@@ -11,21 +12,19 @@ def build_context(messages, last_summarized_id):
             if message["id"] > last_summarized_id
         ]
 
-    gemini_history = []
+    llm_history = []
 
     for message in recent_messages:
-        role = "model" if message["role"] == "assistant" else "user"
-
-        gemini_history.append({
-            "role": role,
-            "parts": [{"text": message["content"]}]
+        llm_history.append({
+            "role": message["role"],
+            "content": message["content"]
         })
 
-    return gemini_history
+    return llm_history
 
 
 # summarize messages that are leaving the recent context window
-def summarize_messages(client, messages, existing_summary=""):
+def summarize_messages(messages, existing_summary=""):
     conversation_text = ""
 
     for message in messages:
@@ -45,18 +44,14 @@ def summarize_messages(client, messages, existing_summary=""):
     no longer important. Keep the summary concise and under 500 words.
     """
 
-    response = client.models.generate_content(
-        model="gemini-3.5-flash-lite",
-        contents=prompt
-    )
+    response = generate_response(prompt)
 
-    return response.text
+    return response
 
 
 # update the summary when enough unsummarized messages have accumulated
 def update_summary(
     supabase,
-    client,
     conversation_id,
     messages,
     summary_batch_size=SUMMARY_BATCH_SIZE
@@ -90,7 +85,6 @@ def update_summary(
     messages_to_summarize = unsummarized_messages[:summary_batch_size]
 
     new_summary = summarize_messages(
-        client,
         messages_to_summarize,
         existing_summary
     )

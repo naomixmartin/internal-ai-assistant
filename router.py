@@ -1,7 +1,6 @@
-from google import genai
+from llm import generate_response
 
-
-def route_query(client, query, conversation_context=""):
+def route_query(query, conversation_context=""):
     # decide whether company documents are needed and create a retrieval query
     prompt = f"""
     You are routing messages for an internal company AI assistant.
@@ -43,37 +42,9 @@ def route_query(client, query, conversation_context=""):
     {query}
     """
 
-    response = client.models.generate_content(
-        model="gemini-3.5-flash-lite",
-        contents=prompt
-    )
-
-    lines = response.text.strip().splitlines()
-
+    response = generate_response(prompt)
+    lines = response.strip().splitlines()
     route = lines[0].replace("ROUTE:", "").strip()
     retrieval_query = lines[1].replace("QUERY:", "").strip()
 
     return route, retrieval_query
-
-if __name__ == "__main__":
-    import os
-    from dotenv import load_dotenv
-
-    load_dotenv()
-
-    client = genai.Client(
-        api_key=os.getenv("GEMINI_API_KEY")
-    )
-
-    test_queries = [
-        "How much PTO do employees get?",
-        "What is 2 + 2?",
-        "Write me a poem about cats.",
-        "How do performance reviews work?",
-        "What is a performance review?",
-        "How should I prepare for my first day?"
-    ]
-
-    for query in test_queries:
-        route = route_query(client, query)
-        print(f"{query} -> {route}")
