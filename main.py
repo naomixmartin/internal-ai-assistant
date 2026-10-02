@@ -184,11 +184,11 @@ if user_message:
     )
 
     # decide whether company documents are needed
-    route = route_query(client, user_message, conversation_context)
+    route, retrieval_query = route_query(client, user_message, conversation_context)
 
     # retrieve company information only when needed
     if route == "COMPANY_CONTEXT_REQUIRED":
-        retrieved_chunks = retrieve_chunks(user_message)
+        retrieved_chunks = retrieve_chunks(retrieval_query)
         document_context = build_document_context(retrieved_chunks)
 
         gemini_history.insert(0, {
