@@ -3,6 +3,7 @@ import streamlit as st
 from dotenv import load_dotenv
 from google import genai
 from supabase import create_client
+from context_manager import build_context, update_summary
 
 
 # load keys
@@ -89,7 +90,7 @@ for conversation in conversations:
         # load this conversation's messages from the database
         result = (
             supabase.table("messages")
-            .select("role, content")
+            .select("id, role, content")
             .eq("conversation_id", conversation["id"])
             .order("created_at")
             .execute()
@@ -117,14 +118,6 @@ for message in st.session_state.messages:
 user_message = st.chat_input("Ask me anything")
 
 if user_message:
-    # save and display the user's message
-    st.session_state.messages.append({
-        "role": "user",
-        "content": user_message
-    })
-
-    st.chat_message("user").write(user_message)
-
     # create a conversation when the first message is sent
     if st.session_state.conversation_id is None:
         result = supabase.table("conversations").insert({
@@ -134,40 +127,62 @@ if user_message:
         st.session_state.conversation_id = result.data[0]["id"]
 
     # save the user's message to the database
-    supabase.table("messages").insert({
+    result = supabase.table("messages").insert({
         "conversation_id": st.session_state.conversation_id,
         "role": "user",
         "content": user_message
     }).execute()
+    user_message_id = result.data[0]["id"]
 
-    # convert message history into gemini's expected format
-    gemini_history = []
+    # save and display the user's message
+    st.session_state.messages.append({
+        "id": user_message_id,
+        "role": "user",
+        "content": user_message
+    })
+    st.chat_message("user").write(user_message)
 
-    for message in st.session_state.messages:
-        role = "model" if message["role"] == "assistant" else "user"
+    # update the summary if a full batch has accumulated
+    summary, last_summarized_id = update_summary(
+        supabase,
+        client,
+        st.session_state.conversation_id,
+        st.session_state.messages
+    )
 
-        gemini_history.append({
-            "role": role,
-            "parts": [{"text": message["content"]}]
+    # build context from messages that have not been summarized
+    gemini_history = build_context(
+        st.session_state.messages,
+        last_summarized_id
+    )
+
+    # add the older conversation summary to the context
+    if summary:
+        gemini_history.insert(0, {
+            "role": "user",
+            "parts": [{
+                "text": f"Earlier conversation summary:\n{summary}"
+            }]
         })
 
-    # send the entire conversation to gemini
+    # send the managed context to gemini
     response = client.models.generate_content(
         model="gemini-3.5-flash-lite",
         contents=gemini_history
     )
 
-    # save and display Gemini's response
-    st.session_state.messages.append({
-        "role": "assistant",
-        "content": response.text
-    })
-
-    st.chat_message("assistant").write(response.text)
-
     # save the assistant's message to the database
-    supabase.table("messages").insert({
+    result = supabase.table("messages").insert({
         "conversation_id": st.session_state.conversation_id,
         "role": "assistant",
         "content": response.text
     }).execute()
+    assistant_message_id = result.data[0]["id"]
+
+    # save and display the assistant's message
+    st.session_state.messages.append({
+        "id": assistant_message_id,
+        "role": "assistant",
+        "content": response.text
+    })
+    st.chat_message("assistant").write(response.text)
