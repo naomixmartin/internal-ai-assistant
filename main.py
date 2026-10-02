@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 from google import genai
 from supabase import create_client
 from context_manager import build_context, update_summary
+from retrieval import retrieve_chunks, build_document_context
 
 
 # load keys
@@ -174,6 +175,26 @@ if user_message:
                 "text": f"Earlier conversation summary:\n{summary}"
             }]
         })
+
+    # retrieve relevant company information
+    retrieved_chunks = retrieve_chunks(user_message)
+    document_context = build_document_context(retrieved_chunks)
+
+    # add retrieved company information to the context
+    gemini_history.insert(0, {
+        "role": "user",
+        "parts": [{
+            "text": f"""
+            Relevant company information:
+
+            {document_context}
+
+            Use this information when it is relevant to the user's question.
+            Cite factual claims from company documents using the provided source,
+            for example [EmployeeHandbook.md].
+            """
+        }]
+    })
 
     # send the managed context to gemini
     response = client.models.generate_content(
