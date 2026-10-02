@@ -71,6 +71,16 @@ result = (
 
 conversations = result.data
 
+# left align sidebar button text
+st.markdown("""
+<style>
+    [data-testid="stSidebar"] button {
+        text-align: left;
+        justify-content: flex-start;
+    }
+</style>
+""", unsafe_allow_html=True)
+
 # display previous conversations in the sidebar
 st.sidebar.title("Chats")
 
@@ -179,6 +189,31 @@ if user_message:
     }).execute()
     assistant_message_id = result.data[0]["id"]
 
+    # generate a title after the first user-assistant exchange
+    if len(st.session_state.messages) == 1:
+        title_response = client.models.generate_content(
+            model="gemini-3.5-flash-lite",
+            contents=f"""
+            Create a short title for this conversation.
+            Use at most 5 words.
+            Return only the title.
+
+            User:
+            {user_message}
+
+            Assistant:
+            {response.text}
+            """
+        )
+
+        conversation_title = title_response.text.strip()
+
+        supabase.table("conversations").update({
+            "title": conversation_title
+        }).eq(
+            "id", st.session_state.conversation_id
+        ).execute()
+
     # save and display the assistant's message
     st.session_state.messages.append({
         "id": assistant_message_id,
@@ -186,3 +221,7 @@ if user_message:
         "content": response.text
     })
     st.chat_message("assistant").write(response.text)
+
+    # refresh the sidebar after the first exchange
+    if len(st.session_state.messages) == 2:
+        st.rerun()
