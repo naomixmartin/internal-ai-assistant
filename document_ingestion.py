@@ -1,10 +1,17 @@
 from pathlib import Path
 from pypdf import PdfReader
 from docx import Document
+import os
+from dotenv import load_dotenv
+from supabase import create_client
+from embedding import generate_embedding
 
 
 CHUNK_SIZE = 250
 CHUNK_OVERLAP = 50
+
+load_dotenv()
+admin_supabase = create_client(os.getenv("SUPABASE_URL"), os.getenv("SUPABASE_SERVICE_ROLE_KEY"))
 
 
 def extract_text(file_path):
@@ -63,17 +70,40 @@ def chunk_text(text, chunk_size=CHUNK_SIZE, overlap=CHUNK_OVERLAP):
 
     return chunks
 
-if __name__ == "__main__":
-    file_path = "data/EmployeeHandbook.md"
 
+def ingest_document(file_path):
+    file_path = Path(file_path)
+
+    # extract and chunk the document
     text = extract_text(file_path)
     chunks = chunk_text(text)
 
-    print(f"document length: {len(text.split())} words")
-    print(f"number of chunks: {len(chunks)}")
+    # create the document record
+    result = admin_supabase.table("documents").insert({
+        "filename": file_path.name,
+        "file_type": file_path.suffix.lower()
+    }).execute()
 
-    print("\nfirst chunk:")
-    print(chunks[0])
+    document_id = result.data[0]["id"]
 
-    print("\nlast chunk:")
-    print(chunks[-1])
+    # embed and store each chunk
+    for chunk_index, chunk in enumerate(chunks):
+        embedding = generate_embedding(chunk)
+
+        admin_supabase.table("document_chunks").insert({
+            "document_id": document_id,
+            "chunk_index": chunk_index,
+            "content": chunk,
+            "embedding": embedding
+        }).execute()
+
+    return document_id
+
+
+if __name__ == "__main__":
+    data_dir = Path("data")
+
+    for file_path in data_dir.iterdir():
+        if file_path.suffix.lower() in [".md", ".txt", ".pdf", ".docx"]:
+            document_id = ingest_document(file_path)
+            print(f"ingested {file_path.name} as document {document_id}")
