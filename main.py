@@ -5,6 +5,7 @@ from google import genai
 from supabase import create_client
 from context_manager import build_context, update_summary
 from retrieval import retrieve_chunks, build_document_context
+from router import route_query
 
 
 # load keys
@@ -176,25 +177,34 @@ if user_message:
             }]
         })
 
-    # retrieve relevant company information
-    retrieved_chunks = retrieve_chunks(user_message)
-    document_context = build_document_context(retrieved_chunks)
+    # give the router recent conversation context
+    conversation_context = "\n".join(
+        f"{message['role']}: {message['content']}"
+        for message in st.session_state.messages[-7:-1] # exclude most recent message
+    )
 
-    # add retrieved company information to the context
-    gemini_history.insert(0, {
-        "role": "user",
-        "parts": [{
-            "text": f"""
-            Relevant company information:
+    # decide whether company documents are needed
+    route = route_query(client, user_message, conversation_context)
 
-            {document_context}
+    # retrieve company information only when needed
+    if route == "COMPANY_CONTEXT_REQUIRED":
+        retrieved_chunks = retrieve_chunks(user_message)
+        document_context = build_document_context(retrieved_chunks)
 
-            Use this information when it is relevant to the user's question.
-            Cite factual claims from company documents using the provided source,
-            for example [EmployeeHandbook.md].
-            """
-        }]
-    })
+        gemini_history.insert(0, {
+            "role": "user",
+            "parts": [{
+                "text": f"""
+                Relevant company information:
+
+                {document_context}
+
+                Use this information when it is relevant to the user's question.
+                Cite factual claims from company documents using the provided source,
+                for example [EmployeeHandbook.md].
+                """
+            }]
+        })
 
     # send the managed context to gemini
     response = client.models.generate_content(
