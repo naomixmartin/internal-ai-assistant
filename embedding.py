@@ -11,13 +11,9 @@ if EMBEDDING_PROVIDER == "gemini":
     from google import genai
     from google.genai import types
 
-    client = genai.Client(
-        api_key=os.getenv("GEMINI_API_KEY")
-    )
+    client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 else:
-    raise ValueError(
-        f"unsupported embedding provider: {EMBEDDING_PROVIDER}"
-    )
+    raise ValueError(f"unsupported embedding provider: {EMBEDDING_PROVIDER}")
 
 
 def generate_embedding(text):
