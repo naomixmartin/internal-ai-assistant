@@ -4,6 +4,7 @@ from llm import generate_response
 from retrieval import retrieve_chunks, build_document_context
 from router import route_query
 import time
+import os
 
 
 EVAL_FILE = "eval_cases.json"
@@ -41,8 +42,21 @@ def generate_answer(question, route, retrieved_chunks):
 
 
 def get_cited_documents(answer):
-    # extract citations such as [EmployeeHandbook.md]
-    return set(re.findall(r"\[([^\[\]]+\.(?:md|txt|pdf|docx))\]", answer))
+    citation_groups = re.findall(
+        r"\[([^\]]+\.(?:md|txt|pdf|docx)(?:\s*,\s*[^\]]+\.(?:md|txt|pdf|docx))*)\]",
+        answer,
+        flags=re.IGNORECASE,
+    )
+
+    cited_documents = []
+
+    for group in citation_groups:
+        for document in group.split(","):
+            document = document.strip()
+            if document not in cited_documents:
+                cited_documents.append(document)
+
+    return cited_documents
 
 
 def judge_answer(case, answer, retrieved_chunks):
@@ -110,11 +124,22 @@ def main():
     with open(EVAL_FILE, "r", encoding="utf-8") as f:
         cases = json.load(f)
 
-    results = []
-
     total_cases = len(cases)
 
+    # continue eval_results.json if a previous run failed
+    if os.path.exists("eval_results.json"):
+        with open("eval_results.json", "r", encoding="utf-8") as f:
+            results = json.load(f)
+    else:
+        results = []
+
+    completed_ids = {result["id"] for result in results}
+
     for case in cases:
+        if case["id"] in completed_ids:
+            print(f"Skipping completed case {case['id']}/{total_cases}")
+            continue
+
         print(f'Running case {case["id"]}/{total_cases}: {case["question"]}')
 
         # route the question
@@ -159,7 +184,7 @@ def main():
         )
 
         # deterministic citation check: cited docs must have been retrieved
-        cited_documents = get_cited_documents(answer)
+        cited_documents = set(get_cited_documents(answer))
         invalid_citations = cited_documents - retrieved_documents
 
         if actual_route == "GENERAL":
