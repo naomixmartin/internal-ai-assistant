@@ -71,7 +71,7 @@ def chunk_text(text, chunk_size=CHUNK_SIZE, overlap=CHUNK_OVERLAP):
     return chunks
 
 
-def ingest_document(file_path, access_level = "employee"):
+def ingest_document(file_path, access_level="employee"):
     file_path = Path(file_path)
 
     # extract and chunk the document
