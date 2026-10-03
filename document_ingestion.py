@@ -71,7 +71,7 @@ def chunk_text(text, chunk_size=CHUNK_SIZE, overlap=CHUNK_OVERLAP):
     return chunks
 
 
-def ingest_document(file_path):
+def ingest_document(file_path, access_level = "employee"):
     file_path = Path(file_path)
 
     # extract and chunk the document
@@ -81,7 +81,8 @@ def ingest_document(file_path):
     # create the document record
     result = admin_supabase.table("documents").insert({
         "filename": file_path.name,
-        "file_type": file_path.suffix.lower()
+        "file_type": file_path.suffix.lower(),
+        "access_level": access_level
     }).execute()
 
     document_id = result.data[0]["id"]
@@ -98,12 +99,3 @@ def ingest_document(file_path):
         }).execute()
 
     return document_id
-
-
-if __name__ == "__main__":
-    data_dir = Path("data")
-
-    for file_path in data_dir.iterdir():
-        if file_path.suffix.lower() in [".md", ".txt", ".pdf", ".docx"]:
-            document_id = ingest_document(file_path)
-            print(f"ingested {file_path.name} as document {document_id}")

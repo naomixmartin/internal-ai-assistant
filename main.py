@@ -52,10 +52,11 @@ if st.session_state.user is None:
     st.stop()
 
 # restore authentication after streamlit reruns
-supabase.auth.set_session(
-    st.session_state.access_token,
-    st.session_state.refresh_token
-)
+supabase.auth.set_session(st.session_state.access_token, st.session_state.refresh_token)
+
+# get the authenticated user's role
+result = (supabase.table("users").select("role").eq("id", st.session_state.user.id).single().execute())
+user_role = result.data["role"]
 
 # create streamlit webpage
 st.title("Internal AI Assistant")
@@ -183,7 +184,7 @@ if user_message:
 
     # retrieve company information only when needed
     if route == "COMPANY_CONTEXT_REQUIRED":
-        retrieved_chunks = retrieve_chunks(retrieval_query)
+        retrieved_chunks = retrieve_chunks(retrieval_query, user_role)
         document_context = build_document_context(retrieved_chunks)
 
         llm_history.insert(0, {

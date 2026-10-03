@@ -10,7 +10,7 @@ client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 supabase = create_client(os.getenv("SUPABASE_URL"), os.getenv("SUPABASE_SERVICE_ROLE_KEY"))
 
 
-def retrieve_chunks(query, match_count=5):
+def retrieve_chunks(query, user_role, match_count=5):
     # embed the user's question
     query_embedding = generate_embedding(query)
 
@@ -19,6 +19,7 @@ def retrieve_chunks(query, match_count=5):
         "match_document_chunks",
         {
             "query_embedding": query_embedding,
+            "user_role": user_role,
             "match_count": match_count
         }
     ).execute()
@@ -67,21 +68,3 @@ def answer_with_context(query, chunks):
     )
 
     return response.text
-
-
-if __name__ == "__main__":
-    query = "How much vacation do employees get?"
-
-    chunks = retrieve_chunks(query)
-    answer = answer_with_context(query, chunks)
-
-    print("\nANSWER:")
-    print(answer)
-
-    print("\nSOURCES:")
-    for chunk in chunks:
-        print(
-            f"{chunk['filename']} "
-            f"(chunk {chunk['chunk_index']}, "
-            f"similarity {chunk['similarity']:.3f})"
-        )
