@@ -1,0 +1,1605 @@
+[
+  {
+    "id": 1,
+    "category": "employee_rag",
+    "question": "How many hours per week do full-time employees typically work?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "What is the standard number of working hours per week for full-time employees at the company?",
+    "expected_documents": [
+      "EmployeeHandbook.md",
+      "EmploymentContract.md",
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "retrieved_documents": [
+      "EmployeeHandbook.md",
+      "EmploymentContract.md",
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "retrieval_pass": true,
+    "forbidden_documents": [
+      "ExitChecklist.md",
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Full-time employees typically work 40 hours per week [Hr_POLICIES_and_PROCEDURES_MANUAL.md, EmploymentContract.md].",
+    "cited_documents": [
+      "EmploymentContract.md",
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 2,
+    "category": "employee_rag",
+    "question": "How many PTO days do full-time employees receive each year?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "How many paid time off (PTO) days do full-time employees receive each year according to company policy?",
+    "expected_documents": [
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "retrieved_documents": [
+      "EmployeeHandbook.md",
+      "EmploymentContract.md",
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "retrieval_pass": true,
+    "forbidden_documents": [
+      "ExitChecklist.md",
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Full-time employees receive 20 days of Paid Time Off (PTO) per calendar year [Hr_POLICIES_and_PROCEDURES_MANUAL.md].",
+    "cited_documents": [
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 3,
+    "category": "employee_rag",
+    "question": "How many unused PTO days can I carry over to next year?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "employee PTO carry over policy unused days limit",
+    "expected_documents": [
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "retrieved_documents": [
+      "EmployeeHandbook.md",
+      "EmploymentContract.md",
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "retrieval_pass": true,
+    "forbidden_documents": [
+      "ExitChecklist.md",
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Up to 5 unused PTO days can be carried into the next calendar year, while additional unused days expire unless the law requires otherwise [Hr_POLICIES_and_PROCEDURES_MANUAL.md].",
+    "cited_documents": [
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 4,
+    "category": "employee_rag",
+    "question": "How many paid sick days do full-time employees get?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "full-time employees paid sick days policy allowance",
+    "expected_documents": [
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "retrieved_documents": [
+      "EmployeeHandbook.md",
+      "EmploymentContract.md",
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "retrieval_pass": true,
+    "forbidden_documents": [
+      "ExitChecklist.md",
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Full-time employees receive 10 paid sick days per year [Hr_POLICIES_and_PROCEDURES_MANUAL.md].",
+    "cited_documents": [
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 5,
+    "category": "employee_rag",
+    "question": "How much paid parental leave does a primary caregiver receive?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "What is the paid parental leave policy for primary caregivers at the company?",
+    "expected_documents": [
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "retrieved_documents": [
+      "EmployeeHandbook.md",
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "retrieval_pass": true,
+    "forbidden_documents": [
+      "ExitChecklist.md",
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "A primary caregiver receives 12 weeks of paid parental leave [Hr_POLICIES_and_PROCEDURES_MANUAL.md].",
+    "cited_documents": [
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 6,
+    "category": "employee_rag",
+    "question": "How much paid parental leave does a secondary caregiver receive?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "paid parental leave policy for secondary caregivers",
+    "expected_documents": [
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "retrieved_documents": [
+      "EmployeeHandbook.md",
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "retrieval_pass": true,
+    "forbidden_documents": [
+      "ExitChecklist.md",
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "A secondary caregiver receives 2 weeks of paid leave [Hr_POLICIES_and_PROCEDURES_MANUAL.md].",
+    "cited_documents": [
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 7,
+    "category": "employee_rag",
+    "question": "How long is the standard probation period?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "What is the standard probation period for employees at the company?",
+    "expected_documents": [
+      "EmployeeHandbook.md",
+      "EmploymentContract.md",
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "retrieved_documents": [
+      "EmployeeHandbook.md",
+      "EmploymentContract.md",
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "retrieval_pass": true,
+    "forbidden_documents": [
+      "ExitChecklist.md",
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "The standard probation period is three months [Hr_POLICIES_and_PROCEDURES_MANUAL.md, EmploymentContract.md].",
+    "cited_documents": [
+      "EmploymentContract.md",
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 8,
+    "category": "employee_rag",
+    "question": "What should I do if I lose my company access card?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "What is the procedure for replacing a lost company access card?",
+    "expected_documents": [
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "retrieved_documents": [
+      "EmployeeHandbook.md",
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "retrieval_pass": true,
+    "forbidden_documents": [
+      "ExitChecklist.md",
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "If you lose your company access card, you must report it [Hr_POLICIES_and_PROCEDURES_MANUAL.md].",
+    "cited_documents": [
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 9,
+    "category": "employee_rag",
+    "question": "Can I use a personal USB drive to store company files?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "What is the company policy regarding the use of personal USB drives to store company files?",
+    "expected_documents": [
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "retrieved_documents": [
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "retrieval_pass": true,
+    "forbidden_documents": [
+      "ExitChecklist.md",
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "No, you cannot use a personal USB drive to store company files. According to the company's file sharing and data storage policies, personal USB drives are explicitly listed as \"Not allowed\" [Hr_POLICIES_and_PROCEDURES_MANUAL.md].",
+    "cited_documents": [
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 10,
+    "category": "employee_rag",
+    "question": "What are the company's password requirements?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "What are the company's password requirements?",
+    "expected_documents": [
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "retrieved_documents": [
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "retrieval_pass": true,
+    "forbidden_documents": [
+      "ExitChecklist.md",
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "According to the company's IT policies, password requirements include:\n\n* A minimum of 12 characters [Hr_POLICIES_and_PROCEDURES_MANUAL.md]\n* A mix of letters, numbers, and symbols [Hr_POLICIES_and_PROCEDURES_MANUAL.md]\n* No password sharing [Hr_POLICIES_and_PROCEDURES_MANUAL.md]\n* No reuse across systems [Hr_POLICIES_and_PROCEDURES_MANUAL.md]\n* Use of MFA (Multi-Factor Authentication) where available [Hr_POLICIES_and_PROCEDURES_MANUAL.md]\n* Storage only in approved password managers [Hr_POLICIES_and_PROCEDURES_MANUAL.md]",
+    "cited_documents": [
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 11,
+    "category": "employee_rag",
+    "question": "What should I do if I receive a suspicious email or phishing attempt?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "What is the company procedure for reporting a suspicious email or phishing attempt?",
+    "expected_documents": [
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "retrieved_documents": [
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "retrieval_pass": true,
+    "forbidden_documents": [
+      "ExitChecklist.md",
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "If you receive a phishing attempt or a suspicious email, you must report it to IT [Hr_POLICIES_and_PROCEDURES_MANUAL.md]. \n\nAccording to the data breach response policy, employees must report:\n* Phishing attempts [Hr_POLICIES_and_PROCEDURES_MANUAL.md]\n* Suspicious emails [Hr_POLICIES_and_PROCEDURES_MANUAL.md]\n* Unusual system behavior [Hr_POLICIES_and_PROCEDURES_MANUAL.md]\n* Lost or stolen devices [Hr_POLICIES_and_PROCEDURES_MANUAL.md]\n* Accidental data exposure [Hr_POLICIES_and_PROCEDURES_MANUAL.md]\n\nOnce reported, IT will initiate investigation and mitigation steps [Hr_POLICIES_and_PROCEDURES_MANUAL.md].",
+    "cited_documents": [
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 12,
+    "category": "employee_rag",
+    "question": "Does the NDA still apply after I leave the company?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "Does the company NDA (Non-Disclosure Agreement) still apply after an employee leaves the company?",
+    "expected_documents": [
+      "NDA.md"
+    ],
+    "retrieved_documents": [
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md",
+      "NDA.md"
+    ],
+    "retrieval_pass": true,
+    "forbidden_documents": [
+      "ExitChecklist.md",
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Yes, the Non-Disclosure Agreement (NDA) continues to apply after you leave the company [NDA.md]. \n\nSpecifically:\n* The obligations under the agreement apply **during and after employment** [NDA.md].\n* The agreement **continues indefinitely after employment ends** [NDA.md].\n* The agreement has **no expiration for trade secrets** [NDA.md].\n* Former employees are also explicitly restricted from disclosing or misusing any sensitive information after separation [Hr_POLICIES_and_PROCEDURES_MANUAL.md].",
+    "cited_documents": [
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md",
+      "NDA.md"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 13,
+    "category": "employee_rag",
+    "question": "Who owns creative or technical work I produce during my employment?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "intellectual property ownership policy for creative and technical work produced by employees during employment",
+    "expected_documents": [
+      "EmploymentContract.md",
+      "NDA.md"
+    ],
+    "retrieved_documents": [
+      "EmploymentContract.md",
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "retrieval_pass": true,
+    "forbidden_documents": [
+      "ExitChecklist.md",
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "All work produced during your employment\u2014including creative work, technical work, designs, written content, concepts, software, marketing materials, video and audio content, campaign strategies, reports, and tools or scripts\u2014belongs exclusively to BluePeak Creative Group [Hr_POLICIES_and_PROCEDURES_MANUAL.md, EmploymentContract.md]. \n\nThe Employee agrees to transfer all intellectual property rights to the company, and employees must not retain, reuse, or use company IP for personal projects after leaving employment [Hr_POLICIES_and_PROCEDURES_MANUAL.md, EmploymentContract.md].",
+    "cited_documents": [
+      "EmploymentContract.md",
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 14,
+    "category": "employee_rag",
+    "question": "Who does the Project Manager coordinate with?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "Who does the Project Manager coordinate with within the company organization?",
+    "expected_documents": [
+      "JOB_DESCRIPTIONS.md"
+    ],
+    "retrieved_documents": [
+      "JOB_DESCRIPTIONS.md",
+      "ORGANIZATIONAL_CHART.md"
+    ],
+    "retrieval_pass": true,
+    "forbidden_documents": [
+      "ExitChecklist.md",
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Based on the company documents, the Project Manager works as part of the Client & Project Management department, which includes cross-functional teams spanning design, copy, video, and marketing [ORGANIZATIONAL_CHART.md].",
+    "cited_documents": [
+      "ORGANIZATIONAL_CHART.md"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": false,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 15,
+    "category": "employee_rag",
+    "question": "Who reports to the Creative Director according to the organizational chart?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "Who reports to the Creative Director according to the company organizational chart?",
+    "expected_documents": [
+      "ORGANIZATIONAL_CHART.md"
+    ],
+    "retrieved_documents": [
+      "JOB_DESCRIPTIONS.md",
+      "ORGANIZATIONAL_CHART.md"
+    ],
+    "retrieval_pass": true,
+    "forbidden_documents": [
+      "ExitChecklist.md",
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "According to the organizational chart, the following roles are listed under the Creative Department, which is led by the Creative Director:\n\n* **Senior Designer** (Optional) [ORGANIZATIONAL_CHART.md]\n* **Graphic Designer** [ORGANIZATIONAL_CHART.md]\n* **Video Editor** [ORGANIZATIONAL_CHART.md]\n* **Motion Designer** (Optional) [ORGANIZATIONAL_CHART.md]\n* **Copywriter** [ORGANIZATIONAL_CHART.md]\n* **Content Strategist** [ORGANIZATIONAL_CHART.md]",
+    "cited_documents": [
+      "ORGANIZATIONAL_CHART.md"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 16,
+    "category": "general",
+    "question": "Write a Python function that reverses a string.",
+    "role": "employee",
+    "expected_route": "GENERAL",
+    "actual_route": "GENERAL",
+    "route_pass": true,
+    "retrieval_query": "Write a Python function that reverses a string.",
+    "expected_documents": [],
+    "retrieved_documents": [],
+    "retrieval_pass": null,
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Here are a few ways to reverse a string in Python, depending on your needs.\n\n### Method 1: Using slicing (Most Pythonic and efficient)\nPython has a built-in slicing syntax `[start:stop:step]` that allows you to reverse a string by setting the step to `-1`.\n\n```python\ndef reverse_string(s):\n    return s[::-1]\n\n\n# Example usage:\ntext = \"hello\"\nprint(reverse_string(text))  # Output: olleh\n```\n\n---\n\n### Method 2: Using `reversed()` and `join()`\nThis method creates an iterator that reverses the string, and then `.join()` combines the characters back into a new string.\n\n```python\ndef reverse_string_builtin(s):\n    return \"\".join(reversed(s))\n\n\n# Example usage:\ntext = \"hello\"\nprint(reverse_string_builtin(text))  # Output: olleh\n```\n\n---\n\n### Method 3: Using a loop (For educational purposes)\nIf you want to understand the underlying logic without using built-in shortcuts, you can loop through the string backwards.\n\n```python\ndef reverse_string_loop(s):\n    reversed_str = \"\"\n    for char in s:\n        reversed_str = char + reversed_str  # Prepend the character\n    return reversed_str\n\n\n# Example usage:\ntext = \"hello\"\nprint(reverse_string_loop(text))  # Output: olleh\n```\n\n### Recommendation\n**Method 1** (`s[::-1]`) is generally the most widely used and fastest way to reverse a string in Python.",
+    "cited_documents": [],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 17,
+    "category": "general",
+    "question": "What is the capital of France?",
+    "role": "employee",
+    "expected_route": "GENERAL",
+    "actual_route": "GENERAL",
+    "route_pass": true,
+    "retrieval_query": "What is the capital of France?",
+    "expected_documents": [],
+    "retrieved_documents": [],
+    "retrieval_pass": null,
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "The capital of France is Paris.",
+    "cited_documents": [],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 18,
+    "category": "general",
+    "question": "Explain what a binary search is.",
+    "role": "employee",
+    "expected_route": "GENERAL",
+    "actual_route": "GENERAL",
+    "route_pass": true,
+    "retrieval_query": "Explain what a binary search is.",
+    "expected_documents": [],
+    "retrieved_documents": [],
+    "retrieval_pass": null,
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "**Binary search** is an efficient algorithm used to find a specific item in a **sorted** list or array. \n\nInstead of searching through the list one by one (which is called a \"linear search\" and takes a long time for big lists), a binary search cuts the search area **in half** with every single step.\n\n---\n\n### A Real-World Analogy: Finding a Word in a Dictionary\nImagine you are looking for the word **\"Mango\"** in a physical dictionary. \n1. You wouldn\u2019t start at page 1 and read every word until you find it. That would take forever.\n2. Instead, you open the dictionary right near the middle (maybe you land on the letter **P**).\n3. You know that **M** comes before **P** in the alphabet. So, you can instantly throw away the second half of the dictionary and focus only on the first half.\n4. You take that remaining first half, open it to the middle (maybe you land on **F**). \n5. Since **M** comes after **F**, you throw away everything from **F** backwards.\n6. You repeat this process\u2014cutting the remaining pages in half\u2014until you open the page and find **Mango**.\n\n---\n\n### How Binary Search Works (Step-by-Step)\nFor a binary search to work, the data **must be sorted** in ascending or descending order. \n\nLet\u2019s say we want to find the number **7** in this sorted list:\n`[1, 3, 5, 7, 9, 11, 13, 15]`\n\n1. **Set your pointers:** You look at the very beginning of the list (**Low**) and the very end (**High**).\n2. **Find the middle:** Calculate the middle point between Low and High.\n   * *Middle value is 9.*\n3. **Compare:** Is our target (7) equal to, greater than, or less than the middle value (9)?\n   * 7 is **less than** 9. \n4. **Adjust pointers:** Because the list is sorted, we know 7 cannot be anywhere to the right of 9. So, we move our **High** pointer to just left of 9. \n   * *New list to check: `[1, 3, 5, 7]`*\n5. **Repeat:** \n   * Find the new middle (let's say it's 3).\n   * 7 is **greater than** 3, so move the **Low** pointer to the right of 3.\n   * *New list to check: `[5, 7]`*\n6. **Found it:** Check the middle of `[5, 7]`, which lands directly on **7**. Success!\n\n---\n\n### Why is it so great? (Efficiency)\nBinary search is incredibly fast because of how quickly it reduces the workload. \n\n* If you have a list of **1,000 items**, a linear search might take up to 1,000 checks. A binary search will find the item in **at most 10 checks**.\n* If you have a list of **1,000,000,000 items** (like a database of users), a binary search will find the exact item in **at most 30 checks**.\n\nIn computer science, we measure this as **$O(\\log n)$ logarithmic time complexity**, which makes it one of the standard tools for searching large datasets efficiently.",
+    "cited_documents": [],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 19,
+    "category": "general",
+    "question": "Give me three dinner ideas using rice and vegetables.",
+    "role": "employee",
+    "expected_route": "GENERAL",
+    "actual_route": "GENERAL",
+    "route_pass": true,
+    "retrieval_query": "Give me three dinner ideas using rice and vegetables.",
+    "expected_documents": [],
+    "retrieved_documents": [],
+    "retrieval_pass": null,
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Here are three distinct, delicious dinner ideas that use rice and vegetables as the stars of the plate:\n\n### 1. Crispy Tofu & Vegetable Stir-Fry\n*Bright, savory, and comes together in about 25 minutes.*\n\n*   **The Rice:** Jasmine or white rice. \n*   **The Vegetables:** Broccoli florets, snap peas, sliced bell peppers, and baby corn.\n*   **The Protein (optional):** Extra-firm tofu, cubed and pan-fried until crispy.\n*   **How to make it:** \n    1. Cook your rice. \n    2. Press and cube the tofu, toss it in a little cornstarch, and pan-fry in oil until golden and crispy; remove from the pan. \n    3. In the same pan, stir-fry your veggies until tender-crisp. \n    4. Whisk together a quick sauce: soy sauce, a splash of sesame oil, minced garlic, grated ginger, a spoonful of brown sugar (or honey), and a splash of rice vinegar. \n    5. Toss the tofu and sauce back into the pan with the veggies, let it bubble and thicken for a minute, and serve over the hot rice.\n\n### 2. Roasted Mediterranean Vegetable Rice Bowl\n*Warm, comforting, and packed with bold flavors and textures.*\n\n*   **The Rice:** Brown rice or wild rice blend.\n*   **The Vegetables:** Diced zucchini, cherry tomatoes, red onion, and bell peppers.\n*   **The Extras:** Canned chickpeas (for protein), crumbled feta cheese, and kalamata olives.\n*   **How to make it:**\n    1. Toss your chopped zucchini, red onion, and bell peppers in olive oil, salt, pepper, and dried oregano. Roast at 400\u00b0F (200\u00b0C) for 20-25 minutes (throw the cherry tomatoes in for the last 10 minutes so they burst).\n    2. Toss the drained chickpeas with a little cumin and garlic powder and roast them on a separate sheet pan until slightly crispy.\n    3. Assemble your bowls: a base of warm brown rice, topped with the roasted veggies, warm chickpeas, olives, and feta. \n    4. Drizzle with a quick tahini sauce (tahini mixed with lemon juice and a splash of warm water) or a simple squeeze of fresh lemon juice.\n\n### 3. Creamy Garlic Parmesan Vegetable Risotto-Style Rice\n*Rich, cozy, and feels a bit gourmet while using basic ingredients.*\n\n*   **The Rice:** Arborio rice (or short-grain white rice if you don't have Arborio).\n*   **The Vegetables:** Frozen or fresh peas, sliced cremini mushrooms, and fresh baby spinach.\n*   **The Extras:** Vegetable broth, butter, garlic, and plenty of Parmesan cheese.\n*   **How to make it:**\n    1. Saut\u00e9 sliced mushrooms in a large skillet with butter until browned. Remove and set aside.\n    2. In the same pan, add a bit more butter and saut\u00e9 minced garlic and the dry Arborio rice for 1 minute.\n    3. Begin adding warm vegetable broth about half a cup at a time, stirring frequently and letting the liquid absorb before adding more (this releases the starch to make it creamy).\n    4. About halfway through cooking, stir in the peas and cooked mushrooms.\n    5. Just before the rice is tender, stir in a big handful of baby spinach until wilted, turn off the heat, and vigorously stir in a generous amount of grated Parmesan cheese, salt, and black pepper.",
+    "cited_documents": [],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 20,
+    "category": "general",
+    "question": "What is 17 multiplied by 24?",
+    "role": "employee",
+    "expected_route": "GENERAL",
+    "actual_route": "GENERAL",
+    "route_pass": true,
+    "retrieval_query": "What is 17 multiplied by 24?",
+    "expected_documents": [],
+    "retrieved_documents": [],
+    "retrieval_pass": null,
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "17 multiplied by 24 is **408**. \n\nHere is a quick way to calculate it:\n* $17 \\times 20 = 340$\n* $17 \\times 4 = 68$\n* $340 + 68 = 408$",
+    "cited_documents": [],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 21,
+    "category": "general",
+    "question": "Help me rewrite this sentence more clearly: The meeting was good and we talked about things.",
+    "role": "employee",
+    "expected_route": "GENERAL",
+    "actual_route": "GENERAL",
+    "route_pass": true,
+    "retrieval_query": "Help me rewrite this sentence more clearly: The meeting was good and we talked about things.",
+    "expected_documents": [],
+    "retrieved_documents": [],
+    "retrieval_pass": null,
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Here are a few ways to rewrite that sentence more clearly, depending on the context:\n\n**Professional / Workplace**\n* \"The meeting was productive, and we discussed several key topics.\"\n* \"The meeting went well, and we covered important agenda items.\"\n\n**Casual / Friendly**\n* \"The meeting went well, and we had a great discussion.\"\n* \"We had a good meeting and talked through a few things.\"\n\n**Specific (Best if you want to add details)**\n* \"The meeting was productive; we discussed [insert topic, e.g., the project timeline].\" \n\n**Tip:** Whenever possible, replace vague words like \"things\" with the actual topics you discussed to make your writing much clearer!",
+    "cited_documents": [],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 22,
+    "category": "general",
+    "question": "What is the difference between a list and a tuple in Python?",
+    "role": "employee",
+    "expected_route": "GENERAL",
+    "actual_route": "GENERAL",
+    "route_pass": true,
+    "retrieval_query": "What is the difference between a list and a tuple in Python?",
+    "expected_documents": [],
+    "retrieved_documents": [],
+    "retrieval_pass": null,
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "In Python, both **lists** and **tuples** are used to store collections of data. The primary difference between them is that **lists are mutable** (can be changed), while **tuples are immutable** (cannot be changed once created).\n\nHere is a detailed breakdown of the differences:\n\n### 1. Mutability (Can they be changed?)\n*   **List:** Mutable. You can add, remove, or modify items after the list is created.\n    ```python\n    my_list = [1, 2, 3]\n    my_list[0] = 10  # This is allowed\n    my_list.append(4)  # This is allowed\n    print(my_list)  # Output: [10, 2, 3, 4]\n```\n*   **Tuple:** Immutable. Once a tuple is created, you cannot modify its elements, add new ones, or remove existing ones.\n    ```python\n    my_tuple = (1, 2, 3)\n    my_tuple[0] = 10  # Raises a TypeError!\n```\n\n### 2. Syntax\n*   **List:** Defined using square brackets `[]`.\n    ```python\n    my_list = [1, \"apple\", 3.5]\n```\n*   **Tuple:** Defined using parentheses `()`. (Parentheses are technically optional, and commas alone define a tuple, but using parentheses is best practice for readability).\n    ```python\n    my_tuple = (1, \"apple\", 3.5)\n```\n    *(Note: To create a tuple with a single item, you must include a trailing comma, e.g., `my_tuple = (1,)`, otherwise Python treats it as a standard integer in parentheses).*\n\n### 3. Performance and Memory\n*   **List:** Because lists are mutable, Python allocates extra memory to accommodate future additions. This makes lists slightly heavier in terms of memory usage and marginally slower.\n*   **Tuple:** Because tuples are immutable, Python allocates the exact amount of memory needed. This makes tuples more memory-efficient and slightly faster than lists.\n\n### 4. Use Cases\n*   **List:** Used for collections of items that may need to change or grow over time (e.g., a shopping list, a list of logged-in users).\n*   **Tuple:** Used for heterogeneous (different types) data that belongs together and shouldn't change (e.g., a GPS coordinate `(latitude, longitude)`, a database record, or RGB color values). Tuples are also commonly used as **dictionary keys** because they are hashable, whereas lists are not.\n\n---\n\n### Summary Table\n\n| Feature | List | Tuple |\n| :--- | :--- | :--- |\n| **Mutable** | Yes | No |\n| **Syntax** | `[1, 2, 3]` | `(1, 2, 3)` |\n| **Speed** | Slower | Faster |\n| **Memory** | Uses more | Uses less |\n| **Hashable (can be dict key)** | No | Yes (if all elements are hashable) |\n| **Built-in Methods** | Many (`append`, `pop`, `sort`, etc.) | Few (`count`, `index`) |",
+    "cited_documents": [],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 23,
+    "category": "general",
+    "question": "Give me a simple explanation of machine learning.",
+    "role": "employee",
+    "expected_route": "GENERAL",
+    "actual_route": "GENERAL",
+    "route_pass": true,
+    "retrieval_query": "Give me a simple explanation of machine learning.",
+    "expected_documents": [],
+    "retrieved_documents": [],
+    "retrieval_pass": null,
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "At its core, **machine learning (ML)** is a way of teaching computers to learn from data, rather than writing explicit rules for every single task.\n\n### The Traditional Way (Programming)\nThink of a standard computer program like a **recipe**. You give the computer the ingredients (data) and step-by-step instructions (code) on what to do, and it gives you the result (a cake). \n\n### The Machine Learning Way\nWith machine learning, you flip the process. Instead of giving the computer instructions, you give it **lots of examples** and the **desired results**, and you let the computer figure out the recipe on its own.\n\n---\n\n### A Simple Example: Spotting Spam\n\n*   **Old way:** You write rules for the computer: *\"If the email has the word 'Free' and 'Million Dollars', mark it as spam.\"* (This is hard because spammers constantly change their tactics).\n*   **Machine Learning way:** You feed the computer 10,000 emails already labeled as \"spam\" or \"not spam.\" The computer analyzes them, finds patterns (like certain words, sender addresses, or punctuation marks), and builds its own rulebook to catch future spam.\n\n---\n\n### The 3-Step ML Process\n\n1.  **Feed it data:** Show the computer lots of examples (e.g., thousands of pictures of cats and dogs).\n2.  **Train the model:** The computer looks for patterns and makes guesses. When it guesses wrong, it corrects itself. \n3.  **Make predictions:** Once trained, you show it a *new* picture it has never seen before, and it uses what it learned to say, \"That's a cat!\"\n\n### Where do you see it every day?\n*   **Netflix/Spotify:** Recommending shows or songs based on what you liked in the past.\n*   **TikTok/YouTube:** Figuring out what kind of videos keep you watching.\n*   **GPS Apps:** Predicting traffic jams before they happen. \n\n**In short:** Machine learning is teaching computers to learn from experience, just like humans do.",
+    "cited_documents": [],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 24,
+    "category": "hr_authorized",
+    "question": "Does HR need to determine whether a departing employee is eligible for rehire?",
+    "role": "hr",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "Does HR need to determine whether a departing employee is eligible for rehire according to company policy?",
+    "expected_documents": [
+      "ExitChecklist.md"
+    ],
+    "retrieved_documents": [
+      "EmployeeHandbook.md",
+      "ExitChecklist.md",
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "retrieval_pass": true,
+    "forbidden_documents": [
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Yes, HR needs to confirm whether the employee is eligible for rehire as part of the HR processing steps for departures [ExitChecklist.md].",
+    "cited_documents": [
+      "ExitChecklist.md"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 25,
+    "category": "hr_authorized",
+    "question": "What systems should be updated or closed when an employee leaves?",
+    "role": "hr",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "What systems need to be updated or closed during the employee offboarding process?",
+    "expected_documents": [
+      "ExitChecklist.md"
+    ],
+    "retrieved_documents": [
+      "EmployeeHandbook.md",
+      "ExitChecklist.md",
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "retrieval_pass": true,
+    "forbidden_documents": [
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "When an employee leaves BluePeak Creative Group, the following accounts, systems, and records must be updated or closed according to the exit procedures:\n\n* **Company Systems (IT Offboarding):** Access to the following systems must be disabled, scheduled for the last working day:\n  * Email\n  * Slack / Teams\n  * Project Management Tools\n  * File Storage Platforms\n  * VPN Access\n  *(Source: ExitChecklist.md)*\n* **HR Systems and Records:**\n  * Update HR systems with the termination date [ExitChecklist.md].\n  * Close the payroll profile [ExitChecklist.md].\n  * Deactivate HR system access [ExitChecklist.md].\n  * Archive the employee file [ExitChecklist.md].\n  * Finalize the termination record [ExitChecklist.md].",
+    "cited_documents": [
+      "ExitChecklist.md"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 26,
+    "category": "hr_authorized",
+    "question": "What topics should HR cover in an exit interview?",
+    "role": "hr",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "GENERAL",
+    "route_pass": false,
+    "retrieval_query": "What topics should HR cover in an exit interview?",
+    "expected_documents": [
+      "ExitChecklist.md"
+    ],
+    "retrieved_documents": [],
+    "retrieval_pass": false,
+    "forbidden_documents": [
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "An exit interview is a valuable opportunity to gather candid feedback, identify organizational blind spots, and improve retention. To make the interview productive and comfortable for the departing employee, HR should categorize the topics into key areas. \n\nHere is a comprehensive guide on the topics HR should cover during an exit interview:\n\n---\n\n### 1. Reasons for Leaving\nUnderstanding the primary and secondary drivers behind the departure is crucial.\n* **The Catalyst:** What specifically prompted your decision to leave at this time?\n* **Push vs. Pull:** Was your departure driven more by opportunities elsewhere (better pay, title, commute) or frustrations within the company?\n* **The Job Search:** When did you start looking for a new role? (This helps determine if the issue was chronic or recent).\n\n### 2. Role and Responsibilities\nEvaluate whether the job matched the employee\u2019s expectations and the initial job description.\n* **Role Clarity:** Did your day-to-day responsibilities align with what was discussed during the hiring process?\n* **Workload:** Was your workload manageable, or did you consistently feel overworked/underutilized?\n* **Resources & Tools:** Did you have the necessary software, equipment, and resources to do your job effectively?\n\n### 3. Management and Leadership\nManagement style is one of the top reasons employees leave. This feedback should be handled delicately and kept confidential.\n* **Direct Supervisor:** How would you describe your relationship with your manager? Did they provide clear direction, support, and constructive feedback?\n* **Autonomy:** Did you feel trusted to do your work without micromanagement?\n* **Senior Leadership:** Do you feel the executive leadership team communicated a clear vision and direction for the company?\n\n### 4. Compensation, Benefits, and Perks\nEnsure your total rewards package remains competitive in the market.\n* **Base Pay:** Did you feel your compensation was fair relative to your responsibilities and market standards?\n* **Benefits:** How satisfied were you with the health insurance, retirement plans, PTO, and other perks?\n* **Performance Recognition:** Did you feel your contributions were adequately recognized and rewarded (financially and culturally)?\n\n### 5. Culture, Environment, and Inclusion\nAssess the health of the company culture and employee morale.\n* **Company Culture:** How would you describe the workplace culture? Did it live up to the company\u2019s stated values?\n* **Team Dynamics:** How would you describe collaboration and morale within your team?\n* **Inclusion & Belonging:** Did you feel respected, valued, and included regardless of your background? Did you feel comfortable voicing your opinions?\n\n### 6. Growth, Development, and Career Pathing\nHigh performers often leave when they feel stuck.\n* **Professional Growth:** Did you feel you had opportunities to learn new skills and grow professionally?\n* **Career Progression:** Did you see a clear path for advancement within the company?\n* **Training:** Did you receive adequate onboarding and ongoing training to succeed in your role?\n\n### 7. Open Feedback and Recommendations\nGive the employee the floor to share anything that wasn't covered by the previous questions.\n* **The \"Magic Wand\":** If you could change one thing about this company overnight, what would it be?\n* **Advice for the Successor:** What advice would you give to the person taking over your role?\n* **Final Thoughts:** Is there anything else you\u2019d like to share that we haven\u2019t discussed?\n\n---\n\n### Best Practices for HR:\n* **Who Conducts It:** Ideally, a neutral party (like an HR representative who is *not* the employee's direct manager) should conduct the interview to encourage honesty.\n* **Timing:** Conduct the interview a few days before the employee's last day, when emotions have settled, but they are still with the organization.\n* **Tone:** Keep the tone conversational, appreciative, and non-defensive. Reassure the employee that constructive feedback helps the company improve.\n* **Data Tracking:** Don\u2019t let the feedback sit in a single file. Aggregate exit interview data quarterly to spot trends (e.g., if multiple people cite the same manager or lack of growth).",
+    "cited_documents": [],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 27,
+    "category": "hr_authorized",
+    "question": "What final pay items should be checked during offboarding?",
+    "role": "hr",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "What final pay items should be checked during employee offboarding?",
+    "expected_documents": [
+      "ExitChecklist.md"
+    ],
+    "retrieved_documents": [
+      "EmployeeHandbook.md",
+      "ExitChecklist.md",
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "retrieval_pass": true,
+    "forbidden_documents": [
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "During offboarding, the following final pay and compensation items should be checked and confirmed:\n\n* Last salary / salary through the last working day [ExitChecklist.md, Hr_POLICIES_and_PROCEDURES_MANUAL.md]\n* Overtime (if applicable) [ExitChecklist.md]\n* Unused PTO / applicable PTO payout [ExitChecklist.md, Hr_POLICIES_and_PROCEDURES_MANUAL.md]\n* Outstanding or pending reimbursements [ExitChecklist.md, Hr_POLICIES_and_PROCEDURES_MANUAL.md]\n* Commission or bonus adjustments (if contractually defined) [Hr_POLICIES_and_PROCEDURES_MANUAL.md]",
+    "cited_documents": [
+      "ExitChecklist.md",
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 28,
+    "category": "hr_authorized",
+    "question": "Who needs to be notified when HR processes an employee exit?",
+    "role": "hr",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "Who needs to be notified when HR processes an employee exit?",
+    "expected_documents": [
+      "ExitChecklist.md"
+    ],
+    "retrieved_documents": [
+      "EmployeeHandbook.md",
+      "ExitChecklist.md",
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "retrieval_pass": true,
+    "forbidden_documents": [
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "When HR processes an employee exit, they need to notify payroll, IT, and other relevant departments [ExitChecklist.md].",
+    "cited_documents": [
+      "ExitChecklist.md"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 29,
+    "category": "hr_authorized",
+    "question": "What information should be collected for knowledge transfer before an employee leaves?",
+    "role": "hr",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "What information and documentation should be collected for employee knowledge transfer during offboarding?",
+    "expected_documents": [
+      "ExitChecklist.md"
+    ],
+    "retrieved_documents": [
+      "EmployeeHandbook.md",
+      "ExitChecklist.md",
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "retrieval_pass": true,
+    "forbidden_documents": [
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Based on the company documents, the knowledge transfer process before an employee leaves includes the following items and tasks:\n\n* Creating a handover document [ExitChecklist.md]\n* Updating the current project status [ExitChecklist.md]\n* Transferring files and documents to the team [ExitChecklist.md]\n* Transitioning client communication [ExitChecklist.md]\n* Storing passwords in a company-approved system (if applicable) [ExitChecklist.md]",
+    "cited_documents": [
+      "ExitChecklist.md"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 30,
+    "category": "hr_authorized",
+    "question": "What should happen to an employee's system access on their last working day?",
+    "role": "hr",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "employee system access revocation procedure last working day offboarding policy",
+    "expected_documents": [
+      "ExitChecklist.md"
+    ],
+    "retrieved_documents": [
+      "EmployeeHandbook.md",
+      "ExitChecklist.md",
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "retrieval_pass": true,
+    "forbidden_documents": [
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "On their last working day, an employee's access to company systems should be disabled, which includes:\n* Email\n* Slack / Teams\n* Project Management Tools\n* File Storage Platforms\n* VPN Access\n\nAdditionally, IT will revoke access and reset devices [ExitChecklist.md, Hr_POLICIES_and_PROCEDURES_MANUAL.md].",
+    "cited_documents": [
+      "ExitChecklist.md",
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 31,
+    "category": "manager_authorized",
+    "question": "What should a manager prepare before a new employee starts?",
+    "role": "manager",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "What are the manager preparation checklist and procedures before a new employee starts at the company?",
+    "expected_documents": [
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "retrieved_documents": [
+      "EmployeeHandbook.md",
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md",
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "retrieval_pass": true,
+    "forbidden_documents": [
+      "ExitChecklist.md"
+    ],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Before a new employee starts, the manager must prepare a 30-day plan [ONBOARDING_CHECKLIST.md].",
+    "cited_documents": [
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 32,
+    "category": "manager_authorized",
+    "question": "What should happen during the manager's first-day 1:1 with a new employee?",
+    "role": "manager",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "What are the company guidelines, policies, or procedures for a manager's first-day 1:1 meeting with a new employee?",
+    "expected_documents": [
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "retrieved_documents": [
+      "EmployeeHandbook.md",
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md",
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "retrieval_pass": true,
+    "forbidden_documents": [
+      "ExitChecklist.md"
+    ],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "During the manager's first-day 1:1 meeting with a new employee, the following should happen:\n\n* Clarify responsibilities [ONBOARDING_CHECKLIST.md]\n* Assign first-day tasks [ONBOARDING_CHECKLIST.md]",
+    "cited_documents": [
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 33,
+    "category": "manager_authorized",
+    "question": "How often should a manager check in with a new employee during the first week?",
+    "role": "manager",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "new employee onboarding first week manager check in frequency policy",
+    "expected_documents": [
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "retrieved_documents": [
+      "EmployeeHandbook.md",
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md",
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "retrieval_pass": true,
+    "forbidden_documents": [
+      "ExitChecklist.md"
+    ],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Based on the onboarding checklist, during the first week, managers should have **daily check-ins** with the new employee [ONBOARDING_CHECKLIST.md].",
+    "cited_documents": [
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 34,
+    "category": "manager_authorized",
+    "question": "What should be reviewed during a new employee's first month?",
+    "role": "manager",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "What are the review items, guidelines, and procedures for a new employee's first month onboarding?",
+    "expected_documents": [
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "retrieved_documents": [
+      "EmployeeHandbook.md",
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md",
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "retrieval_pass": true,
+    "forbidden_documents": [
+      "ExitChecklist.md"
+    ],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "During a new employee's first month at BluePeak Creative Group, the employee should engage in the following activities and reviews, according to the company documents:\n\n* **Project and Manager Check-ins:** Begin project integration, participate in regular manager check-ins, receive ongoing support and guidance [Hr_POLICIES_and_PROCEDURES_MANUAL.md], and ensure the employee is functioning independently and contributing actively [ONBOARDING_CHECKLIST.md].\n* **Performance and Feedback:** \n  * Performance check-in with the manager during Week 2 [ONBOARDING_CHECKLIST.md].\n  * Work quality review [ONBOARDING_CHECKLIST.md].\n  * Feedback sessions: Employee to manager, and manager to employee [ONBOARDING_CHECKLIST.md].\n* **Access and Integration:** \n  * Verify access needs and adjust permissions [ONBOARDING_CHECKLIST.md].\n  * Team integration check [ONBOARDING_CHECKLIST.md].\n* **Training and Planning:**\n  * Advanced training sessions covering department tools and company processes [ONBOARDING_CHECKLIST.md].\n  * Update the 30-day plan to a 60-day plan [ONBOARDING_CHECKLIST.md].",
+    "cited_documents": [
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md",
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 35,
+    "category": "manager_authorized",
+    "question": "What reviews are required during the three-month probation period?",
+    "role": "manager",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "What reviews are required during the three-month probation period?",
+    "expected_documents": [
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "retrieved_documents": [
+      "EmploymentContract.md",
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md",
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "retrieval_pass": true,
+    "forbidden_documents": [
+      "ExitChecklist.md"
+    ],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Based on the company documents, the following reviews and check-ins are required during the three-month probation period:\n\n* **Probation Check-ins:** Managers conduct structured check-ins at Week 2, Month 1, Month 2, and the end of Month 3 [Hr_POLICIES_and_PROCEDURES_MANUAL.md].\n* **Specific Reviews mentioned in the checklist:** A 30-day review and a 60-day review must be completed, along with a completed performance evaluation form [ONBOARDING_CHECKLIST.md].",
+    "cited_documents": [
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md",
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 36,
+    "category": "manager_authorized",
+    "question": "What are the possible outcomes at the end of probation?",
+    "role": "manager",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "What are the possible outcomes at the end of the employee probation period?",
+    "expected_documents": [
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md",
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "retrieved_documents": [
+      "EmploymentContract.md",
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md",
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "retrieval_pass": true,
+    "forbidden_documents": [
+      "ExitChecklist.md"
+    ],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Based on the company documents, the possible outcomes at the end of the probation period are:\n\n* Confirmation of employment (or confirming employment)\n* Probation extension (or extending probation if necessary)\n* Termination (or terminating employment if not a fit)\n\n[SOURCE: ONBOARDING_CHECKLIST.md], [SOURCE: Hr_POLICIES_and_PROCEDURES_MANUAL.md]",
+    "cited_documents": [
+      "SOURCE: Hr_POLICIES_and_PROCEDURES_MANUAL.md",
+      "SOURCE: ONBOARDING_CHECKLIST.md"
+    ],
+    "invalid_citations": [
+      "SOURCE: Hr_POLICIES_and_PROCEDURES_MANUAL.md",
+      "SOURCE: ONBOARDING_CHECKLIST.md"
+    ],
+    "citation_retrieval_pass": false,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 37,
+    "category": "manager_authorized",
+    "question": "What access-related task should be done during a new employee's first month?",
+    "role": "manager",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "What access-related tasks and procedures must be completed during a new employee's first month?",
+    "expected_documents": [
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "retrieved_documents": [
+      "EmployeeHandbook.md",
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "retrieval_pass": true,
+    "forbidden_documents": [
+      "ExitChecklist.md"
+    ],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "During a new employee's first month, the onboarding checklist includes the task to **verify access needs and adjust permissions** [ONBOARDING_CHECKLIST.md].",
+    "cited_documents": [
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 38,
+    "category": "unauthorized",
+    "question": "Does HR need to determine whether a departing employee is eligible for rehire?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "Does HR need to determine whether a departing employee is eligible for rehire according to company policy?",
+    "expected_documents": [],
+    "retrieved_documents": [
+      "EmployeeHandbook.md",
+      "EmploymentContract.md",
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "retrieval_pass": null,
+    "forbidden_documents": [
+      "ExitChecklist.md"
+    ],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Based on the provided company documents, there is no mention or requirement stating that HR needs to determine whether a departing employee is eligible for rehire. \n\nThe exit procedures outlined in the documents require employees to provide a written resignation, complete transition tasks, return all company property, and comply with post-employment obligations, while HR communicates final steps and documentation [Hr_POLICIES_and_PROCEDURES_MANUAL.md]. \n\nTherefore, I could not find information regarding rehire eligibility in the company documents.",
+    "cited_documents": [
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 39,
+    "category": "unauthorized",
+    "question": "What topics does HR cover in the company's exit interview?",
+    "role": "manager",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "What topics does HR cover in the company's exit interview?",
+    "expected_documents": [],
+    "retrieved_documents": [
+      "EmployeeHandbook.md",
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md",
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "retrieval_pass": null,
+    "forbidden_documents": [
+      "ExitChecklist.md"
+    ],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Based on the company documents, the exit interview provides an opportunity for employees to **provide feedback and review obligations** [Hr_POLICIES_and_PROCEDURES_MANUAL.md].",
+    "cited_documents": [
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": false,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 40,
+    "category": "unauthorized",
+    "question": "What should HR do with rehire eligibility during offboarding?",
+    "role": "manager",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "What is the HR offboarding procedure regarding rehire eligibility?",
+    "expected_documents": [],
+    "retrieved_documents": [
+      "EmployeeHandbook.md",
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md",
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "retrieval_pass": null,
+    "forbidden_documents": [
+      "ExitChecklist.md"
+    ],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Based on the provided company documents, there is no mention of \"rehire eligibility\" or how HR should handle it during offboarding. Therefore, I could not find the answer in the company documents.",
+    "cited_documents": [],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 41,
+    "category": "unauthorized",
+    "question": "What should the hiring manager prepare before a new employee starts?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "what should a hiring manager prepare before a new employee starts company onboarding procedure checklist",
+    "expected_documents": [],
+    "retrieved_documents": [
+      "EmployeeHandbook.md",
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "retrieval_pass": null,
+    "forbidden_documents": [
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Before a new employee's start date, employees (or the company) prepare the following items:\n\n* Welcome information [Hr_POLICIES_and_PROCEDURES_MANUAL.md]\n* IT system access [Hr_POLICIES_and_PROCEDURES_MANUAL.md]\n* An onboarding schedule [Hr_POLICIES_and_PROCEDURES_MANUAL.md]\n* Policy documents [Hr_POLICIES_and_PROCEDURES_MANUAL.md]",
+    "cited_documents": [
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": false,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 42,
+    "category": "unauthorized",
+    "question": "What first-month onboarding steps require a manager to review or adjust a new hire's access?",
+    "role": "hr",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "What are the first-month onboarding steps that require a manager to review or adjust a new hire's access?",
+    "expected_documents": [],
+    "retrieved_documents": [
+      "EmployeeHandbook.md",
+      "ExitChecklist.md"
+    ],
+    "retrieval_pass": null,
+    "forbidden_documents": [
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "I could not find the answer to your question regarding first-month onboarding steps in the provided company documents. The available documents only contain information about the exit checklist and offboarding processes, as well as general employee handbook guidelines.",
+    "cited_documents": [],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 43,
+    "category": "unauthorized",
+    "question": "What does the onboarding checklist require at the final probation meeting?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "What does the onboarding checklist require at the final probation meeting?",
+    "expected_documents": [],
+    "retrieved_documents": [
+      "EmployeeHandbook.md",
+      "EmploymentContract.md",
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "retrieval_pass": null,
+    "forbidden_documents": [
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Based on the provided company documents, structured check-ins during the three-month probation period are conducted by managers at Week 2, Month 1, Month 2, and the End of Month 3 [Hr_POLICIES_and_PROCEDURES_MANUAL.md]. \n\nDuring these probation check-ins, the topics discussed include:\n- performance [Hr_POLICIES_and_PROCEDURES_MANUAL.md]\n- communication [Hr_POLICIES_and_PROCEDURES_MANUAL.md]\n- role adaptation [Hr_POLICIES_and_PROCEDURES_MANUAL.md]\n- teamwork [Hr_POLICIES_and_PROCEDURES_MANUAL.md]\n- expectations [Hr_POLICIES_and_PROCEDURES_MANUAL.md]\n\nThe possible outcomes at the end of the probation period are confirmation of employment, probation extension, or termination [Hr_POLICIES_and_PROCEDURES_MANUAL.md].",
+    "cited_documents": [
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": false,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 44,
+    "category": "unanswerable",
+    "question": "What is BluePeak's 401(k) employer match percentage?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "What is BluePeak's 401(k) employer match percentage?",
+    "expected_documents": [],
+    "retrieved_documents": [
+      "EmployeeHandbook.md",
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "retrieval_pass": null,
+    "forbidden_documents": [
+      "ExitChecklist.md",
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "I could not find the answer to BluePeak's 401(k) employer match percentage in the company documents.",
+    "cited_documents": [],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 45,
+    "category": "unanswerable",
+    "question": "What is the CEO's annual salary?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "What is the annual salary of the company CEO?",
+    "expected_documents": [],
+    "retrieved_documents": [
+      "EmployeeHandbook.md",
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md",
+      "JOB_DESCRIPTIONS.md"
+    ],
+    "retrieval_pass": null,
+    "forbidden_documents": [
+      "ExitChecklist.md",
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "I could not find the answer in the company documents.",
+    "cited_documents": [],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 46,
+    "category": "unanswerable",
+    "question": "Which health insurance company does BluePeak use?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "Which health insurance company does BluePeak use?",
+    "expected_documents": [],
+    "retrieved_documents": [
+      "EmployeeHandbook.md",
+      "EmploymentContract.md",
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "retrieval_pass": null,
+    "forbidden_documents": [
+      "ExitChecklist.md",
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "I could not find the answer in the company documents.",
+    "cited_documents": [],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 47,
+    "category": "unanswerable",
+    "question": "What is the Wi-Fi password for the office?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "What is the Wi-Fi password for the office?",
+    "expected_documents": [],
+    "retrieved_documents": [
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "retrieval_pass": null,
+    "forbidden_documents": [
+      "ExitChecklist.md",
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "I could not find the answer to what the office Wi-Fi password is in the company documents.",
+    "cited_documents": [],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 48,
+    "category": "hard_retrieval",
+    "question": "I'm expecting a baby. How early do I need to tell HR, and how much paid leave would I get as the primary caregiver?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "parental leave policy paid leave primary caregiver notice period HR company guidelines baby born",
+    "expected_documents": [
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "retrieved_documents": [
+      "EmployeeHandbook.md",
+      "EmploymentContract.md",
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "retrieval_pass": true,
+    "forbidden_documents": [
+      "ExitChecklist.md",
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "If you are expecting a baby and will be the primary caregiver, you must notify HR at least **eight weeks** before your anticipated leave date [Hr_POLICIES_and_PROCEDURES_MANUAL.md]. \n\nAs the primary caregiver, you receive **12 weeks** of paid parental leave [Hr_POLICIES_and_PROCEDURES_MANUAL.md].",
+    "cited_documents": [
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 49,
+    "category": "hard_retrieval",
+    "question": "I want to work from a coffee shop. What company security rules matter for remote access?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "What are the company security rules and policies for remote access and working from a coffee shop?",
+    "expected_documents": [
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "retrieved_documents": [
+      "EmployeeHandbook.md",
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "retrieval_pass": true,
+    "forbidden_documents": [
+      "ExitChecklist.md",
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "When working remotely from a public location like a coffee shop, you must follow these company security rules:\n\n* **Remote Access & VPN:** You must use a VPN to access internal systems remotely, and you must avoid public Wi-Fi unless you are connected via that VPN [Hr_POLICIES_and_PROCEDURES_MANUAL.md].\n* **Device Security:** You must secure your devices from loss or damage, lock your screens when away from them, and update your systems regularly [Hr_POLICIES_and_PROCEDURES_MANUAL.md].\n* **Data Security & Confidentiality:** You must protect confidential documents, follow password rules, avoid sharing sensitive information, and use only company-approved platforms [EmployeeHandbook.md]. Additionally, you must verify recipients before sending sensitive data [Hr_POLICIES_and_PROCEDURES_MANUAL.md].",
+    "cited_documents": [
+      "EmployeeHandbook.md",
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 50,
+    "category": "hard_retrieval",
+    "question": "If I'm leaving BluePeak, what company property and confidential materials do I need to return or stop retaining?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "BluePeak employee offboarding policy return company property and confidential materials",
+    "expected_documents": [
+      "NDA.md"
+    ],
+    "retrieved_documents": [
+      "EmployeeHandbook.md",
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "retrieval_pass": false,
+    "forbidden_documents": [
+      "ExitChecklist.md",
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "When leaving BluePeak, you must return the following company property and items before your departure:\n\n* Devices [Hr_POLICIES_and_PROCEDURES_MANUAL.md, EmployeeHandbook.md]\n* Keys [Hr_POLICIES_and_PROCEDURES_MANUAL.md]\n* Access cards [Hr_POLICIES_and_PROCEDURES_MANUAL.md, EmployeeHandbook.md]\n* Documents [Hr_POLICIES_and_PROCEDURES_MANUAL.md, EmployeeHandbook.md]\n* Equipment [Hr_POLICIES_and_PROCEDURES_MANUAL.md]\n* Any other company property [EmployeeHandbook.md]\n\nRegarding confidential materials, intellectual property, and data retention:\n* You must not remove or copy materials after leaving employment [Hr_POLICIES_and_PROCEDURES_MANUAL.md].\n* Company IP may not be used outside of BluePeak after separation [Hr_POLICIES_and_PROCEDURES_MANUAL.md].\n* All company data located on personal devices must be removed [Hr_POLICIES_and_PROCEDURES_MANUAL.md]. \n* Former employees must not disclose or misuse any sensitive or confidential information [Hr_POLICIES_and_PROCEDURES_MANUAL.md].",
+    "cited_documents": [
+      "EmployeeHandbook.md",
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  }
+]
