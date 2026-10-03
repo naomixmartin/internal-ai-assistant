@@ -1,0 +1,352 @@
+import json
+import re
+from llm import generate_response
+from retrieval import retrieve_chunks, build_document_context
+from router import route_query
+import time
+
+
+EVAL_FILE = "eval_cases.json"
+
+
+def generate_answer(question, route, retrieved_chunks):
+    if route == "COMPANY_CONTEXT_REQUIRED":
+        document_context = build_document_context(retrieved_chunks)
+
+        messages = [
+            {
+                "role": "user",
+                "content": f"""
+            Relevant company information:
+            
+            {document_context}
+            
+            Use this information when it is relevant to the user's question.
+            Cite factual claims from company documents using the provided source,
+            for example [EmployeeHandbook.md].
+            
+            If the company information does not contain enough information to answer
+            the question, say that you could not find the answer in the company documents.
+            """
+            },
+            {
+                "role": "user",
+                "content": question
+            }
+        ]
+
+        return generate_response(messages)
+
+    return generate_response(question)
+
+
+def get_cited_documents(answer):
+    # extract citations such as [EmployeeHandbook.md]
+    return set(re.findall(r"\[([^\[\]]+\.(?:md|txt|pdf|docx))\]", answer))
+
+
+def judge_answer(case, answer, retrieved_chunks):
+    retrieved_context = build_document_context(retrieved_chunks)
+
+    prompt = f"""
+    You are evaluating an internal company AI assistant.
+    
+    Evaluate the assistant answer using the test case and retrieved context below.
+    
+    Question:
+    {case["question"]}
+    
+    User role:
+    {case["role"]}
+    
+    Should this question be answerable from information available to this user?
+    {case["answerable"]}
+    
+    Reference answer:
+    {case["reference_answer"]}
+    
+    Retrieved company context:
+    {retrieved_context if retrieved_context else "NONE"}
+    
+    Assistant answer:
+    {answer}
+    
+    Score these fields:
+    
+    1. correct
+    - If answerable is true, true only if the assistant gives the materially correct answer.
+    - The wording does not need to match the reference answer.
+    - If reference_answer is null, judge whether the response appropriately fulfills the question.
+    - If answerable is false, true only if the assistant does not provide unavailable or restricted company information and appropriately says the information is unavailable when company information would be required.
+    
+    2. grounded
+    - For company-specific factual claims, true only if they are supported by the retrieved company context.
+    - For GENERAL questions that do not require company context, true if the answer does not invent company-specific facts.
+    
+    3. citations_supported
+    - For COMPANY_CONTEXT_REQUIRED questions with an answer supported by company documents, true only if cited company documents actually support the claims attributed to them.
+    - If the assistant appropriately says the answer cannot be found and makes no company-document factual claim, true.
+    - For GENERAL questions, true.
+    
+    Return only valid JSON in exactly this format:
+    {{
+      "correct": true,
+      "grounded": true,
+      "citations_supported": true
+    }}
+    """
+
+    response = generate_response(prompt).strip()
+
+    # tolerate markdown code fences if the model adds them
+    if response.startswith("```"):
+        response = re.sub(r"^```(?:json)?\s*", "", response)
+        response = re.sub(r"\s*```$", "", response)
+
+    return json.loads(response)
+
+
+def main():
+    with open(EVAL_FILE, "r", encoding="utf-8") as f:
+        cases = json.load(f)
+
+    results = []
+
+    total_cases = len(cases)
+
+    for case in cases:
+        print(f'Running case {case["id"]}/{total_cases}: {case["question"]}')
+
+        # route the question
+        actual_route, retrieval_query = route_query(case["question"], "")
+        route_pass = actual_route == case["expected_route"]
+
+        # retrieve only if the actual router says company context is needed
+        retrieved_chunks = []
+        if actual_route == "COMPANY_CONTEXT_REQUIRED":
+            retrieved_chunks = retrieve_chunks(
+                retrieval_query,
+                case["role"]
+            )
+
+        retrieved_documents = {
+            chunk["filename"]
+            for chunk in retrieved_chunks
+        }
+
+        # expected-document retrieval score
+        expected_documents = set(case["expected_documents"])
+        min_expected = case["min_expected_documents"]
+
+        if min_expected > 0:
+            expected_found = len(
+                expected_documents & retrieved_documents
+            )
+            retrieval_pass = expected_found >= min_expected
+        else:
+            retrieval_pass = None
+
+        # permission score: forbidden documents must never be retrieved
+        forbidden_documents = set(case["forbidden_documents"])
+        permission_violations = forbidden_documents & retrieved_documents
+        permission_pass = len(permission_violations) == 0
+
+        # generate the actual assistant answer
+        answer = generate_answer(
+            case["question"],
+            actual_route,
+            retrieved_chunks
+        )
+
+        # deterministic citation check: cited docs must have been retrieved
+        cited_documents = get_cited_documents(answer)
+        invalid_citations = cited_documents - retrieved_documents
+
+        if actual_route == "GENERAL":
+            citation_present_pass = True
+            citation_retrieval_pass = len(cited_documents) == 0
+
+        elif case["answerable"]:
+            citation_present_pass = len(cited_documents) > 0
+            citation_retrieval_pass = len(invalid_citations) == 0
+
+        else:
+            citation_present_pass = True
+            citation_retrieval_pass = len(invalid_citations) == 0
+
+        # use an llm judge for semantic answer quality
+        judge = judge_answer(case, answer, retrieved_chunks)
+
+        result = {
+            "id": case["id"],
+            "category": case["category"],
+            "question": case["question"],
+            "role": case["role"],
+            "expected_route": case["expected_route"],
+            "actual_route": actual_route,
+            "route_pass": route_pass,
+            "retrieval_query": retrieval_query,
+            "expected_documents": sorted(expected_documents),
+            "retrieved_documents": sorted(retrieved_documents),
+            "retrieval_pass": retrieval_pass,
+            "forbidden_documents": sorted(forbidden_documents),
+            "permission_violations": sorted(permission_violations),
+            "permission_pass": permission_pass,
+            "answer": answer,
+            "cited_documents": sorted(cited_documents),
+            "invalid_citations": sorted(invalid_citations),
+            "citation_retrieval_pass": citation_retrieval_pass,
+            "answer_correct": judge["correct"],
+            "grounded": judge["grounded"],
+            "citations_supported": judge["citations_supported"],
+            "citation_present_pass": citation_present_pass,
+        }
+
+        results.append(result)
+
+        # save progress after every completed case
+        with open("eval_results.json", "w", encoding="utf-8") as f:
+            json.dump(results, f, indent=2)
+
+        # avoid gemini free-tier rate limit
+        time.sleep(13)
+
+    # calculate summary metrics
+    total = len(results)
+
+    route_correct = sum(r["route_pass"] for r in results)
+
+    retrieval_results = [
+        r for r in results
+        if r["retrieval_pass"] is not None
+    ]
+    retrieval_correct = sum(
+        r["retrieval_pass"]
+        for r in retrieval_results
+    )
+
+    permission_correct = sum(
+        r["permission_pass"]
+        for r in results
+    )
+
+    answer_correct = sum(
+        r["answer_correct"]
+        for r in results
+    )
+
+    grounded_correct = sum(
+        r["grounded"]
+        for r in results
+    )
+
+    citation_retrieval_correct = sum(
+        r["citation_retrieval_pass"]
+        for r in results
+    )
+
+    citation_present_correct = sum(
+        r["citation_present_pass"]
+        for r in results
+    )
+
+    citation_support_correct = sum(
+        r["citations_supported"]
+        for r in results
+    )
+
+    print("\n--- Evaluation Results ---")
+    print(
+        f"Router accuracy: "
+        f"{route_correct}/{total} "
+        f"({route_correct / total * 100:.1f}%)"
+    )
+
+    if retrieval_results:
+        print(
+            f"Retrieval accuracy: "
+            f"{retrieval_correct}/{len(retrieval_results)} "
+            f"({retrieval_correct / len(retrieval_results) * 100:.1f}%)"
+        )
+
+    print(
+        f"Permission accuracy: "
+        f"{permission_correct}/{total} "
+        f"({permission_correct / total * 100:.1f}%)"
+    )
+
+    print(
+        f"Answer correctness: "
+        f"{answer_correct}/{total} "
+        f"({answer_correct / total * 100:.1f}%)"
+    )
+
+    print(
+        f"Groundedness: "
+        f"{grounded_correct}/{total} "
+        f"({grounded_correct / total * 100:.1f}%)"
+    )
+
+    print(
+        f"Citation retrieval validity: "
+        f"{citation_retrieval_correct}/{total} "
+        f"({citation_retrieval_correct / total * 100:.1f}%)"
+    )
+
+    print(
+        f"Citation presence: "
+        f"{citation_present_correct}/{total} "
+        f"({citation_present_correct / total * 100:.1f}%)"
+    )
+
+    print(
+        f"Citation support: "
+        f"{citation_support_correct}/{total} "
+        f"({citation_support_correct / total * 100:.1f}%)"
+    )
+
+    # show failed cases
+    print("\n--- Failed Cases ---")
+
+    for result in results:
+        failures = []
+
+        if not result["route_pass"]:
+            failures.append("router")
+
+        if result["retrieval_pass"] is False:
+            failures.append("retrieval")
+
+        if not result["permission_pass"]:
+            failures.append("permissions")
+
+        if not result["answer_correct"]:
+            failures.append("answer")
+
+        if not result["grounded"]:
+            failures.append("groundedness")
+
+        if not result["citation_retrieval_pass"]:
+            failures.append("citation retrieval")
+
+        if not result["citation_present_pass"]:
+            failures.append("citation missing")
+
+        if not result["citations_supported"]:
+            failures.append("citation support")
+
+        if failures:
+            print(
+                f'Case {result["id"]}: '
+                f'{", ".join(failures)}'
+            )
+
+    # save detailed results for later inspection
+    with open("eval_results.json", "w", encoding="utf-8") as f:
+        json.dump(results, f, indent=2)
+
+    print("\nDetailed results saved to eval_results.json")
+
+
+if __name__ == "__main__":
+    main()

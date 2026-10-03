@@ -1,0 +1,778 @@
+[
+  {
+    "id": 1,
+    "category": "employee_rag",
+    "question": "How many hours per week do full-time employees typically work?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [
+      "ExitChecklist.md",
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "answerable": true,
+    "reference_answer": "Full-time employees typically work 40 hours per week.",
+    "expected_documents": [
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md",
+      "EmployeeHandbook.md",
+      "EmploymentContract.md"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 2,
+    "category": "employee_rag",
+    "question": "How many PTO days do full-time employees receive each year?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [
+      "ExitChecklist.md",
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "answerable": true,
+    "reference_answer": "Full-time employees receive 20 days of PTO per calendar year.",
+    "expected_documents": [
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 3,
+    "category": "employee_rag",
+    "question": "How many unused PTO days can I carry over to next year?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [
+      "ExitChecklist.md",
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "answerable": true,
+    "reference_answer": "Up to 5 unused PTO days may be carried into the next calendar year.",
+    "expected_documents": [
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 4,
+    "category": "employee_rag",
+    "question": "How many paid sick days do full-time employees get?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [
+      "ExitChecklist.md",
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "answerable": true,
+    "reference_answer": "Full-time employees receive 10 paid sick days per year.",
+    "expected_documents": [
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 5,
+    "category": "employee_rag",
+    "question": "How much paid parental leave does a primary caregiver receive?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [
+      "ExitChecklist.md",
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "answerable": true,
+    "reference_answer": "Primary caregivers receive 12 weeks of paid parental leave.",
+    "expected_documents": [
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 6,
+    "category": "employee_rag",
+    "question": "How much paid parental leave does a secondary caregiver receive?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [
+      "ExitChecklist.md",
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "answerable": true,
+    "reference_answer": "Secondary caregivers receive 2 weeks of paid parental leave.",
+    "expected_documents": [
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 7,
+    "category": "employee_rag",
+    "question": "How long is the standard probation period?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [
+      "ExitChecklist.md",
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "answerable": true,
+    "reference_answer": "The standard probation period is three months.",
+    "expected_documents": [
+      "EmployeeHandbook.md",
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md",
+      "EmploymentContract.md"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 8,
+    "category": "employee_rag",
+    "question": "What should I do if I lose my company access card?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [
+      "ExitChecklist.md",
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "answerable": true,
+    "reference_answer": "Employees should report a lost access card and follow company security/access procedures.",
+    "expected_documents": [
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 9,
+    "category": "employee_rag",
+    "question": "Can I use a personal USB drive to store company files?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [
+      "ExitChecklist.md",
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "answerable": true,
+    "reference_answer": "No. Personal USB drives are not allowed for company data storage or file sharing.",
+    "expected_documents": [
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 10,
+    "category": "employee_rag",
+    "question": "What are the company's password requirements?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [
+      "ExitChecklist.md",
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "answerable": true,
+    "reference_answer": "Passwords must be at least 12 characters, mix letters, numbers, and symbols, not be shared or reused across systems, and MFA should be used where available.",
+    "expected_documents": [
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 11,
+    "category": "employee_rag",
+    "question": "What should I do if I receive a suspicious email or phishing attempt?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [
+      "ExitChecklist.md",
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "answerable": true,
+    "reference_answer": "Employees must report phishing attempts, suspicious emails, unusual system behavior, lost or stolen devices, and accidental data exposure so IT can investigate and mitigate.",
+    "expected_documents": [
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 12,
+    "category": "employee_rag",
+    "question": "Does the NDA still apply after I leave the company?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [
+      "ExitChecklist.md",
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "answerable": true,
+    "reference_answer": "Yes. Confidentiality obligations continue after employment, and the NDA continues indefinitely after employment ends, with no expiration for trade secrets.",
+    "expected_documents": [
+      "NDA.md"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 13,
+    "category": "employee_rag",
+    "question": "Who owns creative or technical work I produce during my employment?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [
+      "ExitChecklist.md",
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "answerable": true,
+    "reference_answer": "Work created during employment is the property of BluePeak Creative Group.",
+    "expected_documents": [
+      "EmploymentContract.md",
+      "NDA.md"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 14,
+    "category": "employee_rag",
+    "question": "Who does the Project Manager coordinate with?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [
+      "ExitChecklist.md",
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "answerable": true,
+    "reference_answer": "The Project Manager coordinates creative, marketing, and production teams and serves as a primary client contact.",
+    "expected_documents": [
+      "JOB_DESCRIPTIONS.md"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 15,
+    "category": "employee_rag",
+    "question": "Who reports to the Creative Director according to the organizational chart?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [
+      "ExitChecklist.md",
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "answerable": true,
+    "reference_answer": "The Creative Director's listed reports include the Senior Designer (optional), Graphic Designer, Video Editor, Motion Designer (optional), Copywriter, and Content Strategist.",
+    "expected_documents": [
+      "ORGANIZATIONAL_CHART.md"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 16,
+    "category": "general",
+    "question": "Write a Python function that reverses a string.",
+    "role": "employee",
+    "expected_route": "GENERAL",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": null,
+    "expected_documents": [],
+    "min_expected_documents": 0
+  },
+  {
+    "id": 17,
+    "category": "general",
+    "question": "What is the capital of France?",
+    "role": "employee",
+    "expected_route": "GENERAL",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "Paris.",
+    "expected_documents": [],
+    "min_expected_documents": 0
+  },
+  {
+    "id": 18,
+    "category": "general",
+    "question": "Explain what a binary search is.",
+    "role": "employee",
+    "expected_route": "GENERAL",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": null,
+    "expected_documents": [],
+    "min_expected_documents": 0
+  },
+  {
+    "id": 19,
+    "category": "general",
+    "question": "Give me three dinner ideas using rice and vegetables.",
+    "role": "employee",
+    "expected_route": "GENERAL",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": null,
+    "expected_documents": [],
+    "min_expected_documents": 0
+  },
+  {
+    "id": 20,
+    "category": "general",
+    "question": "What is 17 multiplied by 24?",
+    "role": "employee",
+    "expected_route": "GENERAL",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "408.",
+    "expected_documents": [],
+    "min_expected_documents": 0
+  },
+  {
+    "id": 21,
+    "category": "general",
+    "question": "Help me rewrite this sentence more clearly: The meeting was good and we talked about things.",
+    "role": "employee",
+    "expected_route": "GENERAL",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": null,
+    "expected_documents": [],
+    "min_expected_documents": 0
+  },
+  {
+    "id": 22,
+    "category": "general",
+    "question": "What is the difference between a list and a tuple in Python?",
+    "role": "employee",
+    "expected_route": "GENERAL",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": null,
+    "expected_documents": [],
+    "min_expected_documents": 0
+  },
+  {
+    "id": 23,
+    "category": "general",
+    "question": "Give me a simple explanation of machine learning.",
+    "role": "employee",
+    "expected_route": "GENERAL",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": null,
+    "expected_documents": [],
+    "min_expected_documents": 0
+  },
+  {
+    "id": 24,
+    "category": "hr_authorized",
+    "question": "Does HR need to determine whether a departing employee is eligible for rehire?",
+    "role": "hr",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "answerable": true,
+    "reference_answer": "Yes. HR must confirm whether the departing employee is eligible for rehire.",
+    "expected_documents": [
+      "ExitChecklist.md"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 25,
+    "category": "hr_authorized",
+    "question": "What systems should be updated or closed when an employee leaves?",
+    "role": "hr",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "answerable": true,
+    "reference_answer": "The exit process includes updating HR systems with the termination date, closing the payroll profile, deactivating HR system access, archiving the employee file, and disabling company-system access on the last working day.",
+    "expected_documents": [
+      "ExitChecklist.md"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 26,
+    "category": "hr_authorized",
+    "question": "What topics should HR cover in an exit interview?",
+    "role": "hr",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "answerable": true,
+    "reference_answer": "HR should discuss the reason for leaving, collect feedback on the role, manager, team, company culture and improvements, discuss post-employment obligations, and confirm contact information.",
+    "expected_documents": [
+      "ExitChecklist.md"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 27,
+    "category": "hr_authorized",
+    "question": "What final pay items should be checked during offboarding?",
+    "role": "hr",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "answerable": true,
+    "reference_answer": "Check last salary, applicable overtime, unused PTO if paid out, outstanding reimbursements, benefits status, and prepare the final payslip.",
+    "expected_documents": [
+      "ExitChecklist.md"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 28,
+    "category": "hr_authorized",
+    "question": "Who needs to be notified when HR processes an employee exit?",
+    "role": "hr",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "answerable": true,
+    "reference_answer": "HR should notify payroll, IT, and relevant departments.",
+    "expected_documents": [
+      "ExitChecklist.md"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 29,
+    "category": "hr_authorized",
+    "question": "What information should be collected for knowledge transfer before an employee leaves?",
+    "role": "hr",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "answerable": true,
+    "reference_answer": "A handover document should be created, project status updated, files and documents transferred, client communication transitioned, and applicable passwords stored in the company-approved system.",
+    "expected_documents": [
+      "ExitChecklist.md"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 30,
+    "category": "hr_authorized",
+    "question": "What should happen to an employee's system access on their last working day?",
+    "role": "hr",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "answerable": true,
+    "reference_answer": "Access to company systems such as email, messaging, project management tools, file storage, and VPN should be disabled on the last working day.",
+    "expected_documents": [
+      "ExitChecklist.md"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 31,
+    "category": "manager_authorized",
+    "question": "What should a manager prepare before a new employee starts?",
+    "role": "manager",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [
+      "ExitChecklist.md"
+    ],
+    "answerable": true,
+    "reference_answer": "Before the employee starts, the manager should prepare a 30-day plan as part of the pre-start onboarding process.",
+    "expected_documents": [
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 32,
+    "category": "manager_authorized",
+    "question": "What should happen during the manager's first-day 1:1 with a new employee?",
+    "role": "manager",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [
+      "ExitChecklist.md"
+    ],
+    "answerable": true,
+    "reference_answer": "The manager should clarify responsibilities and assign first-day tasks.",
+    "expected_documents": [
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 33,
+    "category": "manager_authorized",
+    "question": "How often should a manager check in with a new employee during the first week?",
+    "role": "manager",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [
+      "ExitChecklist.md"
+    ],
+    "answerable": true,
+    "reference_answer": "The onboarding checklist calls for daily check-ins with the manager during the first week.",
+    "expected_documents": [
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 34,
+    "category": "manager_authorized",
+    "question": "What should be reviewed during a new employee's first month?",
+    "role": "manager",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [
+      "ExitChecklist.md"
+    ],
+    "answerable": true,
+    "reference_answer": "The first month includes a week-2 performance check-in, access review, work-quality review, two-way feedback, team-integration check, advanced training, and updating the 30-day plan to a 60-day plan.",
+    "expected_documents": [
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 35,
+    "category": "manager_authorized",
+    "question": "What reviews are required during the three-month probation period?",
+    "role": "manager",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [
+      "ExitChecklist.md"
+    ],
+    "answerable": true,
+    "reference_answer": "The checklist requires 30-day and 60-day reviews, a performance evaluation, discussion of improvement areas, any needed support plan, and a final probation meeting.",
+    "expected_documents": [
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 36,
+    "category": "manager_authorized",
+    "question": "What are the possible outcomes at the end of probation?",
+    "role": "manager",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [
+      "ExitChecklist.md"
+    ],
+    "answerable": true,
+    "reference_answer": "Possible outcomes are confirmation of employment, extension of probation, or termination.",
+    "expected_documents": [
+      "ONBOARDING_CHECKLIST.md",
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 37,
+    "category": "manager_authorized",
+    "question": "What access-related task should be done during a new employee's first month?",
+    "role": "manager",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [
+      "ExitChecklist.md"
+    ],
+    "answerable": true,
+    "reference_answer": "Access needs should be verified and permissions adjusted during the first month.",
+    "expected_documents": [
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 38,
+    "category": "unauthorized",
+    "question": "Does HR need to determine whether a departing employee is eligible for rehire?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [
+      "ExitChecklist.md"
+    ],
+    "answerable": false,
+    "reference_answer": null,
+    "expected_documents": [],
+    "min_expected_documents": 0
+  },
+  {
+    "id": 39,
+    "category": "unauthorized",
+    "question": "What topics does HR cover in the company's exit interview?",
+    "role": "manager",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [
+      "ExitChecklist.md"
+    ],
+    "answerable": false,
+    "reference_answer": null,
+    "expected_documents": [],
+    "min_expected_documents": 0
+  },
+  {
+    "id": 40,
+    "category": "unauthorized",
+    "question": "What should HR do with rehire eligibility during offboarding?",
+    "role": "manager",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [
+      "ExitChecklist.md"
+    ],
+    "answerable": false,
+    "reference_answer": null,
+    "expected_documents": [],
+    "min_expected_documents": 0
+  },
+  {
+    "id": 41,
+    "category": "unauthorized",
+    "question": "What should the hiring manager prepare before a new employee starts?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "answerable": false,
+    "reference_answer": null,
+    "expected_documents": [],
+    "min_expected_documents": 0
+  },
+  {
+    "id": 42,
+    "category": "unauthorized",
+    "question": "What first-month onboarding steps require a manager to review or adjust a new hire's access?",
+    "role": "hr",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "answerable": false,
+    "reference_answer": null,
+    "expected_documents": [],
+    "min_expected_documents": 0
+  },
+  {
+    "id": 43,
+    "category": "unauthorized",
+    "question": "What does the onboarding checklist require at the final probation meeting?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "answerable": false,
+    "reference_answer": null,
+    "expected_documents": [],
+    "min_expected_documents": 0
+  },
+  {
+    "id": 44,
+    "category": "unanswerable",
+    "question": "What is BluePeak's 401(k) employer match percentage?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [
+      "ExitChecklist.md",
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "answerable": false,
+    "reference_answer": null,
+    "expected_documents": [],
+    "min_expected_documents": 0
+  },
+  {
+    "id": 45,
+    "category": "unanswerable",
+    "question": "What is the CEO's annual salary?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [
+      "ExitChecklist.md",
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "answerable": false,
+    "reference_answer": null,
+    "expected_documents": [],
+    "min_expected_documents": 0
+  },
+  {
+    "id": 46,
+    "category": "unanswerable",
+    "question": "Which health insurance company does BluePeak use?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [
+      "ExitChecklist.md",
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "answerable": false,
+    "reference_answer": null,
+    "expected_documents": [],
+    "min_expected_documents": 0
+  },
+  {
+    "id": 47,
+    "category": "unanswerable",
+    "question": "What is the Wi-Fi password for the office?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [
+      "ExitChecklist.md",
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "answerable": false,
+    "reference_answer": null,
+    "expected_documents": [],
+    "min_expected_documents": 0
+  },
+  {
+    "id": 48,
+    "category": "hard_retrieval",
+    "question": "I'm expecting a baby. How early do I need to tell HR, and how much paid leave would I get as the primary caregiver?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [
+      "ExitChecklist.md",
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "answerable": true,
+    "reference_answer": "Employees must notify HR at least eight weeks before the anticipated leave date, and primary caregivers receive 12 weeks of paid parental leave.",
+    "expected_documents": [
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 49,
+    "category": "hard_retrieval",
+    "question": "I want to work from a coffee shop. What company security rules matter for remote access?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [
+      "ExitChecklist.md",
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "answerable": true,
+    "reference_answer": "Remote access to internal systems requires VPN; public Wi-Fi should be avoided unless connected through VPN, and employees must follow security policies and use secure networks.",
+    "expected_documents": [
+      "Hr_POLICIES_and_PROCEDURES_MANUAL.md"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 50,
+    "category": "hard_retrieval",
+    "question": "If I'm leaving BluePeak, what company property and confidential materials do I need to return or stop retaining?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [
+      "ExitChecklist.md",
+      "ONBOARDING_CHECKLIST.md"
+    ],
+    "answerable": true,
+    "reference_answer": "On departure, employees must return company property such as devices, access cards, documents/files, software or digital files, and other company-owned materials; the NDA states that no copies of company materials may be retained.",
+    "expected_documents": [
+      "NDA.md"
+    ],
+    "min_expected_documents": 1
+  }
+]
