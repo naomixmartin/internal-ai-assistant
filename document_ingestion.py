@@ -38,11 +38,7 @@ def extract_text(file_path):
     if file_type == ".docx":
         document = Document(file_path)
 
-        paragraphs = [
-            paragraph.text
-            for paragraph in document.paragraphs
-            if paragraph.text.strip()
-        ]
+        paragraphs = [paragraph.text for paragraph in document.paragraphs if paragraph.text.strip()]
 
         return "\n".join(paragraphs)
 
