@@ -1,3 +1,4 @@
+import time
 from llm import generate_response
 
 def route_query(query, conversation_context=""):
@@ -42,9 +43,12 @@ def route_query(query, conversation_context=""):
     {query}
     """
 
-    response = generate_response(prompt)
+    start_time = time.perf_counter()
+    response, routing_metadata = generate_response(prompt, stage="routing", return_metadata=True)
+    routing_latency_ms = int((time.perf_counter() - start_time) * 1000)
+
     lines = response.strip().splitlines()
     route = lines[0].replace("ROUTE:", "").strip()
     retrieval_query = lines[1].replace("QUERY:", "").strip()
 
-    return route, retrieval_query
+    return route, retrieval_query, routing_latency_ms, routing_metadata

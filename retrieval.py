@@ -1,4 +1,5 @@
 import os
+import time
 from dotenv import load_dotenv
 from supabase import create_client
 from embedding import generate_embedding
@@ -11,6 +12,8 @@ supabase = create_client(os.getenv("SUPABASE_URL"), os.getenv("SUPABASE_SERVICE_
 
 
 def retrieve_chunks(query, user_role, match_count=5):
+    start_time = time.perf_counter()
+
     # embed the user's question
     query_embedding = generate_embedding(query)
 
@@ -24,7 +27,9 @@ def retrieve_chunks(query, user_role, match_count=5):
         }
     ).execute()
 
-    return result.data
+    retrieval_latency_ms = int((time.perf_counter() - start_time) * 1000)
+
+    return result.data, retrieval_latency_ms
 
 
 def build_document_context(chunks):
@@ -32,10 +37,7 @@ def build_document_context(chunks):
     context = ""
 
     for chunk in chunks:
-        context += (
-            f"\n[SOURCE: {chunk['filename']}]\n"
-            f"{chunk['content']}\n"
-        )
+        context += f"\n[SOURCE: {chunk['filename']}]\n {chunk['content']}\n"
 
     return context
 
@@ -62,9 +64,6 @@ def answer_with_context(query, chunks):
     {query}
     """
 
-    response = client.models.generate_content(
-        model="gemini-3.5-flash-lite",
-        contents=prompt
-    )
+    response = client.models.generate_content(model="gemini-3.5-flash-lite", contents=prompt)
 
     return response.text

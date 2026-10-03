@@ -7,18 +7,12 @@ def build_context(messages, last_summarized_id):
     if last_summarized_id is None:
         recent_messages = messages
     else:
-        recent_messages = [
-            message for message in messages
-            if message["id"] > last_summarized_id
-        ]
+        recent_messages = [message for message in messages if message["id"] > last_summarized_id]
 
     llm_history = []
 
     for message in recent_messages:
-        llm_history.append({
-            "role": message["role"],
-            "content": message["content"]
-        })
+        llm_history.append({"role": message["role"], "content": message["content"]})
 
     return llm_history
 
@@ -44,18 +38,13 @@ def summarize_messages(messages, existing_summary=""):
     no longer important. Keep the summary concise and under 500 words.
     """
 
-    response = generate_response(prompt)
+    response = generate_response(prompt, stage="summary")
 
     return response
 
 
 # update the summary when enough unsummarized messages have accumulated
-def update_summary(
-    supabase,
-    conversation_id,
-    messages,
-    summary_batch_size=SUMMARY_BATCH_SIZE
-):
+def update_summary(supabase, conversation_id, messages, summary_batch_size=SUMMARY_BATCH_SIZE):
     # get the current summary information
     result = (
         supabase.table("conversations")
@@ -72,10 +61,7 @@ def update_summary(
     if last_summarized_id is None:
         unsummarized_messages = messages
     else:
-        unsummarized_messages = [
-            message for message in messages
-            if message["id"] > last_summarized_id
-        ]
+        unsummarized_messages = [message for message in messages if message["id"] > last_summarized_id]
 
     # wait until a full batch has accumulated
     if len(unsummarized_messages) < summary_batch_size:
@@ -83,11 +69,7 @@ def update_summary(
 
     # summarize the completed batch
     messages_to_summarize = unsummarized_messages[:summary_batch_size]
-
-    new_summary = summarize_messages(
-        messages_to_summarize,
-        existing_summary
-    )
+    new_summary = summarize_messages(messages_to_summarize, existing_summary)
 
     # remember the last message included in the summary
     last_summarized_id = messages_to_summarize[-1]["id"]

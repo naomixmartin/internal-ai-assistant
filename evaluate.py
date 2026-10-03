@@ -36,9 +36,9 @@ def generate_answer(question, route, retrieved_chunks):
             }
         ]
 
-        return generate_response(messages)
+        return generate_response(messages, stage="evaluation")
 
-    return generate_response(question)
+    return generate_response(question, stage="evaluation")
 
 
 def get_cited_documents(answer):
@@ -110,7 +110,7 @@ def judge_answer(case, answer, retrieved_chunks):
     }}
     """
 
-    response = generate_response(prompt).strip()
+    response = generate_response(prompt, stage="evaluation").strip()
 
     # tolerate markdown code fences if the model adds them
     if response.startswith("```"):
@@ -143,30 +143,22 @@ def main():
         print(f'Running case {case["id"]}/{total_cases}: {case["question"]}')
 
         # route the question
-        actual_route, retrieval_query = route_query(case["question"], "")
+        actual_route, retrieval_query, _, _ = route_query(case["question"], "")
         route_pass = actual_route == case["expected_route"]
 
         # retrieve only if the actual router says company context is needed
         retrieved_chunks = []
         if actual_route == "COMPANY_CONTEXT_REQUIRED":
-            retrieved_chunks = retrieve_chunks(
-                retrieval_query,
-                case["role"]
-            )
+            retrieved_chunks, _ = retrieve_chunks(retrieval_query, case["role"])
 
-        retrieved_documents = {
-            chunk["filename"]
-            for chunk in retrieved_chunks
-        }
+        retrieved_documents = {chunk["filename"] for chunk in retrieved_chunks}
 
         # expected-document retrieval score
         expected_documents = set(case["expected_documents"])
         min_expected = case["min_expected_documents"]
 
         if min_expected > 0:
-            expected_found = len(
-                expected_documents & retrieved_documents
-            )
+            expected_found = len(expected_documents & retrieved_documents)
             retrieval_pass = expected_found >= min_expected
         else:
             retrieval_pass = None
@@ -177,11 +169,7 @@ def main():
         permission_pass = len(permission_violations) == 0
 
         # generate the actual assistant answer
-        answer = generate_answer(
-            case["question"],
-            actual_route,
-            retrieved_chunks
-        )
+        answer = generate_answer(case["question"], actual_route, retrieved_chunks)
 
         # deterministic citation check: cited docs must have been retrieved
         cited_documents = set(get_cited_documents(answer))
@@ -238,47 +226,15 @@ def main():
 
     # calculate summary metrics
     total = len(results)
-
     route_correct = sum(r["route_pass"] for r in results)
-
-    retrieval_results = [
-        r for r in results
-        if r["retrieval_pass"] is not None
-    ]
-    retrieval_correct = sum(
-        r["retrieval_pass"]
-        for r in retrieval_results
-    )
-
-    permission_correct = sum(
-        r["permission_pass"]
-        for r in results
-    )
-
-    answer_correct = sum(
-        r["answer_correct"]
-        for r in results
-    )
-
-    grounded_correct = sum(
-        r["grounded"]
-        for r in results
-    )
-
-    citation_retrieval_correct = sum(
-        r["citation_retrieval_pass"]
-        for r in results
-    )
-
-    citation_present_correct = sum(
-        r["citation_present_pass"]
-        for r in results
-    )
-
-    citation_support_correct = sum(
-        r["citations_supported"]
-        for r in results
-    )
+    retrieval_results = [r for r in results if r["retrieval_pass"] is not None]
+    retrieval_correct = sum(r["retrieval_pass"] for r in retrieval_results)
+    permission_correct = sum(r["permission_pass"] for r in results)
+    answer_correct = sum(r["answer_correct"] for r in results)
+    grounded_correct = sum(r["grounded"] for r in results)
+    citation_retrieval_correct = sum(r["citation_retrieval_pass"] for r in results)
+    citation_present_correct = sum(r["citation_present_pass"] for r in results)
+    citation_support_correct = sum( r["citations_supported"] for r in results)
 
     print("\n--- Evaluation Results ---")
     print(
