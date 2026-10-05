@@ -113,11 +113,7 @@ def ingest_document_once(file_path, source_type, access_level="employee"):
     chunk_rows = []
 
     for chunk_index, (chunk, embedding) in enumerate(zip(chunks, embeddings)):
-        chunk_rows.append({
-            "chunk_index": chunk_index,
-            "content": chunk,
-            "embedding": embedding
-        })
+        chunk_rows.append({"chunk_index": chunk_index, "content": chunk, "embedding": embedding})
 
     # insert the document and all chunks in one transaction
     result = admin_supabase.rpc(
@@ -162,7 +158,7 @@ def ingest_documents(file_paths, source_type, access_level="employee", max_worke
 
 if __name__ == "__main__":
     confluence_dir = Path("enterprise_rag_data/confluence")
-    test_files = list(confluence_dir.glob("*.txt"))[:100]
+    test_files = list(confluence_dir.glob("*.txt"))[:1000]
 
     start_time = time.perf_counter()
 
