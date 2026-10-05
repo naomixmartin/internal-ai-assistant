@@ -7,7 +7,7 @@ import os
 
 
 EVAL_FILE = "evals/scaled_1k/eval_cases_50.json"
-RESULTS_FILE = "evals/scaled_1k/eval_results_50_gemini_3.8_v1.json"
+RESULTS_FILE = "evals/scaled_1k/eval_results_50_gemini_3.8_v2.json"
 
 RECALL_K_VALUES = [5, 10, 20, 50]
 ANSWER_MATCH_COUNT = 5
@@ -15,7 +15,7 @@ ANSWER_MATCH_COUNT = 5
 
 def generate_answer(question, route, retrieved_chunks):
     if route == "COMPANY_CONTEXT_REQUIRED":
-        document_context = build_document_context(retrieved_chunks)
+        document_context, source_map = build_document_context(retrieved_chunks)
 
         messages = [{"role": "user", "content": f"""
             Relevant company information:
@@ -23,8 +23,11 @@ def generate_answer(question, route, retrieved_chunks):
             {document_context}
             
             Use this information when it is relevant to the user's question.
-            Cite factual claims from company documents using the provided source,
-            for example [EmployeeHandbook.md].
+            Cite factual claims from company documents using the numbered source
+            that supports the claim, for example [1].
+            
+            Only cite source numbers provided in the company information.
+            Do not include filenames or the word "SOURCE" inside citations.
             
             If the company information does not contain enough information to answer
             the question, say that you could not find the answer in the company documents.
@@ -34,31 +37,18 @@ def generate_answer(question, route, retrieved_chunks):
             }
         ]
 
-        return generate_response(messages, stage="evaluation")
+        answer = generate_response(messages, stage="evaluation")
+        return answer, source_map
 
-    return generate_response(question, stage="evaluation")
+    return generate_response(question, stage="evaluation"), {}
 
 
-def get_cited_documents(answer):
-    citation_groups = re.findall(
-        r"\[([^\]]+\.(?:md|txt|pdf|docx)(?:\s*,\s*[^\]]+\.(?:md|txt|pdf|docx))*)\]",
-        answer,
-        flags=re.IGNORECASE,
-    )
-
-    cited_documents = []
-
-    for group in citation_groups:
-        for document in group.split(","):
-            document = document.strip()
-            if document not in cited_documents:
-                cited_documents.append(document)
-
-    return cited_documents
+def get_cited_source_numbers(answer):
+    return sorted(set(int(number) for number in re.findall(r"\[(\d+)\]", answer)))
 
 
 def judge_answer(case, answer, retrieved_chunks):
-    retrieved_context = build_document_context(retrieved_chunks)
+    retrieved_context, _ = build_document_context(retrieved_chunks)
 
     prompt = f"""
     You are evaluating an internal company AI assistant.
@@ -179,11 +169,12 @@ def main():
         permission_pass = len(permission_violations) == 0
 
         # generate the actual assistant answer
-        answer = generate_answer(case["question"], actual_route, retrieved_chunks)
+        answer, source_map = generate_answer(case["question"], actual_route, retrieved_chunks)
 
         # deterministic citation check: cited docs must have been retrieved
-        cited_documents = set(get_cited_documents(answer))
-        invalid_citations = cited_documents - retrieved_documents
+        cited_source_numbers = get_cited_source_numbers(answer)
+        invalid_citations = {number for number in cited_source_numbers if number not in source_map}
+        cited_documents = {source_map[number] for number in cited_source_numbers if number in source_map}
 
         if actual_route == "GENERAL":
             citation_present_pass = True

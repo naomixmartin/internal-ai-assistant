@@ -31,24 +31,37 @@ def retrieve_chunks(query, user_role, match_count=5):
 
 
 def build_document_context(chunks):
-    # format retrieved chunks with their source documents
+    # assign one source number per unique document
+    source_map = {}
+    filename_to_source = {}
     context = ""
 
     for chunk in chunks:
-        context += f"\n[SOURCE: {chunk['filename']}]\n {chunk['content']}\n"
+        filename = chunk["filename"]
 
-    return context
+        if filename not in filename_to_source:
+            source_number = len(source_map) + 1
+            filename_to_source[filename] = source_number
+            source_map[source_number] = filename
+
+        source_number = filename_to_source[filename]
+        context += f"\n[SOURCE {source_number}]\n{chunk['content']}\n"
+
+    return context, source_map
 
 
 def answer_with_context(query, chunks):
     # build context from the retrieved company documents
-    context = build_document_context(chunks)
+    context, source_map = build_document_context(chunks)
 
     prompt = f"""
     Answer the user's question using only the company information provided below.
 
-    Cite factual claims using the source document provided with the information.
-    For example: [EmployeeHandbook.md]
+    Cite factual claims using the numbered source that supports the claim.
+    For example: [1]
+    
+    Only cite source numbers provided in the company information.
+    Do not include filenames or the word "SOURCE" inside citations.
     
     Only cite sources that directly support the claim.
 
