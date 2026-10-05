@@ -1,0 +1,170 @@
+[
+  {
+    "id": 8,
+    "category": "scaled_retrieval",
+    "question": "What are the core authorization principles of RBAC v2 across Hosted, Dedicated, and Private deployments?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "Core authorization principles of RBAC v2 across Hosted, Dedicated, and Private deployments",
+    "expected_documents": [
+      "dsid_58aee2c594664fe984bd4b020fb0fd92__rbac-v2-design-overview.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_58aee2c594664fe984bd4b020fb0fd92__rbac-v2-design-overview.txt",
+      "dsid_a1d3e150a74e4416bda09d3518286962__authorization-check-patterns.txt",
+      "dsid_ae1862997ac84bdd895f1bf624158ebe__rbac-v2-and-least-privilege-faq.txt",
+      "dsid_d4158bb306064eb192f5a921f540c84a__enterprise-rbac-customer-guidance.txt"
+    ],
+    "retrieval_pass": true,
+    "recall_at_k": {
+      "5": true,
+      "10": true,
+      "20": true,
+      "50": true
+    },
+    "retrieval_latency_ms": 2959,
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Across Hosted, Dedicated, and Private deployments, the core authorization principles and design goals of Redwood\u2019s RBAC v2 include:\n\n* **Least-Privilege Authorization & Separation of Duties**: Access is governed by a canonical catalog of granular, atomic permissions rather than broad administrative access, allowing organizations to separate duties (e.g., Security Admin vs. Platform Operator) and grant users only the permissions they require [1], [3].\n* **Deny-by-Default**: Every sensitive or security-relevant action must map to an explicit permission; if no binding grants that permission, access is denied [1], [2].\n* **Separation of Authentication and Authorization**: Authentication mechanisms (such as SSO, SAML, OIDC, and API keys) are kept distinct from authorization. Subjects (users, service principals, or IdP groups) gain permissions strictly through explicit role bindings [1], [2].\n* **Multi-Scope Hierarchy**: Role bindings apply to specific typed scopes\u2014**Org**, **Project**, and **Environment** (with **Cluster** scoping additionally available for Dedicated and Private deployments) [1], [2]. Permissions inherit hierarchically downward from parent scopes to child scopes (e.g., Org down to Cluster), maintaining consistent semantics across deployment modes [1].\n* **Consistent Enforcement and Error Semantics**: Authorization is enforced uniformly across edge access (API Gateway), authoritative backend services (Control Plane), and user interfaces (Console/admin tooling) [1], [2].\n* **Enterprise-Grade Auditability**: Authorization decisions (including subject, action, resource, scope, decision outcome, and denial reasons) are logged with context and are exportable to SIEM systems for compliance and security reviews [1], [2], [3].\n* **Deterministic Reliability and Fail-Closed Behavior**: High-performance, deterministic evaluation with safe caching and explicit fail-closed policies for sensitive operations during partial outages [1].",
+    "cited_documents": [
+      "dsid_58aee2c594664fe984bd4b020fb0fd92__rbac-v2-design-overview.txt",
+      "dsid_ae1862997ac84bdd895f1bf624158ebe__rbac-v2-and-least-privilege-faq.txt",
+      "dsid_d4158bb306064eb192f5a921f540c84a__enterprise-rbac-customer-guidance.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 12,
+    "category": "scaled_retrieval",
+    "question": "What performance overhead and support-response targets apply to the Request Sampler and Golden-Trace Validation workflow?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "performance overhead and support-response targets for Request Sampler and Golden-Trace Validation workflow",
+    "expected_documents": [
+      "dsid_085bfdd8b61c4ffc9c22d54bfc972563__api-examples-request-sampler-and-golden-trace-validation-playbook-2026.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_085bfdd8b61c4ffc9c22d54bfc972563__api-examples-request-sampler-and-golden-trace-validation-playbook-2026.txt",
+      "dsid_7534d1bba5c14799b26ccb0e7651d0de__cross-layer-capacity-probing-and-fidelity-sampling-protocol-2026.txt",
+      "dsid_a6fe758003f849df82a65d1661d872da__tenant-synthetic-workload-design-and-validation-2026.txt",
+      "dsid_ea8bf58cfb3044779abbc4180369e6a2__cross-layer-slo-validation-and-benchmark-orchestrator-2027.txt"
+    ],
+    "retrieval_pass": true,
+    "recall_at_k": {
+      "5": true,
+      "10": true,
+      "20": true,
+      "50": true
+    },
+    "retrieval_latency_ms": 2064,
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Based on the Request Sampler and Golden-Trace Validation playbook, the following performance overhead and support-response targets apply:\n\n* **Performance overhead:** Minimal performance impact, targeted at a <0.5% p50 latency change [1].\n* **Support response times:** \n  * **P1 triage:** Within 2 business hours [1].\n  * **P2 triage:** Within 24 hours [1].",
+    "cited_documents": [
+      "dsid_085bfdd8b61c4ffc9c22d54bfc972563__api-examples-request-sampler-and-golden-trace-validation-playbook-2026.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 17,
+    "category": "scaled_retrieval",
+    "question": "What qualifies as SLO corruption and what are the key quarantine triggers?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "What qualifies as SLO corruption and what are the key quarantine triggers?",
+    "expected_documents": [
+      "dsid_03825fa1816b45b7a1aca9bedc9c67ba__slo-corruption-detection-and-artifact-quarantine-playbook-2025.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_03825fa1816b45b7a1aca9bedc9c67ba__slo-corruption-detection-and-artifact-quarantine-playbook-2025.txt",
+      "dsid_11d4ba79c8284703bc0a6b3c28410fe0__slo-prognostics-and-capacity-quarantine-playbook-2026.txt",
+      "dsid_82cd9cbdfaf4465d85bb414c19a14a99__slo-telemetry-corruption-detection-and-repair-runbook-2024.txt",
+      "dsid_b8715a6dfe354931887bb6f70c6461cd__automated-service-quarantine-and-reintegration-guidelines-2026.txt"
+    ],
+    "retrieval_pass": true,
+    "recall_at_k": {
+      "5": true,
+      "10": true,
+      "20": true,
+      "50": true
+    },
+    "retrieval_latency_ms": 1486,
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "### What Qualifies as SLO Corruption\n\n* **Formal Threshold Definition:** SLO corruption is defined as any change in the telemetry pipeline, instrumentation bug, downstream aggregator failure, or ingestion spike that causes the computed SLO or error budget to diverge from user-facing reality by **more than 5 percentage points for more than 10 minutes** [1].\n* **General Scope:** It encompasses any systematic integrity failure in metrics, traces, or logs that makes SLIs inaccurate [2]. Examples include:\n  * Missing labels or samples [2]\n  * Zeroed counters [2]\n  * Duplicate events [2]\n  * Stale timestamps [2]\n  * Downstream truncation [2]\n  * Aggregation compiler bugs or regressions (e.g., off-by-one windows) [2]\n\n---\n\n### Key Quarantine Triggers\n\nQuarantine triggers and detection signals depend on whether they apply to automated service quarantine or telemetry/SLO corruption quarantine:\n\n1. **Automated Service Quarantine Triggers:**\n   * **Error Spike:** A 5xx rate increase of $> 2\\%$ absolute over baseline measured on a 1-minute sliding window, sustained for 3 consecutive 1-minute windows [4].\n   * **Latency Regression:** p95 latency regressions evaluated by the detection engine [4].\n\n2. **SLO Corruption Detection Signals / Quarantine Triggers:**\n   * **Error-Budget Burn-Rate Anomaly:** Burn rate $> 10\\times$ baseline for $> 5\\text{ minutes}$ that is not explained by a known deployment [1].\n   * **Cross-Service Spikes:** Synchronous spikes across unrelated services, signaling a telemetry pipeline issue [1].\n   * **Histogram Shape Changes:** Identical percentiles appearing across multiple tenants, indicating an indexing or aggregation bug [1].",
+    "cited_documents": [
+      "dsid_03825fa1816b45b7a1aca9bedc9c67ba__slo-corruption-detection-and-artifact-quarantine-playbook-2025.txt",
+      "dsid_82cd9cbdfaf4465d85bb414c19a14a99__slo-telemetry-corruption-detection-and-repair-runbook-2024.txt",
+      "dsid_b8715a6dfe354931887bb6f70c6461cd__automated-service-quarantine-and-reintegration-guidelines-2026.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 21,
+    "category": "scaled_retrieval",
+    "question": "During a multi-region GPU fabric outage, when should cross-region failover be initiated and what recovery conditions must be verified?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "multi-region GPU fabric outage cross-region failover triggers criteria and recovery verification conditions",
+    "expected_documents": [
+      "dsid_24870c97df2d4e36aecd062358bc4dbb__slo-resilience-scenario-workbook-2024.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_4b28b59276034c2684a5ad07b24dfb64__cross-region-gpu-failover-simulation-playbook.txt",
+      "dsid_4fccddf225884b028570ead954737f85__gpu-interconnect-degradation-mitigation-routing-matrix.txt",
+      "dsid_806f8c24a1424a20a99e5ba1f8734aa9__provision-to-ready-slo-and-error-budget.txt",
+      "dsid_b9d6d8cbda2048beaee9ad1c017b77ed__region-failover-incident-type-runbook-updates.txt",
+      "dsid_ff22d0b9c78c435b9a5d0ccb567b28ca__multi-region-gpu-preemption-mitigation-and-network-failover.txt"
+    ],
+    "retrieval_pass": false,
+    "recall_at_k": {
+      "5": false,
+      "10": false,
+      "20": true,
+      "50": true
+    },
+    "retrieval_latency_ms": 1440,
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Based on the provided documents:\n\n### When Failover / Playbooks Should Be Initiated\nAccording to the multi-region failover and degradation documentation, failover playbooks are triggered by any **Severity P1 alert** related to preemption and network issues, defined by [2]:\n* **Preemption rate:** `node-preempt-count > 3` within 10 minutes for any region [2].\n* **Network packet loss:** Cross-region `packet-loss > 2%` for 5 minutes [2].\n* **API error & latency thresholds:** API error rate for the `\"gpu-inference\"` route rises `> 1.5%` above baseline for 10 minutes **and** latency tail (p95) increases `> 2x` [2].\n\nAdditionally, GPU interconnect degradation triggers alerts based on the following thresholds [1]:\n* `p95_generation_latency` rises by `> 35%` for 5 minutes [1].\n* Per-model `kv_miss_ratio > 15%` sustained for 10 minutes [1].\n* `PERR/PCIe_CorrectableErrors > 1000` per node per hour [1].\n* Internal mesh packet loss `> 0.5%` for 5 minutes [1].\n\n---\n\n### Recovery Conditions to Be Verified\nThe provided documents **do not contain the specific list of recovery conditions** required to confirm resolution after a live multi-region fabric outage. \n\nThe documents only note that:\n* Failing validation twice triggers quarantine, but the specific values are maintained in a separate \"validation checklist and runbook\" [3].\n* Long-term remediation and post-incident analysis are covered in separate maintenance playbooks and checklists [1, 2].\n* In the context of a *simulation* drill (rather than an active incident recovery), success criteria require that automatic routing reduces 5xx errors to $\\le 0.5\\%$, maintains p90 latency within 2x baseline and p99 $\\le 3\\text{x}$ baseline for at least 80% of requests, and ensures GPU nodes are Ready within 6 minutes (capacity target within 10 minutes) [4].",
+    "cited_documents": [
+      "dsid_4b28b59276034c2684a5ad07b24dfb64__cross-region-gpu-failover-simulation-playbook.txt",
+      "dsid_4fccddf225884b028570ead954737f85__gpu-interconnect-degradation-mitigation-routing-matrix.txt",
+      "dsid_806f8c24a1424a20a99e5ba1f8734aa9__provision-to-ready-slo-and-error-budget.txt",
+      "dsid_ff22d0b9c78c435b9a5d0ccb567b28ca__multi-region-gpu-preemption-mitigation-and-network-failover.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": false,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  }
+]
