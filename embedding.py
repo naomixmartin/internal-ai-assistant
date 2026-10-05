@@ -1,12 +1,5 @@
 import os
 from dotenv import load_dotenv
-import threading
-import time
-
-EMBEDDING_MIN_INTERVAL = 1.0
-
-embedding_rate_lock = threading.Lock()
-last_embedding_time = 0.0
 
 load_dotenv()
 EMBEDDING_PROVIDER = os.getenv("EMBEDDING_PROVIDER", "gemini")
@@ -23,24 +16,12 @@ else:
     raise ValueError(f"unsupported embedding provider: {EMBEDDING_PROVIDER}")
 
 
-def wait_for_embedding_rate_limit():
-    global last_embedding_time
+def generate_embedding(text):
+    # route embedding requests to the configured provider
+    if EMBEDDING_PROVIDER == "gemini":
+        return generate_gemini_embedding(text)
 
-    with embedding_rate_lock:
-        elapsed = time.monotonic() - last_embedding_time
-        wait_time = max(0, EMBEDDING_MIN_INTERVAL - elapsed)
-
-        if wait_time > 0:
-            time.sleep(wait_time)
-
-        last_embedding_time = time.monotonic()
-
-
-def generate_embedding(text, rate_limit=False):
-    if rate_limit:
-        wait_for_embedding_rate_limit()
-
-    return generate_gemini_embedding(text)
+    raise ValueError(f"unsupported embedding provider: {EMBEDDING_PROVIDER}")
 
 
 def generate_gemini_embedding(text):

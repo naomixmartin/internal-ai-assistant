@@ -107,7 +107,7 @@ def ingest_document_once(file_path, source_type, access_level="employee"):
     chunks = chunk_text(text)
 
     # generate embeddings using the shared worker pool
-    embeddings = list(embedding_executor.map(lambda chunk: generate_embedding(chunk, rate_limit=True), chunks))
+    embeddings = list(embedding_executor.map(generate_embedding, chunks))
 
     # prepare chunks for the atomic database write
     chunk_rows = []
