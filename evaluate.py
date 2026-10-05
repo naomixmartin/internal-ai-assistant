@@ -7,8 +7,8 @@ import os
 import numpy as np
 
 
-EVAL_FILE = "evals/scaled_1k/eval_cases.json"
-RESULTS_FILE = "evals/scaled_1k/eval_results_gemini_3.8_5k_files_top10_cases22_25.json"
+EVAL_FILE = "evals/scaled/eval_cases.json"
+RESULTS_FILE = "evals/scaled/eval_results_gemini_3.8_1k_files_top10.json"
 
 RECALL_K_VALUES = [5, 10, 20, 50]
 ANSWER_MATCH_COUNT = 10
@@ -115,9 +115,6 @@ def judge_answer(case, answer, retrieved_chunks):
 def main():
     with open(EVAL_FILE, "r", encoding="utf-8") as f:
         cases = json.load(f)
-
-    # temporarily run only cases 22 and 25
-    cases = [case for case in cases if case["id"] in [22, 25]]
 
     total_cases = len(cases)
 
