@@ -7,7 +7,7 @@ import os
 
 
 EVAL_FILE = "evals/scaled_1k/eval_cases.json"
-RESULTS_FILE = "evals/scaled_1k/eval_results_v1.json"
+RESULTS_FILE = "evals/scaled_1k/eval_results_v2.json"
 
 RECALL_K_VALUES = [5, 10, 20, 50]
 ANSWER_MATCH_COUNT = 5
@@ -144,15 +144,13 @@ def main():
         actual_route, retrieval_query, _, _ = route_query(case["question"], "")
         route_pass = actual_route == case["expected_route"]
 
-        # retrieve a larger candidate set for recall evaluation
+        # always retrieve for evaluation so retrieval is measured independently of routing
+        evaluation_chunks, retrieval_latency_ms = retrieve_chunks(retrieval_query, case["role"], match_count=max(RECALL_K_VALUES))
+
+        # only give retrieved context to the assistant when the router requests it
         retrieved_chunks = []
-        evaluation_chunks = []
-        retrieval_latency_ms = None
 
         if actual_route == "COMPANY_CONTEXT_REQUIRED":
-            evaluation_chunks, retrieval_latency_ms = retrieve_chunks(retrieval_query, case["role"], match_count=max(RECALL_K_VALUES))
-
-            # preserve the current top-5 context used by the assistant
             retrieved_chunks = evaluation_chunks[:ANSWER_MATCH_COUNT]
 
         retrieved_documents = {chunk["filename"] for chunk in retrieved_chunks}
