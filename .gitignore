@@ -6,3 +6,4 @@ data/
 enterprise_rag_data/
 .DS_Store
 supabase/.temp/
+testing/
