@@ -2,140 +2,140 @@
   {
     "id": 1,
     "category": "scaled_retrieval",
-    "question": "When should an Optimization Config be rolled back in a Private deployment?",
+    "question": "What severity levels and remediation timelines apply to API contract breaches?",
     "role": "employee",
     "expected_route": "COMPANY_CONTEXT_REQUIRED",
     "forbidden_documents": [],
     "answerable": true,
-    "reference_answer": "Rollback is recommended for runtime-attributable 5xx errors or timeouts, sustained p95/p99 latency regression beyond the SLO budget, GPU saturation or queueing anomalies after batching changes, or quality-gate/customer-reported regressions after quantization changes.",
+    "reference_answer": "P1 breaches that break more than 5% of production callers or business-critical endpoints require immediate rollback or an emergency patch within 4 hours. P2 narrow compatibility issues require a targeted SDK hotfix and docs patch within 24–72 hours. P3 minor docs mismatches or new optional fields are handled in the regular release cycle.",
     "expected_documents": [
-      "dsid_0a6c6e67d89c4cb4b053a7c04d780d97__private-deployment-optimization-config-rollback.txt"
+      "dsid_1b86b0fd2e4d4d40b1fbb9086d637ce2__developer-docs-api-contract-breach-runbook-and-canonical-fixes-2026.txt"
     ],
     "min_expected_documents": 1
   },
   {
     "id": 2,
     "category": "scaled_retrieval",
-    "question": "How many cards should a GPU tile generally contain?",
+    "question": "What are the default gating thresholds for Scheduler Shadowplay?",
     "role": "employee",
     "expected_route": "COMPANY_CONTEXT_REQUIRED",
     "forbidden_documents": [],
     "answerable": true,
-    "reference_answer": "GPU tiles should generally contain 4 to 16 cards. Latency-sensitive workloads should favor more tiles with fewer cards to reduce blast radius.",
+    "reference_answer": "The candidate p95 latency must be no more than baseline plus 10 ms or show no statistically significant increase, error rate must be no more than baseline plus 0.1% absolute, KVCache hit rate must not decrease by more than 1.5 percentage points for applicable workloads, throughput must be at least 95% of baseline, normalized per-token cost increase must be at most 8% unless approved, and there must be no kernel panics, watchdog resets, or GPU timeout events.",
     "expected_documents": [
-      "dsid_4f6b5fa5647949f997fb3d36a7adb16f__gpu-workload-characterization-and-pool-tiling-guidelines.txt"
+      "dsid_1c49e7a1b2eb44a2be9ddf0f4a36dd68__scheduler-shadowplay-and-telemetry-convergence-playbook-2026.txt"
     ],
     "min_expected_documents": 1
   },
   {
     "id": 3,
     "category": "scaled_retrieval",
-    "question": "What happens between an Optimize recommendation being generated and that configuration being promoted to production?",
+    "question": "What are the remediation classes and target remediation windows for post-incident actions?",
     "role": "employee",
     "expected_route": "COMPANY_CONTEXT_REQUIRED",
     "forbidden_documents": [],
     "answerable": true,
-    "reference_answer": "Optimize generates a candidate config diff, selects the baseline and gate policy, creates and runs a GateRun through the eval harness, computes and records the pass/fail result, and exposes it in Console. The Rollout Controller blocks promotion unless the gate passed or has a valid override.",
+    "reference_answer": "Hot or P0 remediation has a target window of 72 hours, Fast or P1 has a target window of 30 days, and Normal or P2 has a target window of 90 days.",
     "expected_documents": [
-      "dsid_45d1dc582cf84e9680e6a69e5a76ffa4__optimize-quality-gates-system-design.txt"
+      "dsid_01f4ce1ac9ca4b85a471d39960e6be37__post-incident-action-triage-and-continuous-remediation-2026.txt"
     ],
     "min_expected_documents": 1
   },
   {
     "id": 4,
     "category": "scaled_retrieval",
-    "question": "What benchmark should be used to investigate function-call regressions caused by interactions between quantization and batching, and what metrics indicate a problem?",
+    "question": "What conditions trigger a rollback during the standard private-deployment Helm upgrade procedure?",
     "role": "employee",
     "expected_route": "COMPANY_CONTEXT_REQUIRED",
     "forbidden_documents": [],
     "answerable": true,
-    "reference_answer": "Use the Quant + Batching Interop Sweep across FP16, int8, and int4 and multiple batch sizes with prefix-KV cache enabled and disabled. A TokenHashShiftRate of at least 0.1% should be investigated, and a FieldTruncationRate above 0.05% for batch sizes of at least 16 is considered high risk.",
+    "reference_answer": "Rollback is triggered if the 5xx rate exceeds 2% for 10 minutes, median latency increases by more than 100 ms for 15 minutes, or more than one availability zone in the region is down.",
     "expected_documents": [
-      "dsid_311ccbf2f5e94d37864b05c8f17ed0c4__functioncall-fidelity-lab-and-shadow-benchmarking-guide-2026.txt"
+      "dsid_7b972e9b7ac847bba3f4145f56970301__private-deploy-playbook-vpc-onprem-2026.txt"
     ],
     "min_expected_documents": 1
   },
   {
     "id": 5,
     "category": "scaled_retrieval",
-    "question": "What are the time-to-autonomy targets for junior, mid-level, and senior new hires?",
+    "question": "What are the four execution containment rings and what is each used for?",
     "role": "employee",
     "expected_route": "COMPANY_CONTEXT_REQUIRED",
     "forbidden_documents": [],
     "answerable": true,
-    "reference_answer": "The time-to-autonomy targets are 45 days for junior ICs, 60 days for mid-level ICs, and 90 days for senior L4+ employees.",
+    "reference_answer": "Ring 0 is the Hotpath for production-critical low-latency workloads and does not allow experimental kernel hooks. Ring 1 is Managed Experiment for limited production-like A/B experiments with automatic rollback. Ring 2 is Sandboxed Fallback for degraded-fidelity paths, canary logic, fallback routing, and load-shedding testing. Ring 3 is Escrowed Lab for isolated long-running experiments, large-profile kernels, and new accelerator integrations.",
     "expected_documents": [
-      "dsid_5650ae3bff08466f92289cbc565c7d2b__hire-onboard-accelerate-playbook-2025.txt"
+      "dsid_82c84230ec8e42bb9f0c1dfed50a7f61__execution-surface-containment-and-observability-guardrails-2023.txt"
     ],
     "min_expected_documents": 1
   },
   {
     "id": 6,
     "category": "scaled_retrieval",
-    "question": "How long should audit logs be retained for hosted, dedicated customer-managed, and edge/private deployments?",
+    "question": "What checks are required for an SRE planned-change SLO and error-budget impact review?",
     "role": "employee",
     "expected_route": "COMPANY_CONTEXT_REQUIRED",
     "forbidden_documents": [],
     "answerable": true,
-    "reference_answer": "The baseline retention periods are 365 days for hosted audit logs, 180 days for dedicated customer-managed audit logs, and 90 days for edge/private audit logs.",
+    "reference_answer": "The review must check the current SLO and 30-day error budget state, capacity and saturation headroom, monitoring and alert coverage, rollback feasibility and time-to-restore, and overlapping high-risk changes affecting the same customer or region.",
     "expected_documents": [
-      "dsid_00597869f9744c228726d40e824e17db__hybrid-deployment-evidence-retention-and-access-reconstruction-standard-2026.txt"
+      "dsid_871b6712caf44f8bbfea4d8a15e436b6__planned-change-slo-error-budget-review.txt"
     ],
     "min_expected_documents": 1
   },
   {
     "id": 7,
     "category": "scaled_retrieval",
-    "question": "What is the target KV prefix cache hit rate for the prefetch system?",
+    "question": "When does the Burst Absorber enter strict-reject mode during a burst event?",
     "role": "employee",
     "expected_route": "COMPANY_CONTEXT_REQUIRED",
     "forbidden_documents": [],
     "answerable": true,
-    "reference_answer": "The target KV prefix cache hit rate is at least 75% over 10-minute windows.",
+    "reference_answer": "During immediate containment, strict-reject mode should be enabled if queue depth is increasing and burst-budget consumption exceeds 0.4 of its allocation. More generally, if burst-budget consumption exceeds its allowed burst budget, the absorber switches to strict-reject mode and routes to fallback model variants.",
     "expected_documents": [
-      "dsid_b60e13cccd3b4593b8bfafec0887180a__cross-layer-prefetch-consistency-and-rollback-playbook-2026.txt"
+      "dsid_897e914057ba4e349f8ae444b24bd9f5__burst-absorber-architecture-and-decision-playbook-2026.txt"
     ],
     "min_expected_documents": 1
   },
   {
     "id": 8,
     "category": "scaled_retrieval",
-    "question": "What is the maximum allowed topology commit window, and why?",
+    "question": "What are the default burst-policy and SLA-smoothing parameters?",
     "role": "employee",
     "expected_route": "COMPANY_CONTEXT_REQUIRED",
     "forbidden_documents": [],
     "answerable": true,
-    "reference_answer": "The topology commit window must be 60 seconds or less to avoid routing ambiguity for SLO-sensitive customers.",
+    "reference_answer": "The default burst window is 10 seconds, burst budget is 500 tokens per tenant, refill rate is 50 tokens per second, and the slow-path threshold permits queueing when estimated added latency is below 50 ms. SLA smoothing uses alpha 0.25 and a 5-minute window, and when smoothed p95 reaches 90% of the configured SLO for three consecutive samples, adaptive throttling reduces new fast-path admission by 20%.",
     "expected_documents": [
-      "dsid_ca122b701b4d41a2bc7877f25b5c5bb4__runtime-op-pathways-and-shard-topology-2024.txt"
+      "dsid_53712f917b3c470cbcd07b3f300c3ae4__burst-sla-smoothing-and-simulated-loadbook-2024.txt"
     ],
     "min_expected_documents": 1
   },
   {
     "id": 9,
     "category": "scaled_retrieval",
-    "question": "What should a client do if an OpenAI-compatible SSE stream closes without receiving [DONE]?",
+    "question": "What approval thresholds apply to GPU bursts based on estimated daily cost?",
     "role": "employee",
     "expected_route": "COMPANY_CONTEXT_REQUIRED",
     "forbidden_documents": [],
     "answerable": true,
-    "reference_answer": "The client should treat the missing [DONE] event as a failure and retry. For investigation, it should capture the x-request-id, region, and last SSE event.",
+    "reference_answer": "Engineering experiment bursts can be automatically approved up to $500 per day. Bursts above $500 per day require manual approval, and bursts at $5,000 per day require finance review and security review.",
     "expected_documents": [
-      "dsid_eafa1920550c4dcda1a05c19e4f613e3__openai-compat-streaming-truncation.txt"
+      "dsid_73753197c6eb4917a5e5ab1b5424796d__gpu-bursting-economics-and-cross-account-routing.txt"
     ],
     "min_expected_documents": 1
   },
   {
     "id": 10,
     "category": "scaled_retrieval",
-    "question": "What evidence components are required in every RBAC evidence bundle?",
+    "question": "How is risk classified for a Runtime LTS backport, and when is explicit exception approval required?",
     "role": "employee",
     "expected_route": "COMPANY_CONTEXT_REQUIRED",
     "forbidden_documents": [],
     "answerable": true,
-    "reference_answer": "Every evidence bundle must contain a signed manifest.json, policy-snapshot.json, pr-metadata.json, filtered auth-events.log, attestation.txt, chain_of_custody.log, and retention-policy.txt.",
+    "reference_answer": "Risk is scored from 1 to 5 across blast radius, surface area, behavior change, test coverage confidence, and performance risk. Low risk requires all dimensions to be at most 2 with no kernel or scheduler critical path touched. Medium risk applies when any dimension is 3 or kernel or scheduler code is touched with strong tests. High risk applies when any dimension is at least 4, performance risk is at least 4, or the repro is ambiguous or lacks a deterministic test. High-risk LTS changes require explicit exception approval.",
     "expected_documents": [
-      "dsid_ffb6a2502acc4c7fb98b48fe778947fd__orchestrated-evidence-rbac-integration-playbook-2026.txt"
+      "dsid_a6e9f5cd91a54fa9b07a314e24826803__runtime-lts-change-management-and-approvals.txt"
     ],
     "min_expected_documents": 1
   }
