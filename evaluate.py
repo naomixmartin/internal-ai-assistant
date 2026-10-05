@@ -8,10 +8,10 @@ import numpy as np
 
 
 EVAL_FILE = "evals/scaled_1k/eval_cases.json"
-RESULTS_FILE = "evals/scaled_1k/eval_results_gemini_3.8_5k_files.json"
+RESULTS_FILE = "evals/scaled_1k/eval_results_gemini_3.8_5k_files_top10.json"
 
 RECALL_K_VALUES = [5, 10, 20, 50]
-ANSWER_MATCH_COUNT = 5
+ANSWER_MATCH_COUNT = 10
 
 
 def generate_answer(question, route, retrieved_chunks):

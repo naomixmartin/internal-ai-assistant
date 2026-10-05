@@ -1,0 +1,2281 @@
+[
+  {
+    "id": 1,
+    "category": "scaled_retrieval",
+    "question": "What are the target restoration times and customer communication cadences for P0 and P1 weekend or holiday incidents?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "target restoration times and customer communication cadences for P0 and P1 weekend or holiday incidents",
+    "expected_documents": [
+      "dsid_0ac4313f110144c9bbedf1879e2f9c68__weekend-and-holiday-rapid-restoration-blueprint-2028.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_0ac4313f110144c9bbedf1879e2f9c68__weekend-and-holiday-rapid-restoration-blueprint-2028.txt",
+      "dsid_e7ab53000a644bd582f0d1b271f083b4__maintenance-holiday-oncall-orchestration-and-customer-comm-toolkit-2026.txt"
+    ],
+    "retrieval_pass": true,
+    "recall_at_k": {
+      "5": true,
+      "10": true,
+      "20": true,
+      "50": true
+    },
+    "latency_ms": {
+      "router": 1517,
+      "retrieval": 435,
+      "generation": 3515,
+      "total": 5467
+    },
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "For weekend and holiday incidents, the target restoration times and customer communication cadences are as follows [1]:\n\n* **P0 Incidents:**\n  * **Target Restoration:** 60 minutes (full restore) [1].\n  * **Customer Communication Cadence:** Updates at 0, 15, 30, and 60 minutes via the status page [1].\n\n* **P1 Incidents:**\n  * **Target Restoration:** 180 minutes (partial restore) [1].\n  * **Customer Communication Cadence:** Updates at 0, 30, and 90 minutes [1].",
+    "cited_documents": [
+      "dsid_0ac4313f110144c9bbedf1879e2f9c68__weekend-and-holiday-rapid-restoration-blueprint-2028.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 2,
+    "category": "scaled_retrieval",
+    "question": "What are the first-hour objectives during a multi-vector authorization incident?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "first-hour objectives multi-vector authorization incident response playbook",
+    "expected_documents": [
+      "dsid_0b72a868b885486b91f3531a54a4d786__multi-vector-authz-incident-evidence-and-restoration-playbook-2026.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_0b72a868b885486b91f3531a54a4d786__multi-vector-authz-incident-evidence-and-restoration-playbook-2026.txt",
+      "dsid_7a40a7ba0ead41779e1739e3e01e23d0__rapid-authz-containment-and-evidence-orchestration-2028.txt",
+      "dsid_94283fe70f2f4ef2b490544687f4c2b7__forensic-readiness-authorization-chain-playbook-2027.txt",
+      "dsid_eec77427388e489c8350f346e599d543__authz-forensics-and-residency-playbook-2026.txt",
+      "dsid_efa1e5acbc954b408bedad2020751b89__compromise-authorization-analytics-and-evidence-curation-2024.txt"
+    ],
+    "retrieval_pass": true,
+    "recall_at_k": {
+      "5": true,
+      "10": true,
+      "20": true,
+      "50": true
+    },
+    "latency_ms": {
+      "router": 5658,
+      "retrieval": 538,
+      "generation": 6911,
+      "total": 13107
+    },
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Based on the provided documents, during the **first 60 minutes (alerting and initial triage)** of a multi-vector authorization incident, the Incident Commander (IC) or primary on-call carries out the initial triage checklist, which includes [1]:\n\n* **Confirming alert source(s):** Identifying sources such as SIEM, WAF, anomaly detector, or customer reports, and noting the time and detection signals [1].\n* **Capturing scope:** Documenting affected components/systems [1].\n\nAcross the broader incident response framework, the playbook's overarching goals are to preserve provable evidence, contain blast radius, restore least-privilege state, and produce a compliance-grade evidence bundle within SLA [1]. \n\n*(Note: Under the rapid authorization containment guidance, related goals within the first hour of detection also include containing active authorization exposure within 15 minutes for critical incidents and securing/snapshotting forensic evidence within 60 minutes [2].)*",
+    "cited_documents": [
+      "dsid_0b72a868b885486b91f3531a54a4d786__multi-vector-authz-incident-evidence-and-restoration-playbook-2026.txt",
+      "dsid_7a40a7ba0ead41779e1739e3e01e23d0__rapid-authz-containment-and-evidence-orchestration-2028.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": false,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 3,
+    "category": "scaled_retrieval",
+    "question": "What default gates must a candidate scheduler satisfy in Scheduler Shadowplay before proceeding to canary?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "default gates required for candidate scheduler in Scheduler Shadowplay before canary promotion",
+    "expected_documents": [
+      "dsid_1c49e7a1b2eb44a2be9ddf0f4a36dd68__scheduler-shadowplay-and-telemetry-convergence-playbook-2026.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_1c49e7a1b2eb44a2be9ddf0f4a36dd68__scheduler-shadowplay-and-telemetry-convergence-playbook-2026.txt",
+      "dsid_4d84b41b6804490d88f4429f33920946__regression-triage-playbook-for-optimization-changes.txt",
+      "dsid_c81a6e4bdc294bb6989bd1d4e0746a1c__scheduler-telemetry-synthesis-and-proofing-2025.txt"
+    ],
+    "retrieval_pass": true,
+    "recall_at_k": {
+      "5": true,
+      "10": true,
+      "20": true,
+      "50": true
+    },
+    "latency_ms": {
+      "router": 1264,
+      "retrieval": 437,
+      "generation": 4251,
+      "total": 5952
+    },
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Based on the company documentation, a candidate scheduler must satisfy the following default gating thresholds and acceptance criteria during Scheduler Shadowplay before proceeding to canary [1]:\n\n### Default Gating Thresholds\n* **p95 Latency:** Candidate $\\le$ baseline + 10 ms OR no statistically significant increase ($p$-value > 0.05 for Mann-Whitney U test) [1].\n* **Error Rate:** Candidate $\\le$ baseline + 0.1% (absolute) [1].\n* **KVCache Hit:** No decrease greater than 1.5 percentage points for workloads with >10% cacheable prefixes [1].\n* **Throughput:** Candidate $\\ge$ 95% of baseline under matched load [1].\n* **Cost Delta:** Normalized per-token cost increase $\\le$ 8% (ops must approve increases >8%) [1].\n* **Stability:** No kernel panics, watchdog resets, or GPU timeout events during the shadow period [1].\n\n### Acceptance Checklist for Promotion to Canary\nIn addition to meeting the thresholds above, the following acceptance criteria must be satisfied [1]:\n* All gating thresholds must be met for target cohorts for a minimum of 48 hours (or one production peak cycle) [1].\n* Telemetry pipelines must show <5% missing trace propagation during the shadow window [1].\n* No kernel-level faults or GPU watchdog events recorded [1].\n* Profiling artifacts and a short investigation note must be uploaded to the artifact bucket (`s3://redwood-shadowplay/artifacts/{play_id}/`) [1].\n* Sign-off/approval received from `runtime-sre` and Scheduling Guild leads [1].",
+    "cited_documents": [
+      "dsid_1c49e7a1b2eb44a2be9ddf0f4a36dd68__scheduler-shadowplay-and-telemetry-convergence-playbook-2026.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 4,
+    "category": "scaled_retrieval",
+    "question": "What measurable goals does the Budgeted Rollout Orchestrator use for overspend prevention and SLO-triggered rollback?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "Budgeted Rollout Orchestrator measurable goals overspend prevention SLO-triggered rollback",
+    "expected_documents": [
+      "dsid_2cd54caeef9941a8ad9975458e56bbad__prd-budgeted-rollout-orchestrator-2026-09-30.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_2cd54caeef9941a8ad9975458e56bbad__prd-budgeted-rollout-orchestrator-2026-09-30.txt",
+      "dsid_33522745f5054627a683ce060780de76__error-budget-orchestration-traffic-throttle-playbook-2026.txt",
+      "dsid_aa20ab880bdf4befb778dc7da454cfb2__runtime-cost-governor-product-brief-and-onboarding-playbook-2026-11-09.txt"
+    ],
+    "retrieval_pass": true,
+    "recall_at_k": {
+      "5": true,
+      "10": true,
+      "20": true,
+      "50": true
+    },
+    "latency_ms": {
+      "router": 1932,
+      "retrieval": 582,
+      "generation": 2711,
+      "total": 5225
+    },
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "According to the Budgeted Rollout Orchestrator (BRO) documentation, the measurable goals for overspend prevention and SLO-triggered remediation/rollback are:\n\n* **Overspend Prevention:** 95% of rollouts must not exceed the configured budget envelope by more than 2% across a 30-day window [1].\n* **SLO-Triggered Rollback / Degradation:** BRO must detect SLO degradation (latency P95 or error rate) and halt or roll back within 5 minutes of breach detection for 90% of incidents [1].",
+    "cited_documents": [
+      "dsid_2cd54caeef9941a8ad9975458e56bbad__prd-budgeted-rollout-orchestrator-2026-09-30.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 5,
+    "category": "scaled_retrieval",
+    "question": "What are the default graceful handback windows for interactive and batch preemptible workloads?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "default graceful handback windows for interactive and batch preemptible workloads",
+    "expected_documents": [
+      "dsid_6f739d658e3847aea2c21e5923f91a93__preemptible-workload-graceful-handback-and-notification-playbook-2026.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_17840a08b5b8493f9590f25ad3d7e413__cooperative-preemption-and-warmstart-playbook-2026.txt",
+      "dsid_6f739d658e3847aea2c21e5923f91a93__preemptible-workload-graceful-handback-and-notification-playbook-2026.txt",
+      "dsid_a0397024e2054ff38b37c2f01c7eefb9__graceful-gpu-preemption-and-prewarming-guidelines-2026.txt"
+    ],
+    "retrieval_pass": true,
+    "recall_at_k": {
+      "5": true,
+      "10": true,
+      "20": true,
+      "50": true
+    },
+    "latency_ms": {
+      "router": 2353,
+      "retrieval": 471,
+      "generation": 917,
+      "total": 3741
+    },
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "The default graceful handback windows are:\n- **Interactive workloads:** 25 seconds [1]\n- **Batch workloads:** 120 seconds [1]",
+    "cited_documents": [
+      "dsid_6f739d658e3847aea2c21e5923f91a93__preemptible-workload-graceful-handback-and-notification-playbook-2026.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 6,
+    "category": "scaled_retrieval",
+    "question": "What safety invariants must the Dedicated autoscaler respect when troubleshooting min/max bounds?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "Dedicated autoscaler safety invariants troubleshooting min max bounds",
+    "expected_documents": [
+      "dsid_8f2761458e4347cb83a684656ca5ee3c__dedicated-autoscaler-troubleshooting-runbook.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_679ae03b3ed7474dbbb5a56daedf526f__autoscaling-bounds-customer-escalation-playbook.txt",
+      "dsid_6d85dd9a7a2a4366ac7707b10421f1a3__dedicated-autoscaling-bounds-and-predictive-mode-release-notes.txt",
+      "dsid_747bd6fada5d46c7a5021901a98769ba__adr-autoscaling-bounds-precedence-and-safety-invariants.txt",
+      "dsid_8f2761458e4347cb83a684656ca5ee3c__dedicated-autoscaler-troubleshooting-runbook.txt",
+      "dsid_e583695a973b44e1992458e889ad9640__dedicated-autoscaling-bounds-prd.txt"
+    ],
+    "retrieval_pass": true,
+    "recall_at_k": {
+      "5": true,
+      "10": true,
+      "20": true,
+      "50": true
+    },
+    "latency_ms": {
+      "router": 5168,
+      "retrieval": 361,
+      "generation": 4960,
+      "total": 10489
+    },
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Based on the Dedicated Autoscaler Troubleshooting Runbook and related architecture documentation, the autoscaler must respect the following key safety invariants and semantics [1]:\n\n1. **Bounds are hard limits:**\n   * Desired replicas are strictly clamped:  \n     `bounded_desired = clamp(requested_desired, min_replicas, max_replicas)` [1].\n   * The autoscaler must never exceed the configured maximum bound and never scale below the configured minimum bound (it is always considered a bug if the system intentionally sets `desired > max` or `desired < min`) [1].\n\n2. **Predictive scaling is advisory; reactive scaling is authoritative when overloaded:**\n   * Predictive scaling can increase baseline capacity ahead of anticipated traffic ramps [1].\n   * If reactive signals indicate overload (such as queue depth or saturation), reactive scaling must override predictive scaling *upward*, while still strictly respecting the maximum bound [1].\n\n3. **Safe fallback on missing or stale predictions:**\n   * If forecasts or prediction pipeline inputs are missing or stale, the autoscaler must fall back to reactive-only behavior [1], avoiding unsafe outcomes such as scaling to zero [5].\n\n4. **Deterministic and auditable evaluation:**\n   * Scaling decisions and configurations must remain deterministic, reasoned, and auditable (such as logging requested vs. bounded capacity and documenting config changes/mitigations) [1], [5].",
+    "cited_documents": [
+      "dsid_6d85dd9a7a2a4366ac7707b10421f1a3__dedicated-autoscaling-bounds-and-predictive-mode-release-notes.txt",
+      "dsid_8f2761458e4347cb83a684656ca5ee3c__dedicated-autoscaler-troubleshooting-runbook.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 7,
+    "category": "scaled_retrieval",
+    "question": "What must the Optimization Suggestions beta communicate to make batching and caching recommendations trustworthy and actionable?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "Optimization Suggestions beta requirements to make batching and caching recommendations trustworthy and actionable",
+    "expected_documents": [
+      "dsid_54b7239adb9242b18f96f7dc9687ac7a__optimization-suggestions-console-ux-beta-prd.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_493898c9813e452e924f78b102b4c584__console-2026-03-optimization-suggestions-beta-release-notes.txt",
+      "dsid_54b7239adb9242b18f96f7dc9687ac7a__optimization-suggestions-console-ux-beta-prd.txt",
+      "dsid_e20c039e79f74814b0442b5ea8eba500__suggestions-guardrails-and-constraints.txt",
+      "dsid_f49616fec4e442199807cf372a510669__console-docs-optimization-suggestions-beta.txt"
+    ],
+    "retrieval_pass": true,
+    "recall_at_k": {
+      "5": true,
+      "10": true,
+      "20": true,
+      "50": true
+    },
+    "latency_ms": {
+      "router": 1878,
+      "retrieval": 780,
+      "generation": 6076,
+      "total": 8734
+    },
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "To make batching and caching recommendations actionable and trustworthy, the Optimization Suggestions beta must communicate the following:\n\n**To make recommendations actionable:**\n* **Highlight top opportunities:** Surface the best batching and caching opportunities broken down by route/model [3].\n* **Provide clear implementation guidance:** Clearly explain the \"why\" and \"how to enable\" or \"how to apply safely\" [1, 3].\n* **Offer direct configuration access:** Provide deep links directly to the relevant batching and caching configuration pages [2, 3].\n\n**To build trust and clarity:**\n* **Conservative estimates and assumptions:** Present conservative estimates while transparently displaying the underlying inputs and assumptions [1, 3].\n* **Estimated savings:** Clearly display the expected cost savings in both absolute terms (e.g., $/day) and percentage (%) [3, 4].\n* **Estimated performance impact:** Show expected latency changes, specifically p50 and p95 latency deltas [3, 4].\n* **Consistent risk communication:** Assign a simple risk level (Low/Medium/High) accompanied by plain-language explanations [3, 4].\n* **Risk factors and guardrails:** Clearly explain \"what could go wrong,\" relevant guardrails, and specific scenarios when users should avoid applying the suggestion [1, 2].",
+    "cited_documents": [
+      "dsid_54b7239adb9242b18f96f7dc9687ac7a__optimization-suggestions-console-ux-beta-prd.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 8,
+    "category": "scaled_retrieval",
+    "question": "What are the core authorization principles of RBAC v2 across Hosted, Dedicated, and Private deployments?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "core authorization principles of RBAC v2 across Hosted, Dedicated, and Private deployments",
+    "expected_documents": [
+      "dsid_58aee2c594664fe984bd4b020fb0fd92__rbac-v2-design-overview.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_5078477f06e64d868ccf710573e828a1__rbac-v2-rollout-runbook.txt",
+      "dsid_58aee2c594664fe984bd4b020fb0fd92__rbac-v2-design-overview.txt",
+      "dsid_ae1862997ac84bdd895f1bf624158ebe__rbac-v2-and-least-privilege-faq.txt",
+      "dsid_d4158bb306064eb192f5a921f540c84a__enterprise-rbac-customer-guidance.txt"
+    ],
+    "retrieval_pass": true,
+    "recall_at_k": {
+      "5": true,
+      "10": true,
+      "20": true,
+      "50": true
+    },
+    "latency_ms": {
+      "router": 3688,
+      "retrieval": 516,
+      "generation": 6342,
+      "total": 10546
+    },
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "The core authorization principles of RBAC v2 across Hosted, Dedicated, and Private deployments include:\n\n* **Deny-by-Default:** Every security-relevant action must map to an explicit permission; if no role binding grants the permission at the required scope, the request is denied [1], [2].\n* **Least-Privilege Authorization & Canonical Permissions:** Access is managed through a canonical permission catalog where each sensitive action maps to a specific permission string, enabling fine-grained permissions and separation of duties (e.g., separating Security Admins from Platform Operators) [1], [2], [3].\n* **Separation of Authentication and Authorization:** RBAC v2 acts strictly as the authorization layer. Authentication mechanisms (API keys, SSO, SAML, OIDC) remain separate, and customer IdP groups or identities map to Redwood roles via role bindings [1], [2].\n* **Multi-Scope Hierarchical Semantics:** Permissions are assigned via role bindings attached to typed scopes:\n  * **Org:** Applies down through all descendant projects, environments, and clusters [1].\n  * **Project:** Applies down to descendant environments and clusters [1].\n  * **Environment:** Applies to clusters within that environment [1].\n  * **Cluster:** Serves as a leaf scope for Dedicated and Private operational/admin tasks [1], [2].\n  * Cross-org inheritance is not permitted, and global customer scopes are not exposed [1].\n* **Consistent Enforcement Across Layers:** Enforcement rules and error semantics are standardized across the API Gateway (edge enforcement), Control Plane services (authoritative enforcement), and the Console/admin UI [1].\n* **Enterprise-Grade Auditability:** Authorization decisions capture detailed context (subject, action, resource, scope, policy version, decision, and denial reasons) for audit logging and SIEM export [1], [2], [3].\n* **Performance, Reliability, and Fail-Closed Behavior:** Low-latency deterministic authorization checks, safe version- and scope-aware caching, and strict fail-closed behavior for sensitive actions during partial outages [1].\n\n*(Note: RBAC v2 is explicitly not a customer-defined ABAC system and does not support arbitrary policy or rule scripting [1], [3]).*",
+    "cited_documents": [
+      "dsid_58aee2c594664fe984bd4b020fb0fd92__rbac-v2-design-overview.txt",
+      "dsid_ae1862997ac84bdd895f1bf624158ebe__rbac-v2-and-least-privilege-faq.txt",
+      "dsid_d4158bb306064eb192f5a921f540c84a__enterprise-rbac-customer-guidance.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 9,
+    "category": "scaled_retrieval",
+    "question": "How is the Token Economy Index defined in the token-economy benchmarking playbook?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "Token Economy Index definition token-economy benchmarking playbook",
+    "expected_documents": [
+      "dsid_64dab5ab34404e0286d18d19319ac7bf__token-economy-eval-and-benchmarking-playbook-2026.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_64dab5ab34404e0286d18d19319ac7bf__token-economy-eval-and-benchmarking-playbook-2026.txt",
+      "dsid_6c586cffdff84d5aa5e5e8ed27256682__token-economics-latency-contract-playbook-2027-07-20.txt",
+      "dsid_bcb8c29fa26a4cd4ac3c3b88c1fbd91c__token-cost-attribution-and-explainable-trace-playbook-2026.txt",
+      "dsid_dc4d56fb81324913af4ae6b4f6658909__token-anomaly-forecasting-playbook-2026.txt"
+    ],
+    "retrieval_pass": true,
+    "recall_at_k": {
+      "5": true,
+      "10": true,
+      "20": true,
+      "50": true
+    },
+    "latency_ms": {
+      "router": 1064,
+      "retrieval": 509,
+      "generation": 2252,
+      "total": 3825
+    },
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "According to the Token-Economy Evaluation and Benchmarking Playbook, the **Token Economy Index (TEI)** is a composite score used to rank model variants by their cost-quality tradeoff [1]. \n\nIt is calculated using the following formula [1]:\n$$\\text{TEI} = (\\text{normalized\\_cost} \\times \\alpha) + (\\text{quality\\_penalty} \\times \\beta)$$\n\nThe components and parameters are defined as follows:\n* **$\\text{normalized\\_cost}$**: Calculated as $(\\text{avg\\_billable\\_tokens} \\times \\text{per\\_token\\_price\\_usd})$ normalized to the range $[0, 1]$ across candidate models [1].\n* **$\\text{quality\\_penalty}$**: Measured as $1 - \\text{quality\\_score}$ (from downstream evaluations), where $\\text{quality\\_score}$ is in $[0, 1]$ [1].\n* **Weights ($\\alpha$ and $\\beta$)**: Configurable weights with default values of $\\alpha = 0.6$ and $\\beta = 0.4$. These can be adjusted for latency-sensitive products ($\\alpha \\to 0.7$) or quality-sensitive products ($\\beta \\to 0.6$) [1].",
+    "cited_documents": [
+      "dsid_64dab5ab34404e0286d18d19319ac7bf__token-economy-eval-and-benchmarking-playbook-2026.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 10,
+    "category": "scaled_retrieval",
+    "question": "What latency and cost targets must scheduler changes satisfy in the Runtime Execution Orchestra benchmarking playbook?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "latency and cost targets scheduler changes Runtime Execution Orchestra benchmarking playbook",
+    "expected_documents": [
+      "dsid_65a7459193b844d3a5c991c7d5bcfa47__runtime-execution-orchestra-scheduler-synthesis-playbook-2025.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_469e517b32c2488797a7a8417d3ae516__latency-fidelity-governor-and-experimentation-playbook-2026.txt",
+      "dsid_65a7459193b844d3a5c991c7d5bcfa47__runtime-execution-orchestra-scheduler-synthesis-playbook-2025.txt",
+      "dsid_6ea0e3b65a1d483899e7096695cc4620__runtime-ops-synthesis-and-experiment-manual-2028.txt",
+      "dsid_b055f1f0b1d44738a7286cf6d147d86d__execution-scenario-orchestrator-spec-2026.txt",
+      "dsid_e757a2d8d46340cd8805e1f6a04247a6__runtime-operational-tuning-triage-playbook-2026.txt"
+    ],
+    "retrieval_pass": true,
+    "recall_at_k": {
+      "5": true,
+      "10": true,
+      "20": true,
+      "50": true
+    },
+    "latency_ms": {
+      "router": 1091,
+      "retrieval": 417,
+      "generation": 2678,
+      "total": 4186
+    },
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "According to the *Runtime Execution Orchestra: Scheduler Synthesis, Profiling Playbook, and Benchmarking Matrix*, scheduler changes must satisfy the following latency and cost targets (SLOs) [1]:\n\n* **Stability SLO (short requests, seq $\\le$ 64):** \n  * $\\text{p99 latency} \\le 250\\text{ ms}$ [1]\n  * $\\text{p95 latency} \\le 80\\text{ ms}$ [1]\n* **Long-sequence SLO (seq 512):** \n  * $\\text{p99 latency} \\le 2.2\\text{ s}$ [1]\n  * $\\text{p95 latency} \\le 1.1\\text{ s}$ [1]\n* **Cost SLO:** \n  * Per-token GPU time change $\\le +10\\%$ after scheduler changes for steady-state mixed workloads [1]",
+    "cited_documents": [
+      "dsid_65a7459193b844d3a5c991c7d5bcfa47__runtime-execution-orchestra-scheduler-synthesis-playbook-2025.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 11,
+    "category": "scaled_retrieval",
+    "question": "What is the recommended cadence for Shadow Labs, Synthetic Signal Days, and the Continuity Manifest?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "recommended cadence for Shadow Labs, Synthetic Signal Days, and Continuity Manifest",
+    "expected_documents": [
+      "dsid_70a0264830e34b69aa7c9a0f526cefb0__oncall-shadow-labs-and-continuity-manifest-2026.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_586cc8b9e79f4800a4895e4f646d96b8__operator-experimentation-cauldron-manual-2026.txt",
+      "dsid_70a0264830e34b69aa7c9a0f526cefb0__oncall-shadow-labs-and-continuity-manifest-2026.txt",
+      "dsid_a0f4cc76568944cf8ee1b73bba7e351c__participant-led-career-sprints-and-access-workbook-2026.txt"
+    ],
+    "retrieval_pass": true,
+    "recall_at_k": {
+      "5": true,
+      "10": true,
+      "20": true,
+      "50": true
+    },
+    "latency_ms": {
+      "router": 1117,
+      "retrieval": 352,
+      "generation": 3071,
+      "total": 4540
+    },
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Based on the company documents, the recommended cadences are:\n\n* **Shadow Labs:** Weekly (1-hour session pairing 1 mentor and 1 trainee to practice single runbook execution and handoffs) [1].\n* **Synthetic Signal Days (Synthetic Scenarios):** Monthly (2-hour automated scenarios run by the test automation team with on-call participation) [1].\n* **Continuity Manifest (Continuity Audit):** Quarterly (a half-day checklist-driven audit to review manifest items, rotate backup responders, and update runbooks) [1].",
+    "cited_documents": [
+      "dsid_70a0264830e34b69aa7c9a0f526cefb0__oncall-shadow-labs-and-continuity-manifest-2026.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 12,
+    "category": "scaled_retrieval",
+    "question": "What performance overhead and support-response targets apply to the Request Sampler and Golden-Trace Validation workflow?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "What performance overhead and support-response targets apply to the Request Sampler and Golden-Trace Validation workflow?",
+    "expected_documents": [
+      "dsid_085bfdd8b61c4ffc9c22d54bfc972563__api-examples-request-sampler-and-golden-trace-validation-playbook-2026.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_085bfdd8b61c4ffc9c22d54bfc972563__api-examples-request-sampler-and-golden-trace-validation-playbook-2026.txt",
+      "dsid_154342fa4a3347a796dd43d98b1b91f0__sdk-offline-validation-workflow-and-golden-trace-playbook-2026.txt"
+    ],
+    "retrieval_pass": true,
+    "recall_at_k": {
+      "5": true,
+      "10": true,
+      "20": true,
+      "50": true
+    },
+    "latency_ms": {
+      "router": 1357,
+      "retrieval": 538,
+      "generation": 3601,
+      "total": 5496
+    },
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Based on the Request Sampler and Golden-Trace Validation playbook, the following performance overhead and support-response targets apply:\n\n### **Performance Overhead Targets**\n* **Runtime / SDK Performance Impact:** Minimal performance impact of less than a 0.5% change in p50 latency (`<0.5% p50 latency change`) [1].\n* **Ingest Latency SLO:** For the sample collector (`sampler.ingest.latency_ms`), the target SLO is a p95 latency under 200 ms (`p95 < 200 ms`) [1].\n* **Canary Performance Alert:** A performance alert is triggered if the median latency for a trace class increases by more than 20% in canary (`>20%`) [1].\n\n---\n\n### **Support-Response Targets**\n* **P1 Issues:** Triage within **2 business hours** [1].\n* **P2 Issues:** Triage within **24 hours** [1].",
+    "cited_documents": [
+      "dsid_085bfdd8b61c4ffc9c22d54bfc972563__api-examples-request-sampler-and-golden-trace-validation-playbook-2026.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 13,
+    "category": "scaled_retrieval",
+    "question": "What recovery SLO and alerts are defined for GPU tenant egress failover?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "GPU tenant egress failover recovery SLO and alert definitions",
+    "expected_documents": [
+      "dsid_535d6ac4f948491d858b208855be2b35__egress-path-failover-iac-bgp-and-nat-swap-playbook.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_08ebf326c370424c82461a3a74551524__tenant-egress-failure-isolation-protocols.txt",
+      "dsid_52b35e3efe0b4920845503f0443d41a5__gpu-proxy-failover-resilience-patterns.txt",
+      "dsid_5bdadd4d48234cc193fb2e1515dca5a1__gpu-allocation-fairness-preemption-strategy.txt",
+      "dsid_ab31d339784740778f89d5a59027fe9d__gpu-reservation-signal-protocol.txt",
+      "dsid_f497eb095caf44b4b5a7009f18029467__gpu-fault-domain-slicing-and-tenant-slas-playbook.txt"
+    ],
+    "retrieval_pass": false,
+    "recall_at_k": {
+      "5": false,
+      "10": true,
+      "20": true,
+      "50": true
+    },
+    "latency_ms": {
+      "router": 1199,
+      "retrieval": 481,
+      "generation": 5113,
+      "total": 6793
+    },
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Based on the provided documents, the recovery SLOs and alerts defined for GPU egress failover and tenant egress failure isolation are as follows:\n\n### Recovery and Failover SLOs\n* **Operator Automated Failover SLO:** Complete configuration switch and verified healthchecks within **45 seconds** [3].\n* **User-Visible SLO (during partial proxy outage):** 99th percentile request latency increase **< 2x baseline** and error rate **< 0.5%** for critical tenants [3].\n* **Telemetry SLO:** Emit a correlated trace and an alert within **60 seconds** of a failover event [3].\n\n---\n\n### Egress Alerting Thresholds and Actions\nUnder the tenant egress failure protocols, the following alert signals trigger remediation or failover [5]:\n\n* **Upstream proxy 5xx rate (tenant tagged):** `> 5% for 5m` (Priority: **P1**) \u2014 Action: *Failover to fallback proxy route* [5].\n* **Egress packet drop > tenant baseline:** `> 3% sustained for 60s` (Priority: **P1**) \u2014 Action: *Trigger isolation runbook* [5].\n* **NAT connection saturation (per-tenant):** `> 85% for 60s` (Priority: **P1**) \u2014 Action: *Throttle / quarantine tenant* [5].\n* **Cross-tenant retransmits / RTT increase:** `> 40% for 2m` (Priority: **P2**) \u2014 Action: *Investigate noisy tenant flows* [5].",
+    "cited_documents": [
+      "dsid_08ebf326c370424c82461a3a74551524__tenant-egress-failure-isolation-protocols.txt",
+      "dsid_52b35e3efe0b4920845503f0443d41a5__gpu-proxy-failover-resilience-patterns.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 14,
+    "category": "scaled_retrieval",
+    "question": "How does Adaptive Telemetry Bandwidth Management reserve and prioritize telemetry under constrained bandwidth?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "Adaptive Telemetry Bandwidth Management reservation and prioritization under constrained bandwidth",
+    "expected_documents": [
+      "dsid_559a01fdce7646b6938b9917992434c3__adaptive-telemetry-bandwidth-management-and-trace-priority-playbook-2026.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_1a8a69168d734ae9a29a64cab63e85f4__adaptive-telemetry-sampling-for-gpu-inference-costing.txt",
+      "dsid_559a01fdce7646b6938b9917992434c3__adaptive-telemetry-bandwidth-management-and-trace-priority-playbook-2026.txt",
+      "dsid_a00e38d14a864936a4429c496cfb7426__adaptive-cost-priority-shaping-and-telemetry-interop-standards-2026.txt",
+      "dsid_a3ba2317774a44cba71535f5ca69d731__consumption-chooser-playbook-2026-12-08.txt"
+    ],
+    "retrieval_pass": true,
+    "recall_at_k": {
+      "5": true,
+      "10": true,
+      "20": true,
+      "50": true
+    },
+    "latency_ms": {
+      "router": 1943,
+      "retrieval": 463,
+      "generation": 6598,
+      "total": 9004
+    },
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Under the **Adaptive Telemetry Bandwidth Management (ATBM)** policy and Trace Priority model, telemetry is reserved and prioritized through the following mechanisms:\n\n### 1. Budget Definition and Scoring\n* **Telemetry Budget ($B_{total}$):** A total egress capacity for observability (in Mbps) is assigned per region/cluster [2].\n* **Trace Score:** A runtime estimate from 0 to 100 indicates the expected debugging value of a trace (such as hotpath errors, SLO breaches, or anomalous latencies) [2].\n* **Backpressure Window:** Admission decisions are smoothed using a sliding interval (default 60 seconds) [2].\n\n### 2. Priority Classes and Budget Reserves\nTraces and spans are categorized into priority classes with distinct sampling and reservation rules:\n* **Critical:** \n  * **Scope:** Assigned to traces associated with production 5xx errors, asserted SLA violations, and security alerts [2].\n  * **Sampling & Reserve:** Retains 100% of spans and full kernel trace payloads with no throttling. A dedicated **35% of $B_{total}$** is reserved specifically for this class [2].\n* **High:** \n  * **Scope:** Covers requests with tail-latency exceeding P95 plus a configured delta [2].\n  * Telemetry capture can be prioritized without full payloads until admitted [2].\n\n### 3. Handling Bandwidth Constraints and Degradation\nWhen telemetry bandwidth is constrained or saturated, the system manages load through predefined degradation steps:\n* **Degradation Hierarchy:** If the telemetry budget cannot be increased, sampling is reduced in a strict order: **low $\\rightarrow$ medium $\\rightarrow$ high**, alongside dropping kernel payloads per adaptive policy [2].\n* **Guarantees:** Under mixed workloads, this allocation policy is benchmarked to ensure critical trace retention remains $\\ge 99.9\\%$ and high-class kernel trace fidelity remains $\\ge 60\\%$ [2].\n* **Operational Levers:** Temporary route-level sampling caps can also be applied to specific high-consumption routes to protect overall headroom [2].",
+    "cited_documents": [
+      "dsid_559a01fdce7646b6938b9917992434c3__adaptive-telemetry-bandwidth-management-and-trace-priority-playbook-2026.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 15,
+    "category": "scaled_retrieval",
+    "question": "How does the burst-pool ADR distinguish baseline from burst requests, and what queueing behavior is allowed?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "burst-pool ADR distinguish baseline from burst requests queueing behavior",
+    "expected_documents": [
+      "dsid_846c5cbf40584f7a9d2f887073655de3__adr-burst-pool-admission-control-semantics.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_846c5cbf40584f7a9d2f887073655de3__adr-burst-pool-admission-control-semantics.txt",
+      "dsid_d34dbe143a1e4af4acf8cd6624ff01b8__adr-fairness-model-for-shared-burst-pools.txt"
+    ],
+    "retrieval_pass": true,
+    "recall_at_k": {
+      "5": true,
+      "10": true,
+      "20": true,
+      "50": true
+    },
+    "latency_ms": {
+      "router": 4888,
+      "retrieval": 498,
+      "generation": 3496,
+      "total": 8882
+    },
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Based on the burst-pool admission control architecture decision record (ADR):\n\n### Distinguishing Baseline vs. Burst Requests\n* **Baseline requests:** A request is classified as baseline if it fits within the tenant\u2019s reserved concurrency or capacity envelope (contractually reserved capacity in a region/hardware class) [1].\n* **Burst requests:** A request is classified as a burst request only when, at the time of evaluation, it would require capacity beyond that reserved baseline envelope, causing the tenant to exceed their baseline capacity and borrow from shared pools [1], [2].\n\n### Allowed Queueing Behavior\n* **Immediate decisions:** Burst admission uses immediate, explicit allow/deny decisions; the admission controller does **not** provide an unbounded server-side queue [1].\n* **Controlled micro-queue:** The only allowed queueing is an optional, small bounded wait known as a \"micro-queue\" for smoothing of less than 200 ms (`<200ms`) [1]. \n* **Default state:** This micro-queue must be disabled by default [1].",
+    "cited_documents": [
+      "dsid_846c5cbf40584f7a9d2f887073655de3__adr-burst-pool-admission-control-semantics.txt",
+      "dsid_d34dbe143a1e4af4acf8cd6624ff01b8__adr-fairness-model-for-shared-burst-pools.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 16,
+    "category": "scaled_retrieval",
+    "question": "What customer impact was observed during the 2025-02-17 tensor-parallel decode hang incident?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "customer impact 2025-02-17 tensor-parallel decode hang incident",
+    "expected_documents": [
+      "dsid_859f694df45e4c158bc55db47dd71c87__2025-02-17-tp-decode-hang-sev1.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_00e12b6aa8814869bfaede4152d2e2e6__tensor-parallel-hangs-under-load.txt",
+      "dsid_859f694df45e4c158bc55db47dd71c87__2025-02-17-tp-decode-hang-sev1.txt",
+      "dsid_ebb787a61aee466188ffbdd498e9886c__tp-timeouts-reliability-review.txt"
+    ],
+    "retrieval_pass": true,
+    "recall_at_k": {
+      "5": true,
+      "10": true,
+      "20": true,
+      "50": true
+    },
+    "latency_ms": {
+      "router": 1136,
+      "retrieval": 466,
+      "generation": 4960,
+      "total": 6562
+    },
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "During the 2025-02-17 tensor-parallel decode hang incident, the observed customer impact included [1]:\n\n* **Primary Impacted Customer:** Acme AI, operating on a Dedicated deployment with A100-80GB GPUs and TP=4 per replica [1].\n* **User-Visible Symptoms:**\n  * Streaming responses intermittently stalled mid-generation without emitting new tokens until hitting client timeouts [1].\n  * Non-streaming requests exceeded timeout thresholds (30\u201360s) and failed [1].\n  * Elevated tail latency (p99) and sporadic 5xx errors caused by request timeouts [1].\n* **Impact Window & Metrics:**\n  * **Duration:** Approximately 63 minutes of elevated error rates and severe latency (from 09:12 PT to 10:15 PT) [1].\n  * **Peak Timeout Rate:** ~6\u201310% (route-dependent) [1].\n  * **Tail Latency:** p99 latency increased from ~2.8s to >30s during peak stall periods [1].\n  * **Cluster Impact:** 3 out of 12 replicas were repeatedly wedged and recycled [1].",
+    "cited_documents": [
+      "dsid_859f694df45e4c158bc55db47dd71c87__2025-02-17-tp-decode-hang-sev1.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 17,
+    "category": "scaled_retrieval",
+    "question": "What qualifies as SLO corruption and what are the key quarantine triggers?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "What qualifies as SLO corruption and what are the key quarantine triggers?",
+    "expected_documents": [
+      "dsid_03825fa1816b45b7a1aca9bedc9c67ba__slo-corruption-detection-and-artifact-quarantine-playbook-2025.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_03825fa1816b45b7a1aca9bedc9c67ba__slo-corruption-detection-and-artifact-quarantine-playbook-2025.txt",
+      "dsid_11d4ba79c8284703bc0a6b3c28410fe0__slo-prognostics-and-capacity-quarantine-playbook-2026.txt",
+      "dsid_82cd9cbdfaf4465d85bb414c19a14a99__slo-telemetry-corruption-detection-and-repair-runbook-2024.txt",
+      "dsid_b8715a6dfe354931887bb6f70c6461cd__automated-service-quarantine-and-reintegration-guidelines-2026.txt"
+    ],
+    "retrieval_pass": true,
+    "recall_at_k": {
+      "5": true,
+      "10": true,
+      "20": true,
+      "50": true
+    },
+    "latency_ms": {
+      "router": 1944,
+      "retrieval": 504,
+      "generation": 5439,
+      "total": 7887
+    },
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "### What Qualifies as SLO Corruption\n\n**SLO Corruption** is specifically defined as any change in the telemetry pipeline, instrumentation bug, downstream aggregator failure, or ingestion spike that causes the computed SLO or error budget to diverge from user-facing reality by **>5 percentage points for more than 10 minutes** [1]. \n\nMore broadly, it encompasses any systematic integrity failure across metrics, traces, or logs that makes Service Level Indicators (SLIs) inaccurate [2]. Examples of telemetry corruption include [2]:\n* Missing samples or zeroed counters\n* Stale timestamps\n* Label drift or missing labels\n* Duplicate events\n* Aggregation regressions (e.g., off-by-one aggregation windows or aggregation compiler bugs)\n* Downstream truncation\n\n---\n\n### Key Quarantine Triggers\n\nDepending on whether the quarantine targets suspect telemetry/artifacts or automated service instances, the documents identify several key triggers:\n\n#### 1. SLO Artifact and Telemetry Quarantine Signals (in priority order)\n* **Error-budget burn-rate anomaly:** Burn rate > 10x baseline for >5 minutes AND not explained by a known deployment [1].\n* **Synchronous spikes across unrelated services:** Indicates an underlying telemetry pipeline issue rather than an isolated service fault [1].\n* **Histogram shape changes:** Identical percentiles appearing across multiple tenants, pointing to an indexing or aggregation bug [1].\n\n#### 2. Automated Service Quarantine Triggers\nEvaluated as boolean conditions by the detection engine, typical triggers include [4]:\n* **Error spike:** A 5xx rate absolute increase of >2% over baseline measured on a 1-minute sliding window and sustained for 3 consecutive 1-minute windows [4].\n* **Latency regression:** Regressions in p95 latency [4].\n\n*(Note: In capacity quarantine contexts, leading telemetry-derived prognostic signals\u2014such as model KV cache miss rate spikes, median GPU utilization deltas, and inter-request latency jitter\u2014are also used to precede SLO burn and initiate containment [3].)*",
+    "cited_documents": [
+      "dsid_03825fa1816b45b7a1aca9bedc9c67ba__slo-corruption-detection-and-artifact-quarantine-playbook-2025.txt",
+      "dsid_11d4ba79c8284703bc0a6b3c28410fe0__slo-prognostics-and-capacity-quarantine-playbook-2026.txt",
+      "dsid_82cd9cbdfaf4465d85bb414c19a14a99__slo-telemetry-corruption-detection-and-repair-runbook-2024.txt",
+      "dsid_b8715a6dfe354931887bb6f70c6461cd__automated-service-quarantine-and-reintegration-guidelines-2026.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 18,
+    "category": "scaled_retrieval",
+    "question": "What staged rollout and automatic rollback rules are required when evolving an SLO?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "What staged rollout and automatic rollback rules are required when evolving an SLO?",
+    "expected_documents": [
+      "dsid_7527c7e4f8a048c185f5f912b97bcc0c__slo-evolution-capacity-simulations-runbook-2025.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_837220266405423a92a18a9c0f9ead44__slo-change-governance-and-stakeholder-signoff-for-model-rollouts-2026.txt",
+      "dsid_96070e9bccf74b43bcde8e0e934d2428__multi-environment-rollback-orchestration-and-slo-triggered-circuit-playbook-2025.txt",
+      "dsid_9e47970be2394699b68d2db6f7ce7471__release-gates-for-slo-triggered-rollbacks.txt",
+      "dsid_bc309d480ea34e0b8bab2b70f05f276e__runtime-flag-contracts-and-hot-reload-guidelines-2025.txt",
+      "dsid_f6fa144362d7412c96d8d4798bda758a__slo-definitions-for-rollout-safety.txt"
+    ],
+    "retrieval_pass": false,
+    "recall_at_k": {
+      "5": false,
+      "10": false,
+      "20": false,
+      "50": false
+    },
+    "latency_ms": {
+      "router": 1871,
+      "retrieval": 583,
+      "generation": 8132,
+      "total": 10586
+    },
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Based on the company documents, the rules and governance required when changing or evolving an SLO during multi-stage rollouts, as well as the rules governing automatic rollbacks, include the following:\n\n### 1. Governance and Staged Rollout Requirements for SLO Changes\nWhen proposing an SLO adjustment (target or window), error budget reallocation, or SLO-related configuration change during a model rollout, teams must follow a defined governance process [3]:\n\n* **Proposal Stage:**\n  * Changes must be initiated via a PR or RFC tied to the rollout [3].\n  * **Required artifacts:** Rollout PR, canary plan, telemetry and alert diff, runbook draft, headroom calculation snapshot, and a customer impact assessment [3].\n  * **Required signoffs:** Must be signed off by at least the **Service owner** and the **SLO steward** [3].\n* **Preflight (Validation) Stage:**\n  * Must run functional tests, offline evaluations against baseline prompt-sets, telemetry shadowing, and synthetic canaries in staging [3].\n  * Telemetry checks must evaluate latency Q95/Q99 baseline deltas, token-cost deltas, quality regressions (F1/ROUGE/LLR reduction), and new error-class rates [3].\n* **Staged Progression:**\n  * Rollouts are executed across progressive scopes to minimize blast radius: **canary \u2192 stage \u2192 global** [4].\n\n---\n\n### 2. Automatic Action and Rollback Rules\nAuto-actions are controller-initiated when SLO breach conditions are met for a defined **rollout scope** (canonical tuple of `service`, `route`, `model_version`, `region`, and `customer_tier`) [1, 2]:\n\n* **Types of Automated Actions:**\n  * **Pause:** Stops progression (holding traffic at the current step) without reverting the traffic split [1, 2].\n  * **Rollback:** Reverts traffic back to the last known-good baseline/model version and marks the rollout as rolled back [1, 2].\n* **Eligible SLO Signals:**\n  * Tail latency metrics: **p95 latency** (primary user responsiveness) and **p99 latency** (secondary for tail amplification) [1, 2]. Latency metrics must be scoped to the rollout's traffic slice and exclude known client-side timeouts or network edge artifacts [2].\n  * **5xx error-rate** and saturation signals (where supported) [1].\n* **Evaluation Windows & Triggers:**\n  * The evaluator uses **fast burn** and **slow burn** windows (e.g., 5m and 30m) to catch acute regressions and sustained degradation [2].\n  * Clear, obvious regressions trigger automated rollbacks (for example, 99.9th percentile latency exceeding the SLO by >30% for 5 minutes) [4].\n  * Ambiguous signal patterns (such as mixed latency and error signals) require guarded manual operator approvals rather than immediate auto-rollback [4].\n* **CI/CD and Enablement Gates:**\n  * Release engineering requires passing **safe bounds validation** before auto-actions can be enabled [1].\n  * Gates must be enforced via CI/CD release trains and validated in staging before production enablement to prevent recurring rollbacks from unsafe policy values or missing monitors [1].\n  * Actions must be reversible, auditable, and maintain detailed audit trails for RCA [4].",
+    "cited_documents": [
+      "dsid_837220266405423a92a18a9c0f9ead44__slo-change-governance-and-stakeholder-signoff-for-model-rollouts-2026.txt",
+      "dsid_96070e9bccf74b43bcde8e0e934d2428__multi-environment-rollback-orchestration-and-slo-triggered-circuit-playbook-2025.txt",
+      "dsid_9e47970be2394699b68d2db6f7ce7471__release-gates-for-slo-triggered-rollbacks.txt",
+      "dsid_f6fa144362d7412c96d8d4798bda758a__slo-definitions-for-rollout-safety.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": false,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 19,
+    "category": "scaled_retrieval",
+    "question": "What are the main success targets for Integrated Fallback Analytics & Cost Reconciliation?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "Integrated Fallback Analytics & Cost Reconciliation main success targets",
+    "expected_documents": [
+      "dsid_9964e71da61e4a92bf3f53699cabbf95__prd-integrated-fallback-analytics-cost-reconciliation-2026-04-12.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_9964e71da61e4a92bf3f53699cabbf95__prd-integrated-fallback-analytics-cost-reconciliation-2026-04-12.txt",
+      "dsid_aff9410980d24d0b8d8f2c467518e1c8__latency-aware-cost-fallback-protocol-spec-2026-12-10.txt"
+    ],
+    "retrieval_pass": true,
+    "recall_at_k": {
+      "5": true,
+      "10": true,
+      "20": true,
+      "50": true
+    },
+    "latency_ms": {
+      "router": 2538,
+      "retrieval": 458,
+      "generation": 1791,
+      "total": 4787
+    },
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Based on the Integrated Fallback Analytics & Cost Reconciliation (IFACR) PRD, the main success targets are:\n\n1. **Accurate attribution:** Compute the delta in token/compute cost attributed to the fallback within the earnings window for >95% of fallback events [1].\n2. **Customer visibility:** Expose per-tenant fallback economics in the Console with drilldowns and downloadable reconciliation reports [1].\n3. **Automated reconciliation:** Produce suggested credit lines or invoice adjustments for Finance to accept or reject, reducing manual reconciliation time by 80% [1].\n4. **Low overhead:** Ensure telemetry and offline reconciliation jobs add less than 5% additional cost to the aggregated telemetry pipeline [1].",
+    "cited_documents": [
+      "dsid_9964e71da61e4a92bf3f53699cabbf95__prd-integrated-fallback-analytics-cost-reconciliation-2026-04-12.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 20,
+    "category": "scaled_retrieval",
+    "question": "What admission-latency budgets does the OPA GPU policy benchmark use for standard and strict profiles?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "OPA GPU policy benchmark standard and strict profiles admission latency budgets",
+    "expected_documents": [
+      "dsid_19681acd231e47fca51da084d204eda8__opa-gpu-admission-testbed-and-policy-benchmark.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_19681acd231e47fca51da084d204eda8__opa-gpu-admission-testbed-and-policy-benchmark.txt"
+    ],
+    "retrieval_pass": true,
+    "recall_at_k": {
+      "5": true,
+      "10": true,
+      "20": true,
+      "50": true
+    },
+    "latency_ms": {
+      "router": 2045,
+      "retrieval": 507,
+      "generation": 2189,
+      "total": 4741
+    },
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "The OPA GPU policy benchmark uses the following admission-latency targets:\n\n* **Standard profile:** P95 < 50ms for the admission decision, and P99 < 150ms [1].\n* **Strict profile:** A slightly higher threshold is allowed due to extra checks, with P95 < 80ms [1].",
+    "cited_documents": [
+      "dsid_19681acd231e47fca51da084d204eda8__opa-gpu-admission-testbed-and-policy-benchmark.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 21,
+    "category": "scaled_retrieval",
+    "question": "During a multi-region GPU fabric outage, when should cross-region failover be initiated and what recovery conditions must be verified?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "multi-region GPU fabric outage cross-region failover initiation criteria and recovery verification conditions",
+    "expected_documents": [
+      "dsid_24870c97df2d4e36aecd062358bc4dbb__slo-resilience-scenario-workbook-2024.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_4b28b59276034c2684a5ad07b24dfb64__cross-region-gpu-failover-simulation-playbook.txt",
+      "dsid_4fccddf225884b028570ead954737f85__gpu-interconnect-degradation-mitigation-routing-matrix.txt",
+      "dsid_88d9d5d9a1b746e6ad01cba7bf0da5c4__gpu-pool-drain-and-evacuation-procedure.txt",
+      "dsid_b9d6d8cbda2048beaee9ad1c017b77ed__region-failover-incident-type-runbook-updates.txt",
+      "dsid_ff22d0b9c78c435b9a5d0ccb567b28ca__multi-region-gpu-preemption-mitigation-and-network-failover.txt"
+    ],
+    "retrieval_pass": false,
+    "recall_at_k": {
+      "5": false,
+      "10": true,
+      "20": true,
+      "50": true
+    },
+    "latency_ms": {
+      "router": 4334,
+      "retrieval": 433,
+      "generation": 12293,
+      "total": 17060
+    },
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Based on the provided company documents, here is the information regarding failover initiation and recovery verification:\n\n### When Regional Failover Should Be Initiated\n\nFailover, routing short-circuits, or pool drains are triggered when specific fabric degradation and network failure thresholds are breached:\n\n* **Preemption and Network P1 Triggers:**\n  * Cross-region packet loss exceeds **2% for 5 minutes** [3].\n  * API error rate for the `\"gpu-inference\"` route exceeds **1.5% above baseline for 10 minutes** AND latency tail (p95) increases by **> 2x** [3].\n  * Node preemption count exceeds **3 within 10 minutes** for any region [3].\n* **Interconnect / Mesh Degradation Signals:**\n  * Internal mesh packet drop/loss exceeds **0.5% for 5 minutes** [1].\n  * Tenant `p95_generation_latency` rises by **> 35% for 5 minutes** [1].\n  * KV cache miss ratio (`kv_miss_ratio`) is **> 15% sustained for 10 minutes** [1].\n* **Pool Drain / Regional Failover Triggers:**\n  * The failover controller recommends or executes regional failover and indicates a **pool drain is required** [4].\n  * Region health status is evaluated as **UNHEALTHY** (authoritative reachability), meaning continuing to accept new requests will increase customer impact [4].\n\n---\n\n### Recovery Conditions to Be Verified\n\n**The provided company documents do not contain the specific recovery verification conditions** needed to confirm recovery or restore primary routing following a live multi-region GPU fabric outage. \n\nThe documents note that long-term remediation (hardware replacement, kernel/driver upgrades) is covered in separate maintenance playbooks [1], and while general recovery and rollback procedures are mentioned [3], the explicit recovery criteria and verification steps are omitted from the provided text.",
+    "cited_documents": [
+      "dsid_4fccddf225884b028570ead954737f85__gpu-interconnect-degradation-mitigation-routing-matrix.txt",
+      "dsid_88d9d5d9a1b746e6ad01cba7bf0da5c4__gpu-pool-drain-and-evacuation-procedure.txt",
+      "dsid_ff22d0b9c78c435b9a5d0ccb567b28ca__multi-region-gpu-preemption-mitigation-and-network-failover.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": false,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 22,
+    "category": "scaled_retrieval",
+    "question": "How do the Balanced and High-Fidelity Adaptive Embeddings tiers differ in dimensionality, index defaults, and SLOs?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "Balanced vs High-Fidelity Adaptive Embeddings tiers dimensionality index defaults SLOs",
+    "expected_documents": [
+      "dsid_68577cea56574f489d4990ef89946d59__adaptive-embeddings-fidelity-packaging-and-onramp-brief-2029-06-20.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_3148c3d9b1994dd987bcec96838715de__adr-fidelity-tiering-and-degraded-pathing-2026.txt",
+      "dsid_68577cea56574f489d4990ef89946d59__adaptive-embeddings-fidelity-packaging-and-onramp-brief-2029-06-20.txt",
+      "dsid_740e8076974f4fd5a7de03e48878e61e__embeddings-retention-tiering-prd-2026-12-10.txt",
+      "dsid_e934823ed6334945a874f40470f81350__fidelity-governance-blueprint-2026-11-23.txt"
+    ],
+    "retrieval_pass": true,
+    "recall_at_k": {
+      "5": true,
+      "10": true,
+      "20": true,
+      "50": true
+    },
+    "latency_ms": {
+      "router": 2602,
+      "retrieval": 487,
+      "generation": 5734,
+      "total": 8823
+    },
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Based on the provided company documents, there is not enough information to fully answer how the Balanced and High-Fidelity tiers differ in dimensionality and index defaults:\n\n* **Dimensionality and Index Defaults:** While the *Adaptive Embeddings Fidelity Packaging and Onramp Brief* mentions Balanced and High-Fidelity tiers, the packaging table containing their specific configurations is truncated, so their specific dimensionality and index defaults are not provided [1].\n* **SLOs:** The document *ADR: Fidelity tiering and degraded-pathing topology* defines runtime SLOs for `fidelity:high` and `fidelity:balanced` [4]:\n  * **fidelity:high:** P50 latency $\\le$ 60ms, P95 latency $\\le$ 150ms, and 99.9% availability [4].\n  * **fidelity:balanced:** P50 latency $\\le$ 90ms, P95 latency $\\le$ 250ms (no availability SLO specified) [4].\n\nBecause the vector dimensionality and index defaults are not detailed in the text, I could not find a complete answer in the company documents.",
+    "cited_documents": [
+      "dsid_3148c3d9b1994dd987bcec96838715de__adr-fidelity-tiering-and-degraded-pathing-2026.txt",
+      "dsid_68577cea56574f489d4990ef89946d59__adaptive-embeddings-fidelity-packaging-and-onramp-brief-2029-06-20.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": false,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 23,
+    "category": "scaled_retrieval",
+    "question": "What review and publishing steps are required before a docs-site change reaches production?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "docs-site change review and publishing steps required before reaching production",
+    "expected_documents": [
+      "dsid_75609dd3f1c9460081ee2f443d00f933__docs-site-content-lifecycle-and-local-preview-2026.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_0aaa009e6eb24f288fb6f8949f75f7ec__docs-site-change-propagation-developer-onramp-2027.txt",
+      "dsid_27d90761ae6a478db1fcd6a29ffd572a__docs-site-content-staging-and-canary-publishing-2026.txt",
+      "dsid_64d412de139a4e70b9494cf75cb3346b__docs-site-release-candidate-checklist-and-rollout-playbook-2024.txt",
+      "dsid_75609dd3f1c9460081ee2f443d00f933__docs-site-content-lifecycle-and-local-preview-2026.txt",
+      "dsid_bf401efd00de415195b91d7119b24e03__dx-authoring-gateway-and-offline-release-playbook-2026.txt"
+    ],
+    "retrieval_pass": true,
+    "recall_at_k": {
+      "5": true,
+      "10": true,
+      "20": true,
+      "50": true
+    },
+    "latency_ms": {
+      "router": 1300,
+      "retrieval": 418,
+      "generation": 5622,
+      "total": 7340
+    },
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Based on the company documentation, the required review and publishing process for a docs-site change involves the following stages:\n\n### 1. Local Authoring and Preflight Checks\n* **Branching & Metadata:** Authors create a branch (`docs/<area>/<short-desc>`) and configure the page frontmatter (e.g., title, description, affected versions, labels) [2, 3].\n* **Local Validation:** Authors must run the local validator (`tools/docs-validate --spell --links --snippet-check`) and the SDK snippet runner (`tools/snippet-runner`), as well as verify that telemetry markers are included for any canonical fixes [3].\n\n### 2. Pull Request (PR) and Review Requirements\n* **PR Submission:** Open a PR against the docs branch (`topic -> staging-docs`) using the template `docs/pr-templates/reproduction-and-fix.md`, detailing the problem statement, reproduction steps, tests run, and rollback notes [3].\n* **Reviews and Sign-offs:**\n  * At least one Developer Experience (DX) engineer and one product-owner reviewer are required for API/behavior changes [2].\n  * Content authors and at least one SDK owner must review code-containing pages [1].\n  * A security reviewer must sign off if third-party scripts or embedded assets are included [5].\n* **Automated CI Checks:** PRs must pass automated CI checks, including `docs-lint` (linting/style), the language matrix `snippet-runner`, the external link-checker, and the telemetry annotation check [3].\n\n### 3. Release Candidate (RC) Validation\nBefore proceeding to staged release gating:\n* All PRs must be merged into the release branch with green CI and passing validation tests [5].\n* Search index schema changes must be documented and reviewed, and internal release notes staged [5].\n* The Docs Release Lead approves the RC for canary [5].\n\n### 4. Staged Rollout (Canary & Staging)\n* **Canary Window (1 hour):** \n  * The content is deployed to a canary URL (`dev.docs.redwood.ai/canary`) or routed to a subset of live traffic (e.g., 5%) [1, 3].\n  * The DX oncall and automation verify telemetry, cold-start smoke checks, page load metrics, and the docs-publish-trace [3, 5].\n  * **SLO gating:** The canary must achieve $\\ge 99\\%$ snippet execution success and fewer than 3 new 404s [3].\n* **Staging Window (24 hours):**\n  * Once the canary window passes, content is promoted to the internal-only staging environment (`staging.docs.redwood.com`) [1, 3].\n  * Product and Support conduct their review during this window [3].\n\n### 5. Global Production Publish\n* Content is promoted to global release via a timed rollout, releasing first to low-traffic channels before full propagation across the CDN [3].",
+    "cited_documents": [
+      "dsid_27d90761ae6a478db1fcd6a29ffd572a__docs-site-content-staging-and-canary-publishing-2026.txt",
+      "dsid_64d412de139a4e70b9494cf75cb3346b__docs-site-release-candidate-checklist-and-rollout-playbook-2024.txt",
+      "dsid_75609dd3f1c9460081ee2f443d00f933__docs-site-content-lifecycle-and-local-preview-2026.txt",
+      "dsid_bf401efd00de415195b91d7119b24e03__dx-authoring-gateway-and-offline-release-playbook-2026.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 24,
+    "category": "scaled_retrieval",
+    "question": "When does the multitenant capacity runbook move from warning to throttling to eviction escrow?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "multitenant capacity runbook thresholds warning throttling eviction escrow",
+    "expected_documents": [
+      "dsid_162540a4f2d246658a0b7f39d9b8b92d__capacity-guardrails-multitenant-throttle-eviction-escrow-2026.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_162540a4f2d246658a0b7f39d9b8b92d__capacity-guardrails-multitenant-throttle-eviction-escrow-2026.txt",
+      "dsid_320913ceaa4a4c6992bb26747e868f14__multi-tenant-capacity-fairshare-and-backfill-runbook-2026.txt",
+      "dsid_a3b11714e1c247b488e43151f6c84f09__tenant-burst-absorber-and-eviction-strategy-2026.txt"
+    ],
+    "retrieval_pass": true,
+    "recall_at_k": {
+      "5": true,
+      "10": true,
+      "20": true,
+      "50": true
+    },
+    "latency_ms": {
+      "router": 1330,
+      "retrieval": 339,
+      "generation": 3753,
+      "total": 5422
+    },
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Based on the Multitenant Throttle Governor and Eviction Escrow Runbook, the process transitions through the following stages:\n\n* **Warning:** Triggered when the error budget burn rate is sustained at $\\ge 1.5\\text{x}$ for 10 minutes (`burn_rate >= 1.5x sustained 10m`) [1]. (The runbook also aims to keep the burn rate below $3\\text{x}$ sustained for $> 30$ minutes before taking aggressive action) [1].\n* **Throttling (Soft Governor):** Activated once detection is confirmed\u2014specifically when alerts correlate with `queue.wait_time.p95` and `gpu.utilization > 85%` [1]. The automated soft governor applies slice-level rate reductions (reducing best-effort traffic to 40% of baseline, standard to 75%, and leaving premium unchanged) [1].\n* **Eviction Escrow:** Escalated to this stage if the soft governor fails to restore SLOs within 10 minutes [1]. At that point, shortlisted tenants (those with the highest recent error-budget burn and lowest contract priority) are placed into eviction escrow with a 10-minute TTL [1].",
+    "cited_documents": [
+      "dsid_162540a4f2d246658a0b7f39d9b8b92d__capacity-guardrails-multitenant-throttle-eviction-escrow-2026.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 25,
+    "category": "scaled_retrieval",
+    "question": "What warning, actionable, and critical triggers are used in the multi-dimensional SLO reconciliation playbook?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "What warning, actionable, and critical triggers are used in the multi-dimensional SLO reconciliation playbook?",
+    "expected_documents": [
+      "dsid_415384ce24d044b98c0ffcf3fbe8d9eb__multi-dimensional-slo-reconciliation-playbook-2025.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_1d2e8a1eb80740d49abaa8057be1192b__slo-operational-synchronization-playbook-2026.txt",
+      "dsid_415384ce24d044b98c0ffcf3fbe8d9eb__multi-dimensional-slo-reconciliation-playbook-2025.txt",
+      "dsid_7eba82309e5847e2ae44243f36eeae15__tenant-sla-contract-reconciliation-and-automated-crediting-playbook-2026.txt",
+      "dsid_d5ce05cdfd644372ad9d5bd0eff42324__sla-threshold-to-customer-comms-automation-playbook-2026.txt",
+      "dsid_fd174b2b53d64261949bbde255bc76c9__multi-dim-slo-triage-and-prioritization-playbook-2025.txt"
+    ],
+    "retrieval_pass": true,
+    "recall_at_k": {
+      "5": true,
+      "10": true,
+      "20": true,
+      "50": true
+    },
+    "latency_ms": {
+      "router": 962,
+      "retrieval": 337,
+      "generation": 4372,
+      "total": 5671
+    },
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Based on the provided documents, the specific warning, actionable, and critical triggers for the multi-dimensional SLO reconciliation playbook are not detailed. \n\nWhile the *Multi-Dimensional SLO Reconciliation and Emergency Capacity Playbook* mentions consolidating detection thresholds and emergency capacity interventions, it does not enumerate those specific triggers [2]. (Note: Triggers with \"Warning\" and \"Actionable\" thresholds are described in the *SLA threshold to customer communications automation playbook* [5], but not within the multi-dimensional reconciliation playbook). Therefore, I could not find the answer in the company documents.",
+    "cited_documents": [
+      "dsid_415384ce24d044b98c0ffcf3fbe8d9eb__multi-dimensional-slo-reconciliation-playbook-2025.txt",
+      "dsid_d5ce05cdfd644372ad9d5bd0eff42324__sla-threshold-to-customer-comms-automation-playbook-2026.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": false,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 26,
+    "category": "scaled_retrieval",
+    "question": "What thresholds define warning, breach, and emergency action during error-budget recovery?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "error-budget recovery thresholds for warning breach and emergency action",
+    "expected_documents": [
+      "dsid_9835602b1b544034bc6272bf2a8c2969__error-budget-recovery-psych-safety-comms-runbook-2024.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_10fc70076336485483c088238c7d144e__latency-budgeting-and-decisive-fallback-canvas-2025.txt",
+      "dsid_33522745f5054627a683ce060780de76__error-budget-orchestration-traffic-throttle-playbook-2026.txt",
+      "dsid_49fa5cfd95624dbeb6eaa535f9959470__hosted-api-slos-enterprise-route-tiers.txt",
+      "dsid_e618f6ab9c0e406db239e9522ea4785a__tiered-error-budget-safety-net-patterns-2028.txt",
+      "dsid_f72c7c31e630447db7d4aa87a07d3b62__progressive-error-budget-recovery-guide-2026.txt"
+    ],
+    "retrieval_pass": false,
+    "recall_at_k": {
+      "5": false,
+      "10": false,
+      "20": true,
+      "50": true
+    },
+    "latency_ms": {
+      "router": 4683,
+      "retrieval": 327,
+      "generation": 4933,
+      "total": 9943
+    },
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "According to the **Progressive Error-Budget Recovery Guide**, the detection and alerting thresholds are categorized as follows [3]:\n\n* **Informational (Warning):** A burn rate > 2 sustained for 15 minutes (triggers a notification to the SRE channel) [3].\n* **Operational (Breach / Mitigation):** A burn rate > 5 sustained for 15 minutes **OR** an absolute 10% of the monthly budget consumed within 1 hour (pages the on-call SRE) [3].\n* **Critical (Emergency Action):** A burn rate > 20 sustained for 10 minutes **OR** 30% of the monthly budget consumed within 1 hour (invokes escalation and prompts consideration of emergency capacity reservation) [3].\n\n---\n\n### Related Error-Budget Action Thresholds\nDepending on the specific playbook being referenced, complementary operational frameworks define similar tiered stages:\n\n* **Error Budget Orchestration Playbook:** Uses burn-rate thresholds defined as **3x** (watch), **6x** (intervene), and **20x** (emergency) [2].\n* **Tiered Safety-Net Framework:** Uses total monthly error budget consumed:\n  * **Advisory (Warning):** $\\ge$30% consumed (notifications, telemetry collection) [4].\n  * **Protective:** $\\ge$70% consumed (soft preemption of lowest-priority requests, conservative batching heuristics, elastic reserved nodes) [4].\n  * **Emergency:** $\\ge$100% consumed or sustained [4].",
+    "cited_documents": [
+      "dsid_33522745f5054627a683ce060780de76__error-budget-orchestration-traffic-throttle-playbook-2026.txt",
+      "dsid_e618f6ab9c0e406db239e9522ea4785a__tiered-error-budget-safety-net-patterns-2028.txt",
+      "dsid_f72c7c31e630447db7d4aa87a07d3b62__progressive-error-budget-recovery-guide-2026.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 27,
+    "category": "scaled_retrieval",
+    "question": "What approval thresholds apply to GPU burst spending?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "approval thresholds for GPU burst spending policy",
+    "expected_documents": [
+      "dsid_73753197c6eb4917a5e5ab1b5424796d__gpu-bursting-economics-and-cross-account-routing.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_38c8af278ffe402e86c9d55bcad99bec__hybrid-bursting-to-cloud-and-edge-gpu-pools.txt",
+      "dsid_cf3b61c0420a4067954c167cb467b8bf__slo-breach-customer-communication-and-crediting-procedure-2026.txt",
+      "dsid_ec41b0ed6a22408aa8ef1807a6a012e9__gpu-provisioning-rate-limit-and-iac-throttling-policy.txt",
+      "dsid_f90ceed94a25456d95b4feac76360412__gpu-burst-resiliency-crediting-model-and-iac-integration.txt"
+    ],
+    "retrieval_pass": false,
+    "recall_at_k": {
+      "5": false,
+      "10": true,
+      "20": true,
+      "50": true
+    },
+    "latency_ms": {
+      "router": 1704,
+      "retrieval": 464,
+      "generation": 7053,
+      "total": 9221
+    },
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Based on the provided documents, specific approval thresholds for GPU burst spending are not detailed. \n\nThe documents only note related billing and quota rules:\n* A billing alert is triggered when `projected_monthly_burst_spend` exceeds 20% of the customer contract commit [4].\n* Organizations can have at most 3 concurrent burst pools without explicit approval [4].\n* Source [1] references \"approval thresholds and free-tier policy,\" but does not provide the threshold details [1].\n\nTherefore, I could not find the specific approval thresholds for GPU burst spending in the company documents.",
+    "cited_documents": [
+      "dsid_38c8af278ffe402e86c9d55bcad99bec__hybrid-bursting-to-cloud-and-edge-gpu-pools.txt",
+      "dsid_cf3b61c0420a4067954c167cb467b8bf__slo-breach-customer-communication-and-crediting-procedure-2026.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": false,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 28,
+    "category": "scaled_retrieval",
+    "question": "What SLO and degraded-token budget should responders use when diagnosing fused cross-layer fallbacks?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "What SLO and degraded-token budget should responders use when diagnosing fused cross-layer fallbacks?",
+    "expected_documents": [
+      "dsid_2252763138604f7fb576e99d720a790f__crossplane-fallback-and-profiling-playbook-2025.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_10fc70076336485483c088238c7d144e__latency-budgeting-and-decisive-fallback-canvas-2025.txt",
+      "dsid_2252763138604f7fb576e99d720a790f__crossplane-fallback-and-profiling-playbook-2025.txt",
+      "dsid_71b6f70a93174517929649d72ba1354f__fallback-synthesis-and-sla-preservation-handbook-2026.txt",
+      "dsid_86de5ea1a5984f7f8fed002b94fd65f8__sre-cascade-mitigation-and-graded-fallback-runbook-2026.txt",
+      "dsid_d8a9b538202f4aeba98a65d649321c75__slo-taxonomy-capacity-smoothing-and-degradation-playbook-2025.txt"
+    ],
+    "retrieval_pass": true,
+    "recall_at_k": {
+      "5": true,
+      "10": true,
+      "20": true,
+      "50": true
+    },
+    "latency_ms": {
+      "router": 1303,
+      "retrieval": 422,
+      "generation": 2164,
+      "total": 3889
+    },
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "When diagnosing fused cross-layer fallbacks, responders should use the following SLO targets and budget [1]:\n\n* **SLOs (for short-text generation, seq \u2264 128, on the hosted tier):**\n  * **p50:** < 60ms\n  * **p95:** < 220ms\n  * **p99:** < 700ms\n* **Degraded-token budget:** The total degraded token-rate should be **< 5% of baseline** over a 5-minute rolling window [1].",
+    "cited_documents": [
+      "dsid_2252763138604f7fb576e99d720a790f__crossplane-fallback-and-profiling-playbook-2025.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 29,
+    "category": "scaled_retrieval",
+    "question": "What first-year engagement targets are managers and People Ops expected to hit?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "first-year employee engagement targets and expectations for managers and People Ops",
+    "expected_documents": [
+      "dsid_4821661975744f7ab7c8c5db6237bcc3__first-year-engagement-and-success-milestones-2028.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_30d2617745b74c77967c103b58568800__new-hire-velocity-and-manager-commitment-agreement-2029.txt",
+      "dsid_4821661975744f7ab7c8c5db6237bcc3__first-year-engagement-and-success-milestones-2028.txt",
+      "dsid_f51fe807cdc749be8226d3867de81da9__structured-hiring-committee-and-decision-protocol-2028.txt"
+    ],
+    "retrieval_pass": true,
+    "recall_at_k": {
+      "5": true,
+      "10": true,
+      "20": true,
+      "50": true
+    },
+    "latency_ms": {
+      "router": 1398,
+      "retrieval": 365,
+      "generation": 3707,
+      "total": 5470
+    },
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "According to the First Year Engagement and Success Milestones Playbook, managers and People Ops are expected to hit the following engagement and success targets (KLIs/OKRs):\n\n* **Time-to-productivity:** Target 90% of core role ramp tasks completed by 90 days [1].\n* **6-month retention target:** $\\ge$ 92% [1].\n* **12-month retention target:** $\\ge$ 88% [1].\n* **Onboarding completion rate (checklist & trainings):** $\\ge$ 95% at 30 days [1].\n* **Manager 1:1 cadence adherence:** $\\ge$ 90% scheduled and held in the first 12 weeks [1].\n\nAdditionally, People Ops tracks a new-hire Net Promoter Score (NPS) target of $\\ge$ 60 via 30- and 120-day onboarding surveys [3].",
+    "cited_documents": [
+      "dsid_4821661975744f7ab7c8c5db6237bcc3__first-year-engagement-and-success-milestones-2028.txt",
+      "dsid_f51fe807cdc749be8226d3867de81da9__structured-hiring-committee-and-decision-protocol-2028.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 30,
+    "category": "scaled_retrieval",
+    "question": "What adoption and onboarding outcomes does the Developer Tooling Fusion initiative target?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "Developer Tooling Fusion initiative adoption and onboarding target outcomes",
+    "expected_documents": [
+      "dsid_a01f6d7f2e7543528652b39358239fc8__developer-tooling-fusion-roadmap-and-launch-playbook-2028-04-12.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_7d7048d30c7944268029e5114e08cec7__developer-fidelity-mosaic-playbook-2026-03-29.txt",
+      "dsid_90ec982264ac437ea076f98cffc2477f__developer-adoption-fidelity-phasing-and-cost-playbook-2028-11-07.txt",
+      "dsid_a01f6d7f2e7543528652b39358239fc8__developer-tooling-fusion-roadmap-and-launch-playbook-2028-04-12.txt",
+      "dsid_ecc6147df21e48dfa5aa31da53a18d77__dev-onramp-economics-sprint-plan-2026-q3.txt",
+      "dsid_f42ce822967d4fb1a92ac433f5ef917a__developer-economics-commercialization-playbook-2027-07-13.txt"
+    ],
+    "retrieval_pass": true,
+    "recall_at_k": {
+      "5": true,
+      "10": true,
+      "20": true,
+      "50": true
+    },
+    "latency_ms": {
+      "router": 2467,
+      "retrieval": 376,
+      "generation": 3511,
+      "total": 6354
+    },
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Based on the Developer Tooling Fusion documentation, the initiative targets the following adoption and onboarding outcomes:\n\n* **Decrease Time-to-First-Success (TTFS):** Reduce new-developer TTFS from sign-up to a production test call by 70% for the target cohort [1].\n* **Time to First Token Generation:** Achieve a median time-to-first-token generation of 10 minutes or less for a sample app [1].\n* **Increase Conversion:** Achieve a 25% lift in self-serve-to-paid conversion within 90 days for organizations using the fusion kit [1].\n* **Reduce Onboarding Support Load:** Decrease support tickets from the onboarding cohort by 40% in the first 30 days [1].\n* **Maintain Latency and Fidelity:** Keep median inference p99 latency within customer-configured SLOs during onboarding experiments, while maintaining a runtime fidelity regression rate in the lab of under 0.5% after canary rollout [1].",
+    "cited_documents": [
+      "dsid_a01f6d7f2e7543528652b39358239fc8__developer-tooling-fusion-roadmap-and-launch-playbook-2028-04-12.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 31,
+    "category": "scaled_retrieval",
+    "question": "What signals trigger Phase A of SLO-aware degradation and what immediate actions does it take?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "What signals trigger Phase A of SLO-aware degradation and what immediate actions does it take?",
+    "expected_documents": [
+      "dsid_a7a2cbd5e1434acdac6a3bb8765d6d57__slo-aware-degradation-orchestration-2025.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_1ad0720afeb844a2b789e50288524329__runtime-phase-diagram-and-fidelity-operational-playbook-2026.txt",
+      "dsid_23f125fe30444f8184e037ec35aa3339__gpu-graded-degradation-and-tenant-fallback-playbook.txt",
+      "dsid_a7a2cbd5e1434acdac6a3bb8765d6d57__slo-aware-degradation-orchestration-2025.txt"
+    ],
+    "retrieval_pass": true,
+    "recall_at_k": {
+      "5": true,
+      "10": true,
+      "20": true,
+      "50": true
+    },
+    "latency_ms": {
+      "router": 1346,
+      "retrieval": 386,
+      "generation": 4239,
+      "total": 5971
+    },
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Based on the company documents, **Phase A (Protect SLOs)** is triggered by:\n\n* **Error budget burn rate:** A burn rate > 3x over a 30-minute window (or reaching the hard trigger of > 3x) [1].\n* **Latency threshold violation:** P99 latency crossing its designated threshold (e.g., P99 > 600ms) [1].\n\n### Immediate Actions Taken:\n* **Token-level admission control:** Apply token-level admission control (5%) by setting the admission policy to `'conservative'` via `/api/ops/admission` to reclaim small headroom [1].\n* **Traffic-shaper adjustments:** If using the traffic-shaper, reduce accepted concurrency for low-priority lanes by 20% and increase service-level timeouts to allow for graceful backpressure [1].\n* **Incident communication:** Post a brief note in the incident channel detailing the observed metrics and the actions taken [1].",
+    "cited_documents": [
+      "dsid_a7a2cbd5e1434acdac6a3bb8765d6d57__slo-aware-degradation-orchestration-2025.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 32,
+    "category": "scaled_retrieval",
+    "question": "What are the acceptance criteria for an emergency residency switch?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "emergency residency switch acceptance criteria policy",
+    "expected_documents": [
+      "dsid_aae85e8fe2584130afd258a0706c9272__emergency-residency-switch-and-authz-fallback-playbook-2027.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_452dc45d76754cbca8a3674170599633__emergency-change-policy-v3.txt",
+      "dsid_aae85e8fe2584130afd258a0706c9272__emergency-residency-switch-and-authz-fallback-playbook-2027.txt",
+      "dsid_c9e7302df4ad482aa4dedd5872a7ce2f__emergency-production-change-policy.txt",
+      "dsid_ecf5f8c93c6042728a5da630ed27c8f5__residency-and-rbac-synchronization-playbook-2027.txt"
+    ],
+    "retrieval_pass": true,
+    "recall_at_k": {
+      "5": true,
+      "10": true,
+      "20": true,
+      "50": true
+    },
+    "latency_ms": {
+      "router": 1237,
+      "retrieval": 394,
+      "generation": 1951,
+      "total": 3582
+    },
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Based on the Emergency Residency Switch and Authorization Fallback Playbook, the acceptance criteria are [1]:\n\n* **Switch active residency control-plane:** Transition to an approved alternate region within 60 minutes.\n* **Enforce fallback authorization:** Ensure all authorization decisions for affected tenants follow a defined fallback policy that enforces least privilege and explicit allow-lists.\n* **Evidence bundling:** Produce a complete compliance evidence bundle within 24 hours for legal and audit review.\n* **Maintain availability SLOs:** Aim to keep API latency degradation to less than 2x baseline for core read operations (availability SLOs TBA).",
+    "cited_documents": [
+      "dsid_aae85e8fe2584130afd258a0706c9272__emergency-residency-switch-and-authz-fallback-playbook-2027.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 33,
+    "category": "scaled_retrieval",
+    "question": "What application metrics are mandatory for the SDK observability quickstart?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "mandatory application metrics for SDK observability quickstart",
+    "expected_documents": [
+      "dsid_acded13e7fa542958ccb5b211298dd2d__sdk-accelerated-onramp-observability-quickstart-2026.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_48e320b464c44d69a371802a761544a0__observability-hooks-standard.txt",
+      "dsid_acded13e7fa542958ccb5b211298dd2d__sdk-accelerated-onramp-observability-quickstart-2026.txt"
+    ],
+    "retrieval_pass": true,
+    "recall_at_k": {
+      "5": true,
+      "10": true,
+      "20": true,
+      "50": true
+    },
+    "latency_ms": {
+      "router": 2416,
+      "retrieval": 427,
+      "generation": 3857,
+      "total": 6700
+    },
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "According to the SDK Observability Quickstart, the required application metrics (which must be implemented exactly) are [1]:\n\n1. **`sdk.request.count`** \u2013 Counter (Tags: `sdk_language`, `sdk_version`, `route`, `customer_tier`, `env`)\n2. **`sdk.request.success_count`** \u2013 Counter (Tags: `sdk_language`, `sdk_version`, `route`, `customer_tier`, `env`)\n3. **`sdk.request.error_count`** \u2013 Counter (Tags: `error_class`)\n4. **`sdk.request.latency_ms`** \u2013 Histogram (p50/p95/p99)\n5. **`sdk.token.outbound`** \u2013 Counter (Tags: `tokens_sent`, `prompt_vs_prefix`)\n6. **`sdk.token.inbound`** \u2013 Counter (Tags: `tokens_returned`)",
+    "cited_documents": [
+      "dsid_acded13e7fa542958ccb5b211298dd2d__sdk-accelerated-onramp-observability-quickstart-2026.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 34,
+    "category": "scaled_retrieval",
+    "question": "What CPU, memory, buffer, and sampling guardrails apply to the Edge Telemetry Sidecar?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "Edge Telemetry Sidecar CPU memory buffer and sampling guardrails limits specifications",
+    "expected_documents": [
+      "dsid_ae155a3c68b4476c98308b38ccbffcd6__edge-telemetry-sidecar-onboarding-and-fidelity-guardrails-2026.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_1e550c35fee5418b920772a157979653__gpu-batch-telemetry-ingest-and-ingest-guardrail-playbook.txt",
+      "dsid_341df871f39b4c2cb226692e9f850570__evaluator-sidecar-telemetry-contract-2025.txt",
+      "dsid_65349b4f28ed4764afe06d8f1886f2d9__observability-adapter-sidecar-design-manual-2026.txt",
+      "dsid_a79d1993668c456bb02497c9d19ba7c0__platform-guardrail-catalog-for-runtime-extensions-2027.txt"
+    ],
+    "retrieval_pass": false,
+    "recall_at_k": {
+      "5": false,
+      "10": true,
+      "20": true,
+      "50": true
+    },
+    "latency_ms": {
+      "router": 6454,
+      "retrieval": 460,
+      "generation": 3518,
+      "total": 10432
+    },
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "I could not find information about an \"Edge Telemetry Sidecar\" or its specific CPU, memory, buffer, and sampling guardrails in the provided company documents. \n\nThe documents only detail guardrails for general runtime extension sidecars [1] and the Observability Adapter Sidecar (OAS) [2], [4].",
+    "cited_documents": [
+      "dsid_341df871f39b4c2cb226692e9f850570__evaluator-sidecar-telemetry-contract-2025.txt",
+      "dsid_65349b4f28ed4764afe06d8f1886f2d9__observability-adapter-sidecar-design-manual-2026.txt",
+      "dsid_a79d1993668c456bb02497c9d19ba7c0__platform-guardrail-catalog-for-runtime-extensions-2027.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": false,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 35,
+    "category": "scaled_retrieval",
+    "question": "When is a Serving Runtime regression classified as SEV1, and when must the incident be escalated to the VP of Engineering?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "Serving Runtime regression SEV1 classification criteria and VP of Engineering incident escalation policy",
+    "expected_documents": [
+      "dsid_af06a77a9f6d4531a6d4780a914a092f__sev-process-serving-runtime-regressions.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_4ca65d2709784d6daebd9961908f357c__first-line-llm-quality-triage-and-eval-handoff-playbook-2026.txt",
+      "dsid_95f328867b564b0688d85743781cddfb__urgent-escalation-handoff-and-sla-triage-2026.txt",
+      "dsid_a6247e66b63b41ad9e84969a1a18bc7b__operational-scenarios-run-matrix-2026.txt",
+      "dsid_af06a77a9f6d4531a6d4780a914a092f__sev-process-serving-runtime-regressions.txt"
+    ],
+    "retrieval_pass": true,
+    "recall_at_k": {
+      "5": true,
+      "10": true,
+      "20": true,
+      "50": true
+    },
+    "latency_ms": {
+      "router": 1213,
+      "retrieval": 350,
+      "generation": 2321,
+      "total": 3884
+    },
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Based on the company documents, for a Serving Runtime regression:\n\n* **SEV1 Classification**: An incident is classified as SEV1 if there is widespread customer impact (multi-region Hosted degradation, or multiple Dedicated tenants impacted) or sustained 5xx errors/timeouts greater than 2% for more than 10 minutes [1].\n* **Escalation to VP of Engineering**: The incident must be escalated to the VP of Engineering if a SEV1 lasts longer than 60 minutes or involves repeated regressions [1].",
+    "cited_documents": [
+      "dsid_af06a77a9f6d4531a6d4780a914a092f__sev-process-serving-runtime-regressions.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 36,
+    "category": "scaled_retrieval",
+    "question": "What telemetry acceptance checks must a private deployment upgrade pass?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "telemetry acceptance checks private deployment upgrade requirements",
+    "expected_documents": [
+      "dsid_afc1bf975ac941e0ab64f0238e1f038e__chronological-upgrade-timeline-and-customer-notification-protocol-2026.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_5ff5d04967644b29a219d9e254ec0395__post-installation-telemetry-and-acceptance-checklist-2026.txt",
+      "dsid_63b2418f66cc4697a068fdf3a4146a35__operator-preflight-telemetry-and-security-prerequisites-2027.txt",
+      "dsid_7c73cb76b80a41edb4959db4b1e7308b__tenant-observability-evidence-contract-for-regulated-vpc-deploys-2027.txt",
+      "dsid_a82e8d1c74364a59a73ff90a2625fd51__service-telemetry-and-supplychain-compatibility-matrix-2026.txt",
+      "dsid_dc6653f0b4084ca48bec17d8a9660226__customer-query-latency-and-telemetry-contract-vpc-onprem-2026.txt"
+    ],
+    "retrieval_pass": false,
+    "recall_at_k": {
+      "5": false,
+      "10": false,
+      "20": false,
+      "50": true
+    },
+    "latency_ms": {
+      "router": 1753,
+      "retrieval": 477,
+      "generation": 2080,
+      "total": 4310
+    },
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Based on the company documents, a private deployment upgrade must pass the following telemetry-related acceptance and safety checks:\n\n* **Telemetry Integrity Preflight:** Before any coordinated upgrade, there must be a telemetry integrity check verifying no missing mandatory telemetry keys in the last 24 hours [3].\n* **Pre-Upgrade Baseline Metrics & Traces:** For a runtime upgrade affecting model execution (such as kernel or quantization changes), the delivery packet must include pre-upgrade baseline metrics and traces covering 7 days, along with smoke test results and a canary traffic plan [2].\n* **Post-Upgrade Artifact Bundle:** A post-upgrade artifact bundle must be provided for the first 24 hours, alongside a signed rollback-ready image digest list [2].\n* **Telemetry Artifact Preservation:** If a rollback occurs, the procedure must preserve telemetry artifacts from the failed upgrade window and mark them immutable for the duration of the investigation [2].\n* **Automated Acceptance & Field Output:** Automated acceptance execution requires running a soak test where telemetry output is checked for missing telemetry keys, p95 latency, KV cache hit ratio, and agent/collector connectivity [3].\n* **Telemetry Completeness & Attribution:** Key metrics, request traces, and audit logs must be present and correctly attributed to the customer ID and model route [1].\n* **Baseline SLO & Threshold Verification:** Baseline SLO measurements and alert thresholds must be established and verified (with pass/fail recorded with measured values) for the initial operational ramp [1, 2].\n* **Privacy & Filtering Compliance:** Telemetry exports must be filtered for tenant PII unless the customer explicitly requests full payload capture and provides documented legal approval [2].",
+    "cited_documents": [
+      "dsid_5ff5d04967644b29a219d9e254ec0395__post-installation-telemetry-and-acceptance-checklist-2026.txt",
+      "dsid_7c73cb76b80a41edb4959db4b1e7308b__tenant-observability-evidence-contract-for-regulated-vpc-deploys-2027.txt",
+      "dsid_a82e8d1c74364a59a73ff90a2625fd51__service-telemetry-and-supplychain-compatibility-matrix-2026.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": false,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 37,
+    "category": "scaled_retrieval",
+    "question": "What conditions trigger latency-tail capture and what limits apply to synthetic backfill?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "What conditions trigger latency-tail capture and what limits apply to synthetic backfill?",
+    "expected_documents": [
+      "dsid_b537fddcc38040a4892327ee27113f0b__latency-tail-capture-probe-and-synthetic-backfill-procedure-2024.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_6381dec9177748658f392e8600d7cf1d__runtime-failure-scenario-simulator-and-capture-format-2026.txt",
+      "dsid_b537fddcc38040a4892327ee27113f0b__latency-tail-capture-probe-and-synthetic-backfill-procedure-2024.txt"
+    ],
+    "retrieval_pass": true,
+    "recall_at_k": {
+      "5": true,
+      "10": true,
+      "20": true,
+      "50": true
+    },
+    "latency_ms": {
+      "router": 1531,
+      "retrieval": 353,
+      "generation": 2647,
+      "total": 4531
+    },
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Based on the company documentation, the conditions that trigger latency-tail capture and the limits applied to synthetic backfills are as follows:\n\n### Conditions Triggering Latency-Tail Capture\nCapture is triggered by any of the following observability signals:\n* **Latency-tail trigger:** p99 latency > 1.2x baseline p99 for 5 consecutive 1-minute windows, **OR** a single-request latency > 3 seconds (3000 ms) for short-context endpoints [1].\n* **Quality signal:** Embedding cosine drift > 0.07 on monitored slices, **OR** a token-entropy change > 0.25 [1].\n* **KV-cache miss storm:** `cache_miss_rate` increase > 10 percentage points (ppt) for the request shard [1].\n* **Quantization suspect:** Runtime quant-decoded-error > 0.5% on probe samples [1].\n\n---\n\n### Synthetic Backfill Limits and Throttle Policies\nWhen running synthetic backfill workloads, the following constraints and limits apply:\n* **Capacity limit:** Backfill workloads must not exceed 20% of eval-fleet capacity [1].\n* **Scheduling window:** Backfills must be scheduled during maintenance windows unless explicitly approved [1].\n* **Historical window limit:** A historical window of up to 72 hours centered on the first observed tail spike can be chosen [1].\n* **QPS cap:** Default QPS is capped at 0.2x of production (acceptable range: 0.05x \u2013 1.0x) [1].\n* **Concurrency limits:**\n  * Default maximum concurrency across the eval-fleet is 50 (acceptable range: 1 \u2013 200) [1].\n  * Backfill concurrency must be $\\le$ 15 per model [1].\n* **Data retention:** Backfill traces and probe artifacts are stored/retained for 90 days in `backfill-archive` (acceptable range: 14 \u2013 365 days) [1].",
+    "cited_documents": [
+      "dsid_b537fddcc38040a4892327ee27113f0b__latency-tail-capture-probe-and-synthetic-backfill-procedure-2024.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 38,
+    "category": "scaled_retrieval",
+    "question": "What response-time goals apply to customer-impacting SDK breaking changes?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "response-time goals for customer-impacting SDK breaking changes policy SLA",
+    "expected_documents": [
+      "dsid_c89cc8e839d64b00a4a471ad87ea41ce__sdk-breaking-change-mitigation-matrix-and-hotpatch-playbook-2026.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_0d3b94e48caf4e9fba2cca266ae162cb__sdk-compact-build-and-runtime-stubs-playbook-2026.txt",
+      "dsid_1b86b0fd2e4d4d40b1fbb9086d637ce2__developer-docs-api-contract-breach-runbook-and-canonical-fixes-2026.txt",
+      "dsid_aea97d08a6be4d468d6a426cd37ecd22__api-rate-tiering-and-contract-versioning-playbook-2026.txt",
+      "dsid_b42da93d2b834afb941ccb26a461da55__grpc-protobuf-stability-and-evolution-playbook-2027.txt",
+      "dsid_c89cc8e839d64b00a4a471ad87ea41ce__sdk-breaking-change-mitigation-matrix-and-hotpatch-playbook-2026.txt"
+    ],
+    "retrieval_pass": true,
+    "recall_at_k": {
+      "5": true,
+      "10": true,
+      "20": true,
+      "50": true
+    },
+    "latency_ms": {
+      "router": 1297,
+      "retrieval": 480,
+      "generation": 4165,
+      "total": 5942
+    },
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Based on the company documents, the following response-time goals and targets apply to customer-impacting SDK breaking changes:\n\n* **Triage / MTTA:** \n  * Triage breaking changes within **60 minutes** of detection for severity-critical issues [1].\n  * Target MTTA of **15 minutes** for critical issues (such as an SDK throwing an exception on the auth handshake for 100% of requests) [1].\n* **Communication:** Provide clear communication to customers and internal teams within **90 minutes** [1].\n* **Hotpatch / Remediation:** \n  * Ship a validated hotpatch inside a **4-hour window** for customer-impacting regressions [1].\n  * Similarly, P1 issues have an SLO of **4 hours** for an immediate rollback or patch [5]. \n\n*(Note: For lower-severity issues, the SLO is **72 hours** for a P2 targeted hotfix and the **next minor release** for a P3 scheduled fix [5].)*",
+    "cited_documents": [
+      "dsid_1b86b0fd2e4d4d40b1fbb9086d637ce2__developer-docs-api-contract-breach-runbook-and-canonical-fixes-2026.txt",
+      "dsid_c89cc8e839d64b00a4a471ad87ea41ce__sdk-breaking-change-mitigation-matrix-and-hotpatch-playbook-2026.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 39,
+    "category": "scaled_retrieval",
+    "question": "How should an agreed SLO be translated into capacity headroom and escrow?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "How to translate an agreed SLO into capacity headroom and capacity escrow requirements",
+    "expected_documents": [
+      "dsid_ce6cce4be83b402b84481b75940b0779__slo-adoption-to-capacity-execution-handbook-2024.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_3fb730c0286240acbe8513c6d296a908__slo-portfolio-risk-capacity-alignment-framework-2026.txt",
+      "dsid_6c942fed1aaa4cd1b41d3f6e9bf2f8c2__demand-to-headroom-rationale-and-slo-mapping-manual-2026.txt",
+      "dsid_ee2e59a4cbcd416784c747206d50fcaa__service-contract-versioning-and-capacity-translation-manual-2026.txt",
+      "dsid_fb0827acfc8d4ba384cb9322d84e9c6c__slo-capacity-escrow-and-priority-ledger-guidelines-2026.txt"
+    ],
+    "retrieval_pass": false,
+    "recall_at_k": {
+      "5": false,
+      "10": true,
+      "20": true,
+      "50": true
+    },
+    "latency_ms": {
+      "router": 2383,
+      "retrieval": 386,
+      "generation": 5886,
+      "total": 8655
+    },
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Translating an agreed Service Level Objective (SLO) into capacity headroom and escrow involves a structured mapping process based on error-budget policies, tail-risk metrics, and formalized translation rules:\n\n---\n\n### 1. Translating SLOs into Headroom Targets\n\n* **Link Headroom Directly to SLO Risk:** Rather than provisioning purely based on cost, headroom must reflect the SLO risk profile [1]. Critical, low-latency routes (such as p50 < 100ms) require more conservative headroom [1]. Calculations should rely on distribution-aware metrics (e.g., p50, p95, p99, and burstiness) instead of simple averages [1].\n* **Contract Versioning:** Any SLO change that could impact capacity or customer-visible latency must generate a new semantic SLO contract version [3]. Changes falling within a service\u2019s baseline telemetry noise floor (measured over a 7-day window) are suppressed from triggering version changes [3].\n* **Formalized Translation Rules:**\n  * **Latency-Focused SLOs:** Compute the additional token-processing cost for tail requests assuming a worst-case sequence length equal to the 95th percentile of observed sequences [3]. Convert this token-processing cost into GPU-ms, then derive commit headroom by dividing by the calibrated GPU throughput metric for that active model family [3]. For instance, a +10% p99 latency target translates to adding +20% GPU headroom for tail pipelines and increasing the pre-warm pool by +30% [3].\n  * **Availability / Error-Rate SLOs:** Convert the error delta into expected retry amplification, translating that into transient capacity buffers and selective throttles [3]. For example, a +0.05% availability target translates to a 0.5% soft capacity reserve of fleet cost and enables preemptive fallback routing [3].\n  * **Throughput SLOs:** Provision linearly proportional to the delta multiplied by the baseline query-per-second (QPS) factor, rounding up to instance granularity [3].\n* **Pre-warm and Canary Guardrails:** Where cold-start latency materially degrades performance, prefer elastic burst capacity with pre-warm pools [1]. In addition, canary traffic should be constrained so that it never consumes more than 10% of reserved headroom [1].\n\n---\n\n### 2. Operationalizing Capacity Escrow\n\nWhen a service approaches its error budget or experiences capacity strain, short-term capacity is managed via **Capacity Escrow** rather than blunt, service-wide throttling [4]:\n\n* **Capacity Escrow Pools:** A temporarily reserved pool of compute, GPU slots, or concurrency tokens is allocated to specific services in response to SLO breach risks or error-budget burn signals [2], [4].\n* **Escalation via Burn-Rate Thresholds:** Predefined burn-rate ranges for error-budget health map directly to escalation tiers and capacity actions (such as escrow grants, soft reserves, fallback routes, or throttles) [2], [4].\n* **Traceability via the Priority Ledger:** All escrow allocations, priority rules (e.g., tenant ranking), and rationales linking grants to SLO health are logged into an append-only **Priority Ledger** [4]. This ensures allocations are reversible, defendable, and auditable [2], [4].\n* **Timeboxing and Ownership:** Escrows must be authorized by a designated Escrow Owner (such as an on-call SRE), must be timeboxed, and must carry an explicit release plan once SLO risk stabilizes [4].",
+    "cited_documents": [
+      "dsid_3fb730c0286240acbe8513c6d296a908__slo-portfolio-risk-capacity-alignment-framework-2026.txt",
+      "dsid_6c942fed1aaa4cd1b41d3f6e9bf2f8c2__demand-to-headroom-rationale-and-slo-mapping-manual-2026.txt",
+      "dsid_ee2e59a4cbcd416784c747206d50fcaa__service-contract-versioning-and-capacity-translation-manual-2026.txt",
+      "dsid_fb0827acfc8d4ba384cb9322d84e9c6c__slo-capacity-escrow-and-priority-ledger-guidelines-2026.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 40,
+    "category": "scaled_retrieval",
+    "question": "How does the post-incident SLO/capacity template classify Sev1, Sev2, and Sev3 incidents?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "post-incident SLO capacity template Sev1 Sev2 Sev3 classification incident severity definitions",
+    "expected_documents": [
+      "dsid_d8bcd31174be433c8a8e6fe7adbceb4f__post-incident-slo-capacity-mapping-template-2026.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_011c82ac5b3a480291e0660065de48ab__slo-impact-messaging-and-capacity-decision-matrix-2026.txt",
+      "dsid_44f9a59ffbf243519432e14dd63e365b__operational-playbook-unified-runloop-and-postmortem-rubric-2025.txt",
+      "dsid_bb8ff87e19ec43afa947c80233d3dbaf__containment-checklists-and-post-incident-learning-path-2026.txt",
+      "dsid_d72cacb9cc2c4551a93f109debfd3047__incident-to-slo-feedback-playbook-2024.txt",
+      "dsid_d8bcd31174be433c8a8e6fe7adbceb4f__post-incident-slo-capacity-mapping-template-2026.txt"
+    ],
+    "retrieval_pass": true,
+    "recall_at_k": {
+      "5": true,
+      "10": true,
+      "20": true,
+      "50": true
+    },
+    "latency_ms": {
+      "router": 1158,
+      "retrieval": 468,
+      "generation": 2428,
+      "total": 4054
+    },
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "According to the post-incident SLO/capacity mapping template, Sev1, Sev2, and Sev3 incidents are classified as follows [1]:\n\n* **Sev1:** A greater than 5% global user-visible error-rate increase sustained for more than 5 minutes, OR at least 25% of customers experiencing P50 latency greater than 2x baseline, OR a catastrophic capacity collapse (such as a node pool down) [1].\n* **Sev2:** A measurable SLO breach window, OR a cumulative error-budget burn of greater than 2% in 1 hour for a tier-1 model/service [1].\n* **Sev3:** Transient spikes, configuration rollbacks, or non-customer-facing degradations with localized impact [1].",
+    "cited_documents": [
+      "dsid_d8bcd31174be433c8a8e6fe7adbceb4f__post-incident-slo-capacity-mapping-template-2026.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 41,
+    "category": "scaled_retrieval",
+    "question": "What progression must a new responder complete before becoming a full solo on-call responder?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "new responder onboarding progression requirements to become a solo on-call responder",
+    "expected_documents": [
+      "dsid_d81e10b32f814357913101ae7579174a__shadow-to-solo-oncall-progression-and-24h-micro-postmortem-toolkit-2026.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_984f94c84fd9460aaca3833eb8a4ca2e__incident-operator-coaching-and-stakeholder-communication-framework-2025.txt",
+      "dsid_a45508ed7957443e80d0708d9325e517__oncall-mentor-guides-and-public-incident-templates-2029.txt",
+      "dsid_d74cb9fff9be4d64be88d1a609e8edc3__shadow-oncall-onboarding-and-synthetic-labs-2025.txt",
+      "dsid_d81e10b32f814357913101ae7579174a__shadow-to-solo-oncall-progression-and-24h-micro-postmortem-toolkit-2026.txt"
+    ],
+    "retrieval_pass": true,
+    "recall_at_k": {
+      "5": true,
+      "10": true,
+      "20": true,
+      "50": true
+    },
+    "latency_ms": {
+      "router": 2459,
+      "retrieval": 367,
+      "generation": 7233,
+      "total": 10059
+    },
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Based on the company documents, new responders follow a structured path to progress to a full solo on-call role:\n\n### Staged Progression Overview\nThe staged progression sequence is: **Shadow $\\rightarrow$ Guided $\\rightarrow$ Lead with Mentor $\\rightarrow$ Solo with Mentor Review $\\rightarrow$ Solo** [1].\n\n1. **Stage 2 \u2014 Lead with Mentor (Weeks 3\u20135):**\n   * **Objective:** Lead triage and containment in low-to-medium severity incidents with mentor-approved actions [1].\n   * **Checklist:** Own the incident bridge for a low-severity incident under mentor observation, execute and document rollback/capacity steps, and produce the 24-hour micro-postmortem with assigned next steps [1].\n2. **Stage 3 \u2014 Solo with Post-Incident Review (Weeks 6\u20138):**\n   * **Objective:** Handle single-team incidents solo, followed by mentor review of the post-incident writeup within 48 hours [1].\n   * **Checklist:** Demonstrate clear bridge ownership, execute the responder playbook end-to-end, draft customer-facing status updates as needed, and complete evidence collection alongside the 24-hour micro-postmortem [1].\n3. **Stage 4 \u2014 Full Solo (Graduation):**\n   * **Objective:** Act as an autonomous responder across Sev1\u2013Sev2 incidents [1].\n   * **Checklist:** Obtain mentor sign-off after reviewing 3 solo incidents, pass the competency quiz, and get added to the rotation as a full responder [1].\n\n---\n\n### Competency Gates and Assessments\nTo graduate to full solo, the candidate must pass three competency gates:\n* **Practical:** Run through a simulated incident (game day mini-lab) and execute containment steps in a sandbox environment [1].\n* **Knowledge:** Pass a 20-question quiz covering runbooks, SLOs, and communication templates with at least an 80% passing score [1].\n* **Evidence:** Provide confirmed evidence artifacts for 3 incidents [1].\n\n---\n\n### Additional Program Requirements\nOther company onboarding guidelines specify complementary requirements for solo qualification:\n* **Incident Ownership & Labs:** Trainees must demonstrate successful ownership of at least 3 incidents with coach sign-off, participate in at least 1 postmortem write-up, and complete the runbook lab [3].\n* **Onboarding & Shadowing Cycle:** Complete a 2-week onboarding block (walkthroughs, smoke tests, runbook reading) and a 6-week shadowing cycle (12 shifts) [4].\n* **Solo-Ready Sign-off:** Complete a graduation gate running a solo shift with a mentor available via pager escalation only, where the mentor signs off using the Solo-Ready checklist (identifying key telemetry signals, following runbooks to mitigate throttling, running diagnostic commands, and drafting status updates) [4].",
+    "cited_documents": [
+      "dsid_984f94c84fd9460aaca3833eb8a4ca2e__incident-operator-coaching-and-stakeholder-communication-framework-2025.txt",
+      "dsid_a45508ed7957443e80d0708d9325e517__oncall-mentor-guides-and-public-incident-templates-2029.txt",
+      "dsid_d81e10b32f814357913101ae7579174a__shadow-to-solo-oncall-progression-and-24h-micro-postmortem-toolkit-2026.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 42,
+    "category": "scaled_retrieval",
+    "question": "How accurate is the Local Cost Emulator expected to be compared with production telemetry?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "Local Cost Emulator expected accuracy compared with production telemetry",
+    "expected_documents": [
+      "dsid_d4468ace4e7b46ffa4677d2acb58bf59__local-cost-emulator-and-developer-sdk-spec-2026-08-31.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_109111d0720448fea0c8ed68e449fbc3__sdk-cost-projection-and-test-harness-playbook-2026.txt",
+      "dsid_c5b7e521d2534cbf9da090df70e6a39d__prd-developer-sim-kit-telemetry-bridge-2026-10-05.txt",
+      "dsid_d4468ace4e7b46ffa4677d2acb58bf59__local-cost-emulator-and-developer-sdk-spec-2026-08-31.txt",
+      "dsid_da85bdf3020d41ea9d29597562101f03__real-time-telemetry-cost-normalization-spec-2026-11-02.txt",
+      "dsid_e0d4adccadb341688564d473a006aa4a__savings-estimation-validation-plan.txt"
+    ],
+    "retrieval_pass": true,
+    "recall_at_k": {
+      "5": true,
+      "10": true,
+      "20": true,
+      "50": true
+    },
+    "latency_ms": {
+      "router": 1347,
+      "retrieval": 374,
+      "generation": 2247,
+      "total": 3968
+    },
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Based on the company documents, the Local Cost Emulator is expected to match production telemetry within a bounded error target of [2]:\n\n* **\u00b115%** for token cost\n* **\u00b120%** for 95th percentile latency (for representative workloads)",
+    "cited_documents": [
+      "dsid_d4468ace4e7b46ffa4677d2acb58bf59__local-cost-emulator-and-developer-sdk-spec-2026-08-31.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 43,
+    "category": "scaled_retrieval",
+    "question": "What approval levels are required for procurement at different spending amounts?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "procurement approval levels and spending thresholds policy",
+    "expected_documents": [
+      "dsid_dcd2cd7a3e1d4035a4a0b628a399d4d3__operational-slate-procedures-2028.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_3f59fc6418ac42b19b6b722067392da8__procurement-delegations-and-spot-purchase-playbook-2026.txt",
+      "dsid_4bf88f82eb834852af83864bb6a02462__delegated-approvals-and-supplier-onboarding-patterns-2025.txt",
+      "dsid_54a31045f6f149d58a1350ff8d697815__forecast-aligned-purchasing-authorization-framework-2027.txt",
+      "dsid_be44d11c571f4ec18d625fbbbc8578e8__ops-access-change-travel-guidance-2025.txt",
+      "dsid_cf3b61c0420a4067954c167cb467b8bf__slo-breach-customer-communication-and-crediting-procedure-2026.txt"
+    ],
+    "retrieval_pass": false,
+    "recall_at_k": {
+      "5": false,
+      "10": false,
+      "20": false,
+      "50": false
+    },
+    "latency_ms": {
+      "router": 1046,
+      "retrieval": 475,
+      "generation": 4848,
+      "total": 6369
+    },
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Based on the provided company documents, there are a few documented procurement threshold frameworks:\n\n### Sprint / Spot Purchase Framework\n* **Tier A \u2014 Rapid (Sprint) (up to $2,500):** Approved by the **Squad lead** [2].\n\n---\n\n### Standard Tiered Approval Framework\n* **Tier 1 ($2,500 \u2013 $25,000):** Requires **Department Head** approval (along with a budget line reference) [4].\n* **Tier 2 ($25,001 \u2013 $250,000):** Requires approvals from the **Budget Owner**, **Procurement**, and **Legal** (if a contract is involved), plus a forecast variance note [4].\n* **Tier 3 (> $250,000 or multi-year commitments):** Requires approvals from the **CFO**, **Procurement Director**, **Legal**, and a **RevOps** review [4].\n\n---\n\n### Alternative / Strategic Contracts Thresholds\n* **$2,001 \u2013 $25,000:** Approved by the **Department Manager + Finance** (with a security review if there is an infrastructure impact) [3].\n* **$25,001 \u2013 $150,000 (Strategic contracts / one-time purchases):** Approved by the **VP + Procurement** (requires legal review and 3 bids recommended) [3].\n* **> $150,000 (Strategic):** Approved by the **CFO + Head of Procurement** (requires Legal/Audit review and an Executive sponsor) [3].",
+    "cited_documents": [
+      "dsid_3f59fc6418ac42b19b6b722067392da8__procurement-delegations-and-spot-purchase-playbook-2026.txt",
+      "dsid_4bf88f82eb834852af83864bb6a02462__delegated-approvals-and-supplier-onboarding-patterns-2025.txt",
+      "dsid_54a31045f6f149d58a1350ff8d697815__forecast-aligned-purchasing-authorization-framework-2027.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 44,
+    "category": "scaled_retrieval",
+    "question": "What rollout sequence and hard rollback triggers apply to a CUDA driver upgrade?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "CUDA driver upgrade rollout sequence and hard rollback triggers",
+    "expected_documents": [
+      "dsid_dfc76aed535e47869a1a8a9f6733678a__cuda-driver-provenance-and-rolling-upgrade-playbook.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_541249fb272d45c5af40deb081b13422__private-deploy-heterogeneous-gpu-scheduling-and-thermal-mitigation-2026.txt",
+      "dsid_c8e1be6b6dc54bc2b0c8077a41824b5c__gpu-bios-firmware-orchestration-iac-spec.txt",
+      "dsid_dfc76aed535e47869a1a8a9f6733678a__cuda-driver-provenance-and-rolling-upgrade-playbook.txt"
+    ],
+    "retrieval_pass": true,
+    "recall_at_k": {
+      "5": true,
+      "10": true,
+      "20": true,
+      "50": true
+    },
+    "latency_ms": {
+      "router": 4959,
+      "retrieval": 398,
+      "generation": 5543,
+      "total": 10900
+    },
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Based on the provided documents, the rollout sequence and hard rollback triggers are detailed below:\n\n### Rollout Sequence\nThe driver upgrade follows a phased, step-by-step flow [Source 2]:\n\n1. **Prepare artifact bundle:** Collect the driver and firmware image, SHA256 checksum, and release notes [Source 2].\n2. **Lab validation (staging):** Run full performance and correctness suites on representative models [Source 2].\n3. **Canary (2 nodes):** Schedule during non-peak hours and run smoke tests for 6 hours [Source 2].\n4. **Small canary (10 nodes):** Expand to 10 nodes across 2 racks and conduct extended 24-hour tests [Source 2]. *(Note: General canary policy targets a default of 1% of matching nodes, min 2 nodes, max 10 nodes per wave, preferring different racks/AZs [Source 3]).*\n5. **Broad rollout:** Advance in 20% increments every 24 hours (or in 24\u201348 hour staggered waves) provided no regressions occur [Source 1, Source 2].\n6. **Post-rollout verification:** Perform weekly regression checks for 2 weeks [Source 2], as well as post-upgrade checklist validations (NVML health probe, p95/p99 latency checks, security attestation uploads) within 24 hours of full rollout [Source 1].\n\n---\n\n### Hard Rollback Triggers\nImmediate abort of the rollout and automated rollback are initiated under the following specific hard conditions [Source 1]:\n\n1. **`NVML_UNRECOVERABLE` errors:** Exceeding 0.1% of GPU calls within a 10-minute window [Source 1].\n2. **Node reboot spike:** Greater than 5x baseline in a 15-minute window [Source 1].\n3. **Serving performance regression:** A p99 latency regression > 50% or an increased error rate > 2x baseline in the canary region [Source 1].\n\n*(Additional automated abort/rollback criteria detailed in canary monitoring include node-level panics or non-responsive consoles, canaries reporting boot/smoke-test failures, aggregate p95 latency increases > 50%, or > 3% of canaries emitting driver requeue/fatal errors [Source 3]).*",
+    "cited_documents": [],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": false
+  },
+  {
+    "id": 45,
+    "category": "scaled_retrieval",
+    "question": "What are the warmup and fallback SLOs for private deployments with heterogeneous GPU fleets?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "warmup and fallback SLOs for private deployments with heterogeneous GPU fleets",
+    "expected_documents": [
+      "dsid_e8d7429d21d649e9b9ec9430549990c1__cache-warmup-degradation-and-heterogeneous-fallback-playbook-2026.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_36166244749f469498e68bf66e8f1f73__gpu-soft-reserve-protocol-and-graceful-fallback-runbook.txt",
+      "dsid_541249fb272d45c5af40deb081b13422__private-deploy-heterogeneous-gpu-scheduling-and-thermal-mitigation-2026.txt",
+      "dsid_a0397024e2054ff38b37c2f01c7eefb9__graceful-gpu-preemption-and-prewarming-guidelines-2026.txt",
+      "dsid_b1325b14465543e097ef28f9aea20ab1__gpu-warmpool-sizing-and-burst-safety-matrix.txt",
+      "dsid_bbd81fb8f3d24a89b3a76a705d7ac3d2__warm-start-strategy-and-soft-eviction-runbook-2026.txt"
+    ],
+    "retrieval_pass": false,
+    "recall_at_k": {
+      "5": false,
+      "10": true,
+      "20": true,
+      "50": true
+    },
+    "latency_ms": {
+      "router": 1532,
+      "retrieval": 545,
+      "generation": 4264,
+      "total": 6341
+    },
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Based on the provided documents, there are no specific warmup and fallback SLOs defined for private deployments with heterogeneous GPU fleets. \n\nWhile the playbook for private deployments with heterogeneous GPU fleets defines an inference latency target of p95 < 120ms for interactive routes [3], it does not specify warmup or fallback SLOs. Furthermore, the runbook detailing warmup and fallback protocols (soft-reserve) specifies SLOs only for hosted and dedicated pools and notes that it is not intended for private deployments unless explicitly enabled by the customer [2].",
+    "cited_documents": [
+      "dsid_36166244749f469498e68bf66e8f1f73__gpu-soft-reserve-protocol-and-graceful-fallback-runbook.txt",
+      "dsid_541249fb272d45c5af40deb081b13422__private-deploy-heterogeneous-gpu-scheduling-and-thermal-mitigation-2026.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": false,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 46,
+    "category": "scaled_retrieval",
+    "question": "What response SLAs apply to each severity level of a third-party data breach?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "third-party data breach response SLAs by severity level",
+    "expected_documents": [
+      "dsid_e41c48682dfb443ca6df47efaf4e8d3f__third-party-data-breach-response-playbook-2026.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_5217b3a64c4a433c89ba2a3186dea82a__incident-ownership-mapping-and-remediation-sla-matrix.txt",
+      "dsid_bb270a2227c140f58dd7754c480162d2__multitenant-impact-assessment-playbook-and-customer-notice-templates-2026.txt",
+      "dsid_cb839e9e2395455f97b798dc681a069b__tenant-segmentation-incident-evidence-and-forensic-guidance-2026.txt",
+      "dsid_e41c48682dfb443ca6df47efaf4e8d3f__third-party-data-breach-response-playbook-2026.txt"
+    ],
+    "retrieval_pass": true,
+    "recall_at_k": {
+      "5": true,
+      "10": true,
+      "20": true,
+      "50": true
+    },
+    "latency_ms": {
+      "router": 1467,
+      "retrieval": 359,
+      "generation": 2067,
+      "total": 3893
+    },
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "According to the third-party data breach response playbook, the following SLAs apply to each severity level [1]:\n\n* **Sev 1 (Critical):**\n  * **Response SLA (ack):** 15 minutes\n  * **Initial containment window:** 1 hour\n  * **Evidence preservation SLA:** Snapshot and initial artifact collection within 2 hours\n\n* **Sev 2 (High):**\n  * **Response SLA (ack):** 1 hour\n  * **Initial containment window:** 4 hours\n  * **Evidence preservation SLA:** Collect logs and ephemeral data within 12 hours\n\n* **Sev 3 (Medium):**\n  * **Response SLA (ack):** 4 hours\n  * **Initial containment window:** 72 hours\n  * **Evidence preservation SLA:** Preserve logs for 7 days pending triage\n\n* **Sev 4 (Low):**\n  * **Response SLA (ack):** 24 hours\n  * **Initial containment window:** N/A\n  * **Evidence preservation SLA:** Record vendor statement and close after review",
+    "cited_documents": [
+      "dsid_e41c48682dfb443ca6df47efaf4e8d3f__third-party-data-breach-response-playbook-2026.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 47,
+    "category": "scaled_retrieval",
+    "question": "What qualifies as a Sev-1 Blitz incident and what is the expected customer-notification cadence?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "Sev-1 Blitz incident qualification criteria and expected customer notification cadence",
+    "expected_documents": [
+      "dsid_e862e984c73a4630a1072927b43f64b1__escalation-cadence-and-playbook-for-blitz-recovery-2026.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_b5392747bec64dc1911713aa034cdb02__stakeholder-incident-briefing-and-commitment-playbook-2026.txt",
+      "dsid_d6aca85bfff24f7a99cbbb971da678e6__oncall-readiness-slo-drills-and-customer-notifications-2024.txt",
+      "dsid_e5fe3fd0cf444668a64970ec00818f46__sev1-communication-requirements.txt",
+      "dsid_e862e984c73a4630a1072927b43f64b1__escalation-cadence-and-playbook-for-blitz-recovery-2026.txt"
+    ],
+    "retrieval_pass": true,
+    "recall_at_k": {
+      "5": true,
+      "10": true,
+      "20": true,
+      "50": true
+    },
+    "latency_ms": {
+      "router": 1320,
+      "retrieval": 370,
+      "generation": 5286,
+      "total": 6976
+    },
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "### Qualification for a Sev-1 (Blitz) Incident\nA Sev-1 (Blitz) incident is triggered by system-wide customer impact affecting customer-facing inference throughput or correctness, specifically meeting any of the following criteria:\n* $\\ge 10\\%$ of customers experiencing timeouts [1]\n* $> 30\\%$ token throttling [1]\n* Systemic model-serving failures [1]\n\n---\n\n### Expected Customer-Notification Cadence\n\nUnder the **Sev-1 Communication Requirements**, the notification cadence is:\n* **Initial acknowledgement:** Within **10 minutes** of Sev-1 declaration [3].\n* **Ongoing updates:** Every **30 minutes** while customer impact continues [3].\n* **Resolution message:** Within **15 minutes** of confirmed mitigation [3].\n* **Post-incident summary:** Within **1 business day** (mandatory for enterprise customers; optional for public status pages) [3].\n\n*(Note: Under the broader enterprise stakeholder briefing playbook, external commitments also outline an initial acknowledgement at **T+15 minutes**, a first briefing at **T+45 minutes**, followed by **hourly operational updates** between T+1 and T+6 hours, and a stabilization notice once the service is within SLO for two consecutive intervals or a rollback is applied [2].)*",
+    "cited_documents": [
+      "dsid_b5392747bec64dc1911713aa034cdb02__stakeholder-incident-briefing-and-commitment-playbook-2026.txt",
+      "dsid_e5fe3fd0cf444668a64970ec00818f46__sev1-communication-requirements.txt",
+      "dsid_e862e984c73a4630a1072927b43f64b1__escalation-cadence-and-playbook-for-blitz-recovery-2026.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 48,
+    "category": "scaled_retrieval",
+    "question": "What are the three Fidelity Add-Ons for Optimize Conductor and how is each billed?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "What are the three Fidelity Add-Ons for Optimize Conductor and how is each billed?",
+    "expected_documents": [
+      "dsid_ec5f65a05e8a4dc690e0dc61a116b937__commercialization-playbook-optimize-conductor-fidelity-addons-2029-02-09.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_6ce194cd02b7424e9100c5d7136e61f0__optimize-conductor-3-0-live-fidelity-advisor-release-notes-2027-01-15.txt",
+      "dsid_ec5f65a05e8a4dc690e0dc61a116b937__commercialization-playbook-optimize-conductor-fidelity-addons-2029-02-09.txt"
+    ],
+    "retrieval_pass": true,
+    "recall_at_k": {
+      "5": true,
+      "10": true,
+      "20": true,
+      "50": true
+    },
+    "latency_ms": {
+      "router": 2540,
+      "retrieval": 416,
+      "generation": 1935,
+      "total": 4891
+    },
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Based on the company documents, the three Fidelity Add-Ons for Redwood Optimize Conductor and their billing models are [1]:\n\n1. **Fidelity Shield**\n   * **Billing:** Billed as a usage multiplier (for example, +15% to tokens billed under shielded routes) with a monthly cap [1]. It can also optionally be sold as a firm per-route SLA price for enterprise customers [1].\n\n2. **Deterministic Routing**\n   * **Billing:** Sold as a micro-SKU per-request overlay (for example, $0.002 per routed request), measured by the routed request count on deterministic lanes [1].\n\n3. **Hot-KV Retention (FID-HOTKV)**\n   * **Billing:** Charged as a tiered GB-month model (e.g., 0\u201350GB = $X/GB, 50\u2013250GB = $Y/GB) plus a per-surge fee (pre-warm operations fee for bursts) [1].",
+    "cited_documents": [
+      "dsid_ec5f65a05e8a4dc690e0dc61a116b937__commercialization-playbook-optimize-conductor-fidelity-addons-2029-02-09.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 49,
+    "category": "scaled_retrieval",
+    "question": "What caused Maple Health's incorrect overage adjustment and what did the v2.3.2 hotfix change?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "Maple Health incorrect overage adjustment cause v2.3.2 hotfix changes",
+    "expected_documents": [
+      "dsid_eee829efbff84a75bec2ee74e3361573__invoice-overage-adjustment-proration-rca-2026.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_02f0cd8c874b431cbdec5455721ce8c1__inc-2025-0522-private-gpu-fragmentation-capacity-drop.txt",
+      "dsid_eee829efbff84a75bec2ee74e3361573__invoice-overage-adjustment-proration-rca-2026.txt"
+    ],
+    "retrieval_pass": true,
+    "recall_at_k": {
+      "5": true,
+      "10": true,
+      "20": true,
+      "50": true
+    },
+    "latency_ms": {
+      "router": 1553,
+      "retrieval": 357,
+      "generation": 4249,
+      "total": 6159
+    },
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "### Cause of Maple Health's Incorrect Overage Adjustment\nThe incorrect charge was caused by a billing correctness bug involving a rate-lookup fallback during a quota update [1]:\n* When Maple Health changed their quota threshold from 1M to 2M tokens via the Console UI, the quota metadata store experienced intermittent HTTP 500 errors during a deployment window [1].\n* Although the quota update event was emitted, the metadata write failed transiently and was not committed in time for the invoicing computation [1].\n* Invoicing pipeline job version v2.3.1 proceeded using a fallback to a legacy/default rate mapping rather than waiting and retrying once the metadata became consistent, resulting in an \"overage adjustment\" charge for ~1.1M tokens at an unexpectedly high rate [1].\n\n---\n\n### Changes Introduced in the v2.3.2 Hotfix\nThe **v2.3.2** invoicing job introduced the following technical fixes [1]:\n* **Exponential backoff retries:** Automatically retries rate and proration lookups with exponential backoff whenever quota metadata is missing [1].\n* **Blocking legacy fallbacks:** Prevents the system from using the legacy/default fallback rate mapping for proration-required paths. Instead, it marks the invoice generation as \"retryable\" until metadata is available or a maximum retry limit is exceeded [1].\n* **Structured logging:** Adds structured logs specifically tracking \"metadata missing\" and \"fallback prevented\" outcomes [1].",
+    "cited_documents": [
+      "dsid_eee829efbff84a75bec2ee74e3361573__invoice-overage-adjustment-proration-rca-2026.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 50,
+    "category": "scaled_retrieval",
+    "question": "What automated gates cause a candidate kernel rollout to fail and roll back?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "What automated gates cause a candidate kernel rollout to fail and roll back?",
+    "expected_documents": [
+      "dsid_ef66bc0f9c864b8d8a37b33ebf979a51__orchestration-fidelity-safety-manual-2026.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_0cdf40cfc4a9469d8e22e210ab09da46__gpu-kernel-rollout-and-telemetry-gating-runbook.txt",
+      "dsid_6416ff060e4244759f33b480e15f2e63__kernel-abi-quantization-kernel-compatibility-guidelines-2026.txt",
+      "dsid_9f6994434ef14f0283a0c4371033f6d4__adaptive-cohort-probing-and-handoff-runbook-2026.txt",
+      "dsid_cd361b104a1f499481994a36641f5324__rolling-linux-kernel-patch-safety-for-gpu-fleet-2026.txt",
+      "dsid_cf4ec5ac570a437bb4a259193b54f11c__kernel-safety-net-and-rollback-playbook-2027.txt"
+    ],
+    "retrieval_pass": false,
+    "recall_at_k": {
+      "5": false,
+      "10": false,
+      "20": true,
+      "50": true
+    },
+    "latency_ms": {
+      "router": 5614,
+      "retrieval": 528,
+      "generation": 4794,
+      "total": 10936
+    },
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Based on the provided documents, candidate kernel rollouts fail and trigger rollbacks when any of the following automated gates or criteria are breached:\n\n### 1. Quality and Canary Performance Gating Thresholds\n* **p95 Latency Increase:** Exceeding the `latency_p95_increase_threshold` of 10% [4], or when the canary p95 latency delta exceeds the baseline by more than 0.04 in automated gate checking [3].\n* **Error Rate:** Exceeding an absolute error rate threshold of 0.5% [4].\n* **Model Quality Delta:** Exceeding a per-model quality delta threshold of 0.8% absolute token-level difference [4].\n* **Smoke Harness Execution:** Failing to complete within the `smoke_harness_timeout` of 300s [4].\n\n### 2. Correctness and Probe Window Errors\n* **Deterministic Correctness Errors:** Any instance of a deterministic correctness error (such as a tokenization mismatch) detected in probe windows triggers a rollback [2].\n\n### 3. Pre-Canary & Microbenchmark Gates\nBefore or during promotion, rollouts are blocked if they fail precondition gates:\n* **Latency Regressions:** A regression greater than 1.5% in mean latency for core kernels [1].\n* **Throughput Regressions:** A regression greater than 5% in p95/p99 token throughput on the synthetic batcher [1].\n* **Testing & Safety Checks:** Failing unit and integration tests for scheduler and kernel modules, or failing static safety checks (memory boundary sanitizers and kernel ABI compatibility checks) [1].",
+    "cited_documents": [
+      "dsid_0cdf40cfc4a9469d8e22e210ab09da46__gpu-kernel-rollout-and-telemetry-gating-runbook.txt",
+      "dsid_6416ff060e4244759f33b480e15f2e63__kernel-abi-quantization-kernel-compatibility-guidelines-2026.txt",
+      "dsid_9f6994434ef14f0283a0c4371033f6d4__adaptive-cohort-probing-and-handoff-runbook-2026.txt",
+      "dsid_cf4ec5ac570a437bb4a259193b54f11c__kernel-safety-net-and-rollback-playbook-2027.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": false,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  }
+]
