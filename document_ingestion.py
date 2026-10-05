@@ -158,7 +158,7 @@ def ingest_documents(file_paths, source_type, access_level="employee", max_worke
 
 if __name__ == "__main__":
     confluence_dir = Path("enterprise_rag_data/confluence")
-    test_files = list(confluence_dir.glob("*.txt"))[:1000]
+    test_files = list(confluence_dir.glob("*.txt"))
 
     start_time = time.perf_counter()
 
@@ -166,8 +166,8 @@ if __name__ == "__main__":
 
     document_ids = ingest_documents(test_files, source_type="confluence")
 
-    for file_path, document_id in zip(test_files, document_ids):
-        print(f"created document {document_id}: {file_path.name}")
+    # for file_path, document_id in zip(test_files, document_ids):
+    #     print(f"created document {document_id}: {file_path.name}")
 
     elapsed = time.perf_counter() - start_time
     print(f"test ingestion complete in {elapsed:.1f} seconds")
