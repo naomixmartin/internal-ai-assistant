@@ -4,16 +4,19 @@ from llm import generate_response
 from retrieval import retrieve_chunks, build_document_context
 from router import route_query
 import os
+import numpy as np
 
 
-EVAL_FILE = "evals/scaled_1k/eval_cases_50.json"
-RESULTS_FILE = "evals/scaled_1k/eval_results_50_gemini_3.8_v2.json"
+EVAL_FILE = "evals/scaled_1k/eval_cases.json"
+RESULTS_FILE = "evals/scaled_1k/eval_results_gemini_3.8_5k_files.json"
 
 RECALL_K_VALUES = [5, 10, 20, 50]
 ANSWER_MATCH_COUNT = 5
 
 
 def generate_answer(question, route, retrieved_chunks):
+    source_map = {}
+
     if route == "COMPANY_CONTEXT_REQUIRED":
         document_context, source_map = build_document_context(retrieved_chunks)
 
@@ -36,11 +39,12 @@ def generate_answer(question, route, retrieved_chunks):
             {"role": "user", "content": question
             }
         ]
+        contents = messages
+    else:
+        contents = question
 
-        answer = generate_response(messages, stage="evaluation")
-        return answer, source_map
-
-    return generate_response(question, stage="evaluation"), {}
+    answer, metadata = generate_response(contents, stage="evaluation", return_metadata=True)
+    return answer, source_map, metadata["generation_latency_ms"]
 
 
 def get_cited_source_numbers(answer):
@@ -131,17 +135,18 @@ def main():
         print(f'Running case {case["id"]}/{total_cases}: {case["question"]}')
 
         # route the question
-        actual_route, retrieval_query, _, _ = route_query(case["question"], "")
+        actual_route, retrieval_query, routing_latency_ms, _ = route_query(case["question"], "")
         route_pass = actual_route == case["expected_route"]
 
         # always retrieve for evaluation so retrieval is measured independently of routing
         evaluation_chunks, retrieval_latency_ms = retrieve_chunks(retrieval_query, case["role"], match_count=max(RECALL_K_VALUES))
 
-        # only give retrieved context to the assistant when the router requests it
+        # retrieve top-5 chunks for production only when company context is needed
         retrieved_chunks = []
+        retrieval_latency_ms = 0
 
         if actual_route == "COMPANY_CONTEXT_REQUIRED":
-            retrieved_chunks = evaluation_chunks[:ANSWER_MATCH_COUNT]
+            retrieved_chunks, retrieval_latency_ms = retrieve_chunks(retrieval_query, case["role"], match_count=ANSWER_MATCH_COUNT)
 
         retrieved_documents = {chunk["filename"] for chunk in evaluation_chunks[:ANSWER_MATCH_COUNT]}
 
@@ -154,7 +159,6 @@ def main():
 
         for k in RECALL_K_VALUES:
             documents_at_k = {chunk["filename"] for chunk in evaluation_chunks[:k]}
-
             recall_at_k[str(k)] = bool(expected_documents & documents_at_k)
 
         if min_expected > 0:
@@ -169,7 +173,10 @@ def main():
         permission_pass = len(permission_violations) == 0
 
         # generate the actual assistant answer
-        answer, source_map = generate_answer(case["question"], actual_route, retrieved_chunks)
+        answer, source_map, generation_latency_ms = generate_answer(case["question"], actual_route, retrieved_chunks)
+
+        # calculate production end-to-end latency
+        total_latency_ms = routing_latency_ms + retrieval_latency_ms + generation_latency_ms
 
         # deterministic citation check: cited docs must have been retrieved
         cited_source_numbers = get_cited_source_numbers(answer)
@@ -204,7 +211,7 @@ def main():
             "retrieved_documents": sorted(retrieved_documents),
             "retrieval_pass": retrieval_pass,
             "recall_at_k": recall_at_k,
-            "retrieval_latency_ms": retrieval_latency_ms,
+            "latency_ms": {"router": routing_latency_ms, "retrieval": retrieval_latency_ms, "generation": generation_latency_ms, "total": total_latency_ms},
             "forbidden_documents": sorted(forbidden_documents),
             "permission_violations": sorted(permission_violations),
             "permission_pass": permission_pass,
@@ -236,9 +243,13 @@ def main():
     citation_present_correct = sum(r["citation_present_pass"] for r in results)
     citation_support_correct = sum( r["citations_supported"] for r in results)
     recall_results = {k: sum(r["recall_at_k"][str(k)] for r in results) for k in RECALL_K_VALUES}
-    retrieval_latencies = [r["retrieval_latency_ms"] for r in results if r["retrieval_latency_ms"] is not None]
+    latency_stages = ["router", "retrieval", "generation", "total"]
 
-    average_retrieval_latency_ms = sum(retrieval_latencies) / len(retrieval_latencies)
+    latency_summary = {}
+    for stage in latency_stages:
+        values = [r["latency_ms"][stage] for r in results]
+        latency_summary[stage] = {"p50": np.percentile(values, 50), "p95": np.percentile(values, 95)}
+
 
     print("\n--- Evaluation Results ---")
     print(f"Router accuracy: "
@@ -250,11 +261,17 @@ def main():
               f"{retrieval_correct}/{len(retrieval_results)} "
               f"({retrieval_correct / len(retrieval_results) * 100:.1f}%)")
 
-    print(f"Average top-50 retrieval latency: {average_retrieval_latency_ms:.1f} ms")
+    print("\nLatency (ms)")
+    print(f"{'Stage':<12} {'p50':>10} {'p95':>10}")
+    for stage in latency_stages:
+        print(
+            f"{stage.capitalize():<12} "
+            f"{latency_summary[stage]['p50']:>10.1f} "
+            f"{latency_summary[stage]['p95']:>10.1f}"
+        )
 
     for k in RECALL_K_VALUES:
         recall_correct = recall_results[k]
-
         print(f"Recall@{k}: "
               f"{recall_correct}/{total} "
               f"({recall_correct / total * 100:.1f}%)")
