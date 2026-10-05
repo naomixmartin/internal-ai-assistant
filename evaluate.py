@@ -8,7 +8,7 @@ import numpy as np
 
 
 EVAL_FILE = "evals/scaled_1k/eval_cases.json"
-RESULTS_FILE = "evals/scaled_1k/eval_results_gemini_3.8_5k_files_top10.json"
+RESULTS_FILE = "evals/scaled_1k/eval_results_gemini_3.8_5k_files_top10_cases22_25.json"
 
 RECALL_K_VALUES = [5, 10, 20, 50]
 ANSWER_MATCH_COUNT = 10
@@ -116,6 +116,9 @@ def main():
     with open(EVAL_FILE, "r", encoding="utf-8") as f:
         cases = json.load(f)
 
+    # temporarily run only cases 22 and 25
+    cases = [case for case in cases if case["id"] in [22, 25]]
+
     total_cases = len(cases)
 
     # continue results file if a previous run failed
@@ -209,6 +212,18 @@ def main():
             "retrieval_query": retrieval_query,
             "expected_documents": sorted(expected_documents),
             "retrieved_documents": sorted(retrieved_documents),
+            "retrieved_chunks": [
+                {"id": chunk["id"],
+                 "filename": chunk["filename"],
+                 "chunk_index": chunk["chunk_index"],
+                 "content": chunk["content"],
+                 "similarity": chunk["similarity"]} for chunk in retrieved_chunks],
+            "evaluation_chunks": [
+                {"rank": i + 1,
+                 "filename": chunk["filename"],
+                 "chunk_index": chunk["chunk_index"],
+                 "similarity": chunk["similarity"],
+                 "content": chunk["content"]} for i, chunk in enumerate(evaluation_chunks)],
             "retrieval_pass": retrieval_pass,
             "recall_at_k": recall_at_k,
             "latency_ms": {"router": routing_latency_ms, "retrieval": retrieval_latency_ms, "generation": generation_latency_ms, "total": total_latency_ms},
