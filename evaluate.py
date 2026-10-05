@@ -7,7 +7,7 @@ import os
 
 
 EVAL_FILE = "evals/scaled_1k/eval_cases_50.json"
-RESULTS_FILE = "evals/scaled_1k/eval_results_50_v1.json"
+RESULTS_FILE = "evals/scaled_1k/eval_results_50_gemini_3.8_v1.json"
 
 RECALL_K_VALUES = [5, 10, 20, 50]
 ANSWER_MATCH_COUNT = 5
