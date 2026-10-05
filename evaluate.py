@@ -3,7 +3,6 @@ import re
 from llm import generate_response
 from retrieval import retrieve_chunks, build_document_context
 from router import route_query
-import time
 import os
 
 
@@ -220,9 +219,6 @@ def main():
         # save progress after every completed case
         with open("eval_results.json", "w", encoding="utf-8") as f:
             json.dump(results, f, indent=2)
-
-        # avoid gemini free-tier rate limit
-        time.sleep(13)
 
     # calculate summary metrics
     total = len(results)
