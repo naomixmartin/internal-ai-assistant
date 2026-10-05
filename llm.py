@@ -15,7 +15,9 @@ class LLMError(Exception):
 
 load_dotenv()
 LLM_PROVIDER = os.getenv("LLM_PROVIDER", "gemini")
-LLM_MODEL = os.getenv("LLM_MODEL", "gemini-3.5-flash-lite")
+LLM_MODEL = os.getenv("LLM_MODEL")
+if not LLM_MODEL:
+    raise ValueError("LLM_MODEL must be set in .env")
 
 # initialize the configured llm provider
 if LLM_PROVIDER == "gemini":

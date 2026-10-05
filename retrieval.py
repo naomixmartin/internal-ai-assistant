@@ -3,11 +3,9 @@ import time
 from dotenv import load_dotenv
 from supabase import create_client
 from embedding import generate_embedding
-from google import genai
-
+from llm import generate_response
 
 load_dotenv()
-client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 supabase = create_client(os.getenv("SUPABASE_URL"), os.getenv("SUPABASE_SERVICE_ROLE_KEY"))
 
 
@@ -64,6 +62,4 @@ def answer_with_context(query, chunks):
     {query}
     """
 
-    response = client.models.generate_content(model="gemini-3.5-flash-lite", contents=prompt)
-
-    return response.text
+    return generate_response(prompt, stage="answer")
