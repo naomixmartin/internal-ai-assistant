@@ -14,9 +14,7 @@ def generate_answer(question, route, retrieved_chunks):
         document_context = build_document_context(retrieved_chunks)
 
         messages = [
-            {
-                "role": "user",
-                "content": f"""
+            {"role": "user", "content": f"""
             Relevant company information:
             
             {document_context}
@@ -29,9 +27,7 @@ def generate_answer(question, route, retrieved_chunks):
             the question, say that you could not find the answer in the company documents.
             """
             },
-            {
-                "role": "user",
-                "content": question
+            {"role": "user", "content": question
             }
         ]
 
