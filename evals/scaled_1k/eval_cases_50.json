@@ -1,0 +1,702 @@
+[
+  {
+    "id": 1,
+    "category": "scaled_retrieval",
+    "question": "What are the target restoration times and customer communication cadences for P0 and P1 weekend or holiday incidents?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "For P0 incidents, the full restoration goal is 60 minutes with status updates at 0, 15, 30, and 60 minutes. For P1 incidents, the partial restoration goal is 180 minutes with updates at 0, 30, and 90 minutes.",
+    "expected_documents": [
+      "dsid_0ac4313f110144c9bbedf1879e2f9c68__weekend-and-holiday-rapid-restoration-blueprint-2028.txt"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 2,
+    "category": "scaled_retrieval",
+    "question": "What are the first-hour objectives during a multi-vector authorization incident?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "Contain obvious ongoing exploitation within 1 hour, capture and make immutable the initial evidence snapshot within 1 hour, and notify Legal within 2 hours if PII or cross-border data may have been exposed.",
+    "expected_documents": [
+      "dsid_0b72a868b885486b91f3531a54a4d786__multi-vector-authz-incident-evidence-and-restoration-playbook-2026.txt"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 3,
+    "category": "scaled_retrieval",
+    "question": "What default gates must a candidate scheduler satisfy in Scheduler Shadowplay before proceeding to canary?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "The candidate should keep p95 latency within baseline +10 ms or show no statistically significant increase, error rate within +0.1% absolute, KV-cache hit degradation within 1.5 percentage points for cacheable workloads, throughput at least 95% of baseline, normalized per-token cost increase at or below 8%, and have no kernel panics, watchdog resets, or GPU timeouts.",
+    "expected_documents": [
+      "dsid_1c49e7a1b2eb44a2be9ddf0f4a36dd68__scheduler-shadowplay-and-telemetry-convergence-playbook-2026.txt"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 4,
+    "category": "scaled_retrieval",
+    "question": "What measurable goals does the Budgeted Rollout Orchestrator use for overspend prevention and SLO-triggered rollback?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "BRO targets keeping 95% of rollouts from exceeding the configured budget envelope by more than 2% over a 30-day window, and detecting SLO degradation and halting or rolling back within 5 minutes of breach detection for 90% of incidents.",
+    "expected_documents": [
+      "dsid_2cd54caeef9941a8ad9975458e56bbad__prd-budgeted-rollout-orchestrator-2026-09-30.txt"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 5,
+    "category": "scaled_retrieval",
+    "question": "What are the default graceful handback windows for interactive and batch preemptible workloads?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "The default handback window is 25 seconds for interactive workloads and 120 seconds for batch workloads.",
+    "expected_documents": [
+      "dsid_6f739d658e3847aea2c21e5923f91a93__preemptible-workload-graceful-handback-and-notification-playbook-2026.txt"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 6,
+    "category": "scaled_retrieval",
+    "question": "What safety invariants must the Dedicated autoscaler respect when troubleshooting min/max bounds?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "The autoscaler must never scale above the customer's configured maximum and must never scale below the configured minimum while restoring latency and SLOs.",
+    "expected_documents": [
+      "dsid_8f2761458e4347cb83a684656ca5ee3c__dedicated-autoscaler-troubleshooting-runbook.txt"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 7,
+    "category": "scaled_retrieval",
+    "question": "What must the Optimization Suggestions beta communicate to make batching and caching recommendations trustworthy and actionable?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "The Suggestions view should highlight the best batching and caching opportunities per route/model, explain why each recommendation is being made and how to enable it, show conservative estimates with assumptions and tradeoffs, communicate risk consistently, and instrument impression, expand, dismiss, and apply interactions.",
+    "expected_documents": [
+      "dsid_54b7239adb9242b18f96f7dc9687ac7a__optimization-suggestions-console-ux-beta-prd.txt"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 8,
+    "category": "scaled_retrieval",
+    "question": "What are the core authorization principles of RBAC v2 across Hosted, Dedicated, and Private deployments?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "RBAC v2 uses least-privilege authorization, consistent enforcement across edge, control-plane, and Console surfaces, deny-by-default behavior with explicit permissions and CI guardrails, auditable authorization decisions, and multi-scope semantics across Org, Project, Environment, and Cluster.",
+    "expected_documents": [
+      "dsid_58aee2c594664fe984bd4b020fb0fd92__rbac-v2-design-overview.txt"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 9,
+    "category": "scaled_retrieval",
+    "question": "How is the Token Economy Index defined in the token-economy benchmarking playbook?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "The Token Economy Index is a composite cost-quality score defined as TEI = normalized_cost * alpha + quality_penalty * beta, where alpha and beta are configurable.",
+    "expected_documents": [
+      "dsid_64dab5ab34404e0286d18d19319ac7bf__token-economy-eval-and-benchmarking-playbook-2026.txt"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 10,
+    "category": "scaled_retrieval",
+    "question": "What latency and cost targets must scheduler changes satisfy in the Runtime Execution Orchestra benchmarking playbook?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "For short requests with sequence length at most 64, p99 must be at most 250 ms and p95 at most 80 ms. For sequence length 512, p99 must be at most 2.2 s and p95 at most 1.1 s. Per-token GPU time should not increase by more than 10% after scheduler changes.",
+    "expected_documents": [
+      "dsid_65a7459193b844d3a5c991c7d5bcfa47__runtime-execution-orchestra-scheduler-synthesis-playbook-2025.txt"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 11,
+    "category": "scaled_retrieval",
+    "question": "What is the recommended cadence for Shadow Labs, Synthetic Signal Days, and the Continuity Manifest?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "Shadow Labs run weekly, Synthetic Signal Days run monthly, and the Continuity Manifest is reviewed quarterly.",
+    "expected_documents": [
+      "dsid_70a0264830e34b69aa7c9a0f526cefb0__oncall-shadow-labs-and-continuity-manifest-2026.txt"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 12,
+    "category": "scaled_retrieval",
+    "question": "What performance overhead and support-response targets apply to the Request Sampler and Golden-Trace Validation workflow?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "The sampler should have minimal performance impact, targeting less than a 0.5% change in p50 latency. P1 support issues should be triaged within 2 business hours and P2 issues within 24 hours.",
+    "expected_documents": [
+      "dsid_085bfdd8b61c4ffc9c22d54bfc972563__api-examples-request-sampler-and-golden-trace-validation-playbook-2026.txt"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 13,
+    "category": "scaled_retrieval",
+    "question": "What recovery SLO and alerts are defined for GPU tenant egress failover?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "The egress fabric targets recovery within 60 seconds for 99.9% of egress connectivity events. Alerts include NAT down for 5 minutes, three BGP flaps within 1 minute, and SNAT utilization above 80% sustained for 2 minutes.",
+    "expected_documents": [
+      "dsid_535d6ac4f948491d858b208855be2b35__egress-path-failover-iac-bgp-and-nat-swap-playbook.txt"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 14,
+    "category": "scaled_retrieval",
+    "question": "How does Adaptive Telemetry Bandwidth Management reserve and prioritize telemetry under constrained bandwidth?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "Critical traces retain 100% of spans and full kernel trace payloads and reserve 35% of the total telemetry budget. High-value anomalous or enterprise traces are adaptively sampled at 50–100%, while normal production traces may be sampled much more aggressively to stay within budget.",
+    "expected_documents": [
+      "dsid_559a01fdce7646b6938b9917992434c3__adaptive-telemetry-bandwidth-management-and-trace-priority-playbook-2026.txt"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 15,
+    "category": "scaled_retrieval",
+    "question": "How does the burst-pool ADR distinguish baseline from burst requests, and what queueing behavior is allowed?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "A request is baseline if it fits within the tenant's reserved capacity envelope and burst only if it requires capacity beyond that envelope. Burst admission returns an immediate explicit allow/deny decision; there is no unbounded server-side queue. An optional micro-queue under 200 ms is allowed for smoothing but is disabled by default.",
+    "expected_documents": [
+      "dsid_846c5cbf40584f7a9d2f887073655de3__adr-burst-pool-admission-control-semantics.txt"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 16,
+    "category": "scaled_retrieval",
+    "question": "What customer impact was observed during the 2025-02-17 tensor-parallel decode hang incident?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "Streaming responses intermittently stalled until client timeout, non-streaming requests exceeded 30–60 second timeout thresholds, peak request timeout rate reached roughly 6–10%, and p99 latency rose from about 2.8 seconds to over 30 seconds during the approximately 63-minute impact window.",
+    "expected_documents": [
+      "dsid_859f694df45e4c158bc55db47dd71c87__2025-02-17-tp-decode-hang-sev1.txt"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 17,
+    "category": "scaled_retrieval",
+    "question": "What qualifies as SLO corruption and what are the key quarantine triggers?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "SLO corruption is when telemetry or upstream artifacts cause the computed SLO or error budget to diverge from user-facing reality by more than 5 percentage points for over 10 minutes. Example triggers include burn rate above 10x baseline for over 5 minutes, telemetry aggregation lag over 10 minutes, or missing tenant_id above 3%.",
+    "expected_documents": [
+      "dsid_03825fa1816b45b7a1aca9bedc9c67ba__slo-corruption-detection-and-artifact-quarantine-playbook-2025.txt"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 18,
+    "category": "scaled_retrieval",
+    "question": "What staged rollout and automatic rollback rules are required when evolving an SLO?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "The rollout uses a 5% canary, then a 50/50 A/B for 24 hours, then 100% traffic. It should automatically roll back if error-budget burn exceeds 3x in 1 hour or p99 latency exceeds its threshold for 10 minutes.",
+    "expected_documents": [
+      "dsid_7527c7e4f8a048c185f5f912b97bcc0c__slo-evolution-capacity-simulations-runbook-2025.txt"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 19,
+    "category": "scaled_retrieval",
+    "question": "What are the main success targets for Integrated Fallback Analytics & Cost Reconciliation?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "IFACR targets cost attribution for more than 95% of fallback events, customer-visible fallback economics in Console, an 80% reduction in manual reconciliation time through suggested credits or invoice adjustments, and less than 5% added cost to the aggregated telemetry pipeline.",
+    "expected_documents": [
+      "dsid_9964e71da61e4a92bf3f53699cabbf95__prd-integrated-fallback-analytics-cost-reconciliation-2026-04-12.txt"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 20,
+    "category": "scaled_retrieval",
+    "question": "What admission-latency budgets does the OPA GPU policy benchmark use for standard and strict profiles?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "For the standard profile, the webhook targets p95 admission latency below 50 ms and p99 below 150 ms. The strict profile allows a somewhat higher p95 target below 80 ms because it performs additional checks.",
+    "expected_documents": [
+      "dsid_19681acd231e47fca51da084d204eda8__opa-gpu-admission-testbed-and-policy-benchmark.txt"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 21,
+    "category": "scaled_retrieval",
+    "question": "During a multi-region GPU fabric outage, when should cross-region failover be initiated and what recovery conditions must be verified?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "Cross-region failover and capacity rebalancing should begin when at least 20% of the monthly error budget is burned in 1 hour. Recovery requires p95 latency within 1.2x baseline and success rate at least 99.5% for a 30-minute window before throttled routes are re-enabled one at a time.",
+    "expected_documents": [
+      "dsid_24870c97df2d4e36aecd062358bc4dbb__slo-resilience-scenario-workbook-2024.txt"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 22,
+    "category": "scaled_retrieval",
+    "question": "How do the Balanced and High-Fidelity Adaptive Embeddings tiers differ in dimensionality, index defaults, and SLOs?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "Balanced uses 256-dimensional embeddings with an int8 quantization option and HNSW by default, with 99.9% availability and roughly a 250 ms P99 query target. High-Fidelity uses 1024-dimensional float32 embeddings with no quantization and an IVF+HNSW hybrid, with over 99.95% availability, a 150 ms P99 query target, and a recall@10 guardrail within 2% of baseline.",
+    "expected_documents": [
+      "dsid_68577cea56574f489d4990ef89946d59__adaptive-embeddings-fidelity-packaging-and-onramp-brief-2029-06-20.txt"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 23,
+    "category": "scaled_retrieval",
+    "question": "What review and publishing steps are required before a docs-site change reaches production?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "A change needs at least one DX reviewer and one Product/Model reviewer for API or behavior changes, local docs lint and link checks, passing CI checks including linting, links, sample-code smoke tests and accessibility, and staging sign-off. Merging to main deploys to staging, followed by a 24-hour smoke window before the Docs Site Maintainer triggers production deployment.",
+    "expected_documents": [
+      "dsid_75609dd3f1c9460081ee2f443d00f933__docs-site-content-lifecycle-and-local-preview-2026.txt"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 24,
+    "category": "scaled_retrieval",
+    "question": "When does the multitenant capacity runbook move from warning to throttling to eviction escrow?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "At burn rate at least 1.5x for 10 minutes, start telemetry shadowing and notify on-call. At at least 3x for 30 minutes or p99 latency at least 350 ms for 10 minutes, activate soft throttling. At at least 6x for 15 minutes or availability below 99.5% for 5 minutes, escalate to eviction escrow and aggressive admission limits. Escrow has a default 10-minute grace period.",
+    "expected_documents": [
+      "dsid_162540a4f2d246658a0b7f39d9b8b92d__capacity-guardrails-multitenant-throttle-eviction-escrow-2026.txt"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 25,
+    "category": "scaled_retrieval",
+    "question": "What warning, actionable, and critical triggers are used in the multi-dimensional SLO reconciliation playbook?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "Warning is 5% burn sustained for 30 minutes or p95 above SLO by 25% for 10 minutes. Actionable is 15% burn sustained for 5 minutes or error rate above the SLO threshold for 5 minutes. Critical is 50% burn over the configured SLO window or p95 above twice the SLO for more than 5 minutes.",
+    "expected_documents": [
+      "dsid_415384ce24d044b98c0ffcf3fbe8d9eb__multi-dimensional-slo-reconciliation-playbook-2025.txt"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 26,
+    "category": "scaled_retrieval",
+    "question": "What thresholds define warning, breach, and emergency action during error-budget recovery?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "The warning trigger is an error-budget burn rate of at least 2x sustained for 30 minutes. A breach is declared when 100% of the rolling monthly error budget is consumed. Emergency action is triggered at burn rate at least 5x or when SLO degradation impacts top customers or SLAs.",
+    "expected_documents": [
+      "dsid_9835602b1b544034bc6272bf2a8c2969__error-budget-recovery-psych-safety-comms-runbook-2024.txt"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 27,
+    "category": "scaled_retrieval",
+    "question": "What approval thresholds apply to GPU burst spending?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "Engineering experiments can be approved automatically up to $500 per day. Spending above $500 per day requires manual approval, and bursts above $5,000 per day require Finance sign-off and Security review.",
+    "expected_documents": [
+      "dsid_73753197c6eb4917a5e5ab1b5424796d__gpu-bursting-economics-and-cross-account-routing.txt"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 28,
+    "category": "scaled_retrieval",
+    "question": "What SLO and degraded-token budget should responders use when diagnosing fused cross-layer fallbacks?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "For short-text generation on the hosted tier, use p50 below 60 ms, p95 below 220 ms, and p99 below 700 ms. The total degraded token rate should remain below 5% of baseline over a rolling 5-minute window.",
+    "expected_documents": [
+      "dsid_2252763138604f7fb576e99d720a790f__crossplane-fallback-and-profiling-playbook-2025.txt"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 29,
+    "category": "scaled_retrieval",
+    "question": "What first-year engagement targets are managers and People Ops expected to hit?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "Targets include 90% of core ramp tasks completed by 90 days, at least 92% retention at 6 months, at least 88% retention at 12 months, at least 95% onboarding completion at 30 days, and at least 90% manager 1:1 cadence adherence during the first 12 weeks.",
+    "expected_documents": [
+      "dsid_4821661975744f7ab7c8c5db6237bcc3__first-year-engagement-and-success-milestones-2028.txt"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 30,
+    "category": "scaled_retrieval",
+    "question": "What adoption and onboarding outcomes does the Developer Tooling Fusion initiative target?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "It targets a 70% reduction in time-to-first-success, a 25% increase in self-serve-to-paid conversion within 90 days, a sample-app time to first token of at most 10 minutes, and a 40% reduction in onboarding support tickets during the first 30 days.",
+    "expected_documents": [
+      "dsid_a01f6d7f2e7543528652b39358239fc8__developer-tooling-fusion-roadmap-and-launch-playbook-2028-04-12.txt"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 31,
+    "category": "scaled_retrieval",
+    "question": "What signals trigger Phase A of SLO-aware degradation and what immediate actions does it take?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "Phase A is entered when the 30-minute error-budget burn rate exceeds 3x or p99 crosses its threshold. Immediate actions include tactical admission control, such as a 5% token admission control, reclaiming small headroom, and preparing fallback capacity.",
+    "expected_documents": [
+      "dsid_a7a2cbd5e1434acdac6a3bb8765d6d57__slo-aware-degradation-orchestration-2025.txt"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 32,
+    "category": "scaled_retrieval",
+    "question": "What are the acceptance criteria for an emergency residency switch?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "The active residency control plane must switch to an approved alternate region within 60 minutes, authorization must fall back to least-privilege explicit allow-lists, a complete compliance evidence bundle must be produced within 24 hours, and core-read API latency degradation should stay below 2x baseline.",
+    "expected_documents": [
+      "dsid_aae85e8fe2584130afd258a0706c9272__emergency-residency-switch-and-authz-fallback-playbook-2027.txt"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 33,
+    "category": "scaled_retrieval",
+    "question": "What application metrics are mandatory for the SDK observability quickstart?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "The required metrics are sdk.request.count, sdk.request.success_count, sdk.request.error_count, sdk.request.latency_ms, sdk.token.outbound, and sdk.token.inbound, with the documented tags and histogram/counter semantics.",
+    "expected_documents": [
+      "dsid_acded13e7fa542958ccb5b211298dd2d__sdk-accelerated-onramp-observability-quickstart-2026.txt"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 34,
+    "category": "scaled_retrieval",
+    "question": "What CPU, memory, buffer, and sampling guardrails apply to the Edge Telemetry Sidecar?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "The sidecar is limited to 0.25 CPU cores with 100m requested and 250m limit, 256 MiB memory with 128 MiB requested and 256 MiB limit, and a 10 MB local buffer. Default sampling is 100% for error/latency traces and 10% for standard request traces.",
+    "expected_documents": [
+      "dsid_ae155a3c68b4476c98308b38ccbffcd6__edge-telemetry-sidecar-onboarding-and-fidelity-guardrails-2026.txt"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 35,
+    "category": "scaled_retrieval",
+    "question": "When is a Serving Runtime regression classified as SEV1, and when must the incident be escalated to the VP of Engineering?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "SEV1 covers widespread customer impact such as multi-region Hosted degradation, multiple Dedicated tenants, or sustained 5xx/timeouts above 2% for more than 10 minutes. Escalate to the VP of Engineering if a SEV1 lasts more than 60 minutes or involves repeated regressions.",
+    "expected_documents": [
+      "dsid_af06a77a9f6d4531a6d4780a914a092f__sev-process-serving-runtime-regressions.txt"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 36,
+    "category": "scaled_retrieval",
+    "question": "What telemetry acceptance checks must a private deployment upgrade pass?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "The upgrade should keep 95th-percentile token-generation latency at or below 1.5x baseline for 30 minutes, client-facing 5xx error rate at or below baseline plus 2 percentage points, KV-cache miss ratio at or below baseline plus 10% relative, token throughput within its expected envelope, and telemetry ingestion lag below 60 seconds.",
+    "expected_documents": [
+      "dsid_afc1bf975ac941e0ab64f0238e1f038e__chronological-upgrade-timeline-and-customer-notification-protocol-2026.txt"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 37,
+    "category": "scaled_retrieval",
+    "question": "What conditions trigger latency-tail capture and what limits apply to synthetic backfill?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "Capture is triggered when p99 exceeds 1.2x baseline for five consecutive one-minute windows or a short-context request exceeds 3 seconds; other triggers include embedding cosine drift above 0.07, token-entropy change above 0.25, or cache-miss increase above 10 percentage points. Backfill must stay below 20% of eval-fleet capacity, with default QPS capped at 0.2x production and concurrency at most 15 per model.",
+    "expected_documents": [
+      "dsid_b537fddcc38040a4892327ee27113f0b__latency-tail-capture-probe-and-synthetic-backfill-procedure-2024.txt"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 38,
+    "category": "scaled_retrieval",
+    "question": "What response-time goals apply to customer-impacting SDK breaking changes?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "Severity-critical breaking changes should be triaged within 60 minutes, a validated hotpatch should ship within 4 hours for customer-impacting regressions, and customers and internal teams should receive clear communication within 90 minutes.",
+    "expected_documents": [
+      "dsid_c89cc8e839d64b00a4a471ad87ea41ce__sdk-breaking-change-mitigation-matrix-and-hotpatch-playbook-2026.txt"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 39,
+    "category": "scaled_retrieval",
+    "question": "How should an agreed SLO be translated into capacity headroom and escrow?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "Validate that the SLO has a production-grade signal, use recent traffic history to establish steady-state capacity, simulate bursts and failure scenarios to calculate required headroom, convert throughput needs into GPU allocation using benchmarked curves, and reserve roughly 10–25% short-term capacity escrow, with more for multi-tenant or tail-sensitive workloads.",
+    "expected_documents": [
+      "dsid_ce6cce4be83b402b84481b75940b0779__slo-adoption-to-capacity-execution-handbook-2024.txt"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 40,
+    "category": "scaled_retrieval",
+    "question": "How does the post-incident SLO/capacity template classify Sev1, Sev2, and Sev3 incidents?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "Sev1 includes over 5% global user-visible error-rate increase sustained more than 5 minutes, at least 25% of customers seeing p50 latency above 2x baseline, or catastrophic capacity collapse. Sev2 includes a measurable SLO breach or over 2% error-budget burn in 1 hour for a tier-1 service. Sev3 covers transient spikes, config rollbacks, or localized non-customer-facing degradation.",
+    "expected_documents": [
+      "dsid_d8bcd31174be433c8a8e6fe7adbceb4f__post-incident-slo-capacity-mapping-template-2026.txt"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 41,
+    "category": "scaled_retrieval",
+    "question": "What progression must a new responder complete before becoming a full solo on-call responder?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "The progression is Observational Shadow, Guided Actions, Lead with Mentor, Solo with post-incident mentor review, then Full Solo. Graduation requires mentor sign-off after reviewing three solo incidents and passing the competency quiz.",
+    "expected_documents": [
+      "dsid_d81e10b32f814357913101ae7579174a__shadow-to-solo-oncall-progression-and-24h-micro-postmortem-toolkit-2026.txt"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 42,
+    "category": "scaled_retrieval",
+    "question": "How accurate is the Local Cost Emulator expected to be compared with production telemetry?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "The LCE targets deterministic estimates within plus or minus 15% for token cost and plus or minus 20% for 95th-percentile latency on representative workloads.",
+    "expected_documents": [
+      "dsid_d4468ace4e7b46ffa4677d2acb58bf59__local-cost-emulator-and-developer-sdk-spec-2026-08-31.txt"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 43,
+    "category": "scaled_retrieval",
+    "question": "What approval levels are required for procurement at different spending amounts?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "Up to $2,000 requires direct-manager approval; $2,001–$25,000 requires manager plus Finance approval; $25,001–$250,000 requires the head of function plus Finance director; and over $250,000 requires an executive sponsor, VP Finance, and Legal review.",
+    "expected_documents": [
+      "dsid_dcd2cd7a3e1d4035a4a0b628a399d4d3__operational-slate-procedures-2028.txt"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 44,
+    "category": "scaled_retrieval",
+    "question": "What rollout sequence and hard rollback triggers apply to a CUDA driver upgrade?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "Start with a 3% canary, with at least five nodes, for a 4-hour observation window; if healthy, move to 10% region-wide over 6 hours, then roll remaining regions in staggered 24–48 hour waves. Hard rollback triggers include NVML_UNRECOVERABLE above 0.1% of GPU calls in 10 minutes, node reboots above 5x baseline in 15 minutes, or canary p99 latency regression above 50% or error rate above 2x baseline.",
+    "expected_documents": [
+      "dsid_dfc76aed535e47869a1a8a9f6733678a__cuda-driver-provenance-and-rolling-upgrade-playbook.txt"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 45,
+    "category": "scaled_retrieval",
+    "question": "What are the warmup and fallback SLOs for private deployments with heterogeneous GPU fleets?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "At least 90% of tenant model instances should reach operational KV-cache priming within 6 minutes. While fallback is active, p95 latency should not exceed 2x baseline. If eviction is required, state snapshot and crypto-key rotation should complete within 10 minutes.",
+    "expected_documents": [
+      "dsid_e8d7429d21d649e9b9ec9430549990c1__cache-warmup-degradation-and-heterogeneous-fallback-playbook-2026.txt"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 46,
+    "category": "scaled_retrieval",
+    "question": "What response SLAs apply to each severity level of a third-party data breach?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "Sev1 requires acknowledgement within 15 minutes, containment within 1 hour, and initial evidence within 2 hours. Sev2 requires acknowledgement within 1 hour, containment within 4 hours, and logs/ephemeral evidence within 12 hours. Sev3 requires acknowledgement within 4 hours and containment within 72 hours, with logs preserved for 7 days. Sev4 requires acknowledgement within 24 hours.",
+    "expected_documents": [
+      "dsid_e41c48682dfb443ca6df47efaf4e8d3f__third-party-data-breach-response-playbook-2026.txt"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 47,
+    "category": "scaled_retrieval",
+    "question": "What qualifies as a Sev-1 Blitz incident and what is the expected customer-notification cadence?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "A Sev-1 Blitz is system-wide impact such as at least 10% of customers seeing timeouts, over 30% token throttling, or systemic model-serving failures. Customer notification occurs in the 30–60 minute phase, with subsequent updates on a 30–60 minute cadence.",
+    "expected_documents": [
+      "dsid_e862e984c73a4630a1072927b43f64b1__escalation-cadence-and-playbook-for-blitz-recovery-2026.txt"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 48,
+    "category": "scaled_retrieval",
+    "question": "What are the three Fidelity Add-Ons for Optimize Conductor and how is each billed?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "Fidelity Shield is billed as a usage multiplier or enterprise SLA price, Deterministic Routing as a per-request overlay charge, and Hot-KV Retention as tiered GB-month storage plus a pre-warm operations fee for bursts.",
+    "expected_documents": [
+      "dsid_ec5f65a05e8a4dc690e0dc61a116b937__commercialization-playbook-optimize-conductor-fidelity-addons-2029-02-09.txt"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 49,
+    "category": "scaled_retrieval",
+    "question": "What caused Maple Health's incorrect overage adjustment and what did the v2.3.2 hotfix change?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "A transient quota-metadata write failure left metadata unavailable when invoicing v2.3.1 performed proration, so it used a legacy/default rate mapping instead of retrying. Version 2.3.2 added exponential-backoff retries for missing quota metadata and blocks the legacy fallback on proration-required paths, marking the invoice retryable instead.",
+    "expected_documents": [
+      "dsid_eee829efbff84a75bec2ee74e3361573__invoice-overage-adjustment-proration-rca-2026.txt"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 50,
+    "category": "scaled_retrieval",
+    "question": "What automated gates cause a candidate kernel rollout to fail and roll back?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "The canary auto-fails if p99 latency increases more than 5% for 10 consecutive minutes, request failure-rate delta exceeds 3% versus baseline for 5 minutes, fidelity_score_delta exceeds the route threshold for 1 minute, or kernel handshake latency exceeds 1 second for any activation.",
+    "expected_documents": [
+      "dsid_ef66bc0f9c864b8d8a37b33ebf979a51__orchestration-fidelity-safety-manual-2026.txt"
+    ],
+    "min_expected_documents": 1
+  }
+]
