@@ -153,7 +153,7 @@ def main():
         if actual_route == "COMPANY_CONTEXT_REQUIRED":
             retrieved_chunks = evaluation_chunks[:ANSWER_MATCH_COUNT]
 
-        retrieved_documents = {chunk["filename"] for chunk in retrieved_chunks}
+        retrieved_documents = {chunk["filename"] for chunk in evaluation_chunks[:ANSWER_MATCH_COUNT]}
 
         # expected-document retrieval score
         expected_documents = set(case["expected_documents"])
