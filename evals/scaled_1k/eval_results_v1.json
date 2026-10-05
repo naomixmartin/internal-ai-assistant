@@ -1,0 +1,388 @@
+[
+  {
+    "id": 1,
+    "category": "scaled_retrieval",
+    "question": "When should an Optimization Config be rolled back in a Private deployment?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "When should an Optimization Config be rolled back in a Private deployment?",
+    "expected_documents": [
+      "dsid_0a6c6e67d89c4cb4b053a7c04d780d97__private-deployment-optimization-config-rollback.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_29a1ac52383b4537b8f51186cd151401__deployable-value-sprint-playbook-and-technical-evidence-2028.txt",
+      "dsid_9454b63eae0b4c5d8531ee013de62f18__optimization-config-versioning-design.txt",
+      "dsid_ad0f9732d4784f99b1be78fd060b2d63__forensic-friendly-rollback-protocol-and-telemetry-preservation-operator-guide-2026.txt",
+      "dsid_d89a0c51edf54f57b576667dc4b056dc__optimization-config-service.txt",
+      "dsid_f390dafe2e124343a460cda331e40151__customer-facing-rollback-playbook-and-communication-templates-2027.txt"
+    ],
+    "retrieval_pass": false,
+    "recall_at_k": {
+      "5": false,
+      "10": false,
+      "20": false,
+      "50": false
+    },
+    "retrieval_latency_ms": 2663,
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Based on the company documents, an Optimization Config or deployment rollback in a Private deployment should be used when any of the following apply:\n\n1. **SLO or Accuracy Breaches:** A model or runtime change has caused production degradation (latency or accuracy SLA breaches) for >10% of requests for >15 minutes [dsid_f390dafe2e124343a460cda331e40151__customer-facing-rollback-playbook-and-communication-templates-2027.txt].\n2. **Canary Failures:** A deployment upgrade fails in canary or tenant-slice and the risk of wider impact is high [dsid_f390dafe2e124343a460cda331e40151__customer-facing-rollback-playbook-and-communication-templates-2027.txt].\n3. **Customer Escalation:** The customer escalates and requests an immediate revert due to business impact [dsid_f390dafe2e124343a460cda331e40151__customer-facing-rollback-playbook-and-communication-templates-2027.txt].\n4. **Compliance or Legal Constraints:** Compliance or legal constraints require immediate state preservation and rollback (e.g., data residency or regulatory failure) [dsid_f390dafe2e124343a460cda331e40151__customer-facing-rollback-playbook-and-communication-templates-2027.txt].\n5. **Regressions and Failures:** A production rollout or upgrade causes total or partial service regressions, data-integrity concerns, or regulatory-impacting failures [dsid_ad0f9732d4784f99b1be78fd060b2d63__forensic-friendly-rollback-protocol-and-telemetry-preservation-operator-guide-2026.txt]. \n   - Specific operator checks for these include a reproducible elevated 5xx rate or token-level latency regression >2x baseline [dsid_ad0f9732d4784f99b1be78fd060b2d63__forensic-friendly-rollback-protocol-and-telemetry-preservation-operator-guide-2026.txt].",
+    "cited_documents": [
+      "dsid_ad0f9732d4784f99b1be78fd060b2d63__forensic-friendly-rollback-protocol-and-telemetry-preservation-operator-guide-2026.txt",
+      "dsid_f390dafe2e124343a460cda331e40151__customer-facing-rollback-playbook-and-communication-templates-2027.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 2,
+    "category": "scaled_retrieval",
+    "question": "How many cards should a GPU tile generally contain?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "GENERAL",
+    "route_pass": false,
+    "retrieval_query": "How many cards should a GPU tile generally contain?",
+    "expected_documents": [
+      "dsid_4f6b5fa5647949f997fb3d36a7adb16f__gpu-workload-characterization-and-pool-tiling-guidelines.txt"
+    ],
+    "retrieved_documents": [],
+    "retrieval_pass": false,
+    "recall_at_k": {
+      "5": false,
+      "10": false,
+      "20": false,
+      "50": false
+    },
+    "retrieval_latency_ms": null,
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "In the context of modern modern multi-chip module (MCM) GPUs\u2014such as those from AMD (RDNA 3/Instinct), Intel (Ponte Vecchio/Battlemage), and NVIDIA (Hopper/Blackwell)\u2014the term **\"tile\"** or **\"chiplet\"** usually refers to a discrete piece of silicon that is combined with others to form a single logical GPU. \n\nHowever, if you are asking about the number of **printed circuit board (PCB) \"cards\"** or physical GPU modules that go into a computing node, server, or multi-GPU system (often colloquially referred to as \"tiles\" in rack-scale architecture), the answer depends heavily on the use case. \n\nHere is the breakdown depending on whether you mean **architectural silicon tiles** inside a GPU, or **GPU cards** within a system:\n\n---\n\n### 1. If you mean Silicon Tiles (Chiplets) inside a single GPU\nModern high-end GPUs are moving away from monolithic dies to multi-tile architectures to improve yields and scaling. \n\n* **AMD (e.g., Radeon RX 7900 XTX / Instinct MI300):** \n  * **Graphics Compute Dies (GCDs):** Usually **1 to 2** primary compute tiles.\n  * **Memory Cache Dies (MCDs):** Typically **4 to 6** surrounding cache/controller tiles.\n  * *MI300X:* Uses **8 GCD compute tiles** combined with 4 I/O dies and stacked memory.\n* **Intel (e.g., Data Center GPU Max Series):** \n  * Uses a massive mosaic approach, combining up to **47 active and passive tiles** (compute, base, accelerator, and I/O tiles) on a single package.\n* **NVIDIA (e.g., Blackwell B200):** \n  * Uses a dual-reticle design, effectively combining **2 large compute dies** on a single interposer, acting as one giant GPU.\n\n**General Rule for Silicon:** A high-end GPU generally splits its architecture into **1 to 8 primary compute tiles**, depending on whether it is focused on consumer gaming or high-performance artificial intelligence (HPC/AI).\n\n---\n\n### 2. If you mean GPU Cards / Modules in a Server (Rack/Node Architecture)\nIn high-performance computing (HPC) and AI clusters, multiple accelerator cards are often grouped together to act as a unified pool of compute power (sometimes referred to as nodes or tiles of a supercomputer).\n\n* **Standard AI Server Node (e.g., NVIDIA DGX H100/B200):** Contains **8 GPU modules** (often custom SXM form-factor cards) connected via high-speed NVSwitch interconnects.\n* **Consumer/Workstation Desktops:** Generally contain **1 to 2 GPU cards** (due to physical space, power limits, and SLI/CrossFire being largely deprecated for gaming).\n* **Blade Servers / Density Optimized Racks:** May contain **4, 8, or 16 GPU accelerator cards** per chassis.\n\n---\n\n### Summary\n* If building an **AI/HPC server node**, the standard is **8 GPU cards** per baseboard.\n* If designing a **modern high-end GPU silicon die**, manufacturers typically use **1 large compute tile** for consumer cards, scaling up to **2 to 8 compute tiles** for enterprise AI accelerators.",
+    "cited_documents": [],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": false,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 3,
+    "category": "scaled_retrieval",
+    "question": "What happens between an Optimize recommendation being generated and that configuration being promoted to production?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "What is the workflow and process between an Optimize recommendation being generated and that configuration being promoted to production?",
+    "expected_documents": [
+      "dsid_45d1dc582cf84e9680e6a69e5a76ffa4__optimize-quality-gates-system-design.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_50290e533197425e8f84c34b49531375__optimize-lite-launch-kit-product-brief-prd-and-launch-plan-2026-05-10.txt",
+      "dsid_6ce194cd02b7424e9100c5d7136e61f0__optimize-conductor-3-0-live-fidelity-advisor-release-notes-2027-01-15.txt",
+      "dsid_6f86af4dec28405ba3cfbf6ed2b5c206__runbook-optimize-quality-gate-failures.txt",
+      "dsid_9454b63eae0b4c5d8531ee013de62f18__optimization-config-versioning-design.txt"
+    ],
+    "retrieval_pass": false,
+    "recall_at_k": {
+      "5": false,
+      "10": false,
+      "20": false,
+      "50": false
+    },
+    "retrieval_latency_ms": 864,
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Based on the provided documents, the workflow between an Optimize recommendation being generated and that configuration being promoted to production involves the following steps:\n\n1. **Review and Action via Console or API**: \n   - Recommendations appear in the Console's per-route \"Optimization Suggestions\" panel (showing explanations, expected savings, and confidence) or can be retrieved via the suggestion API [dsid_50290e533197425e8f84c34b49531375__optimize-lite-launch-kit-product-brief-prd-and-launch-plan-2026-05-10.txt].\n   - Operators can choose actions such as shadow evaluation or canary apply [dsid_50290e533197425e8f84c34b49531375__optimize-lite-launch-kit-product-brief-prd-and-launch-plan-2026-05-10.txt].\n\n2. **Version Creation and Validation**:\n   - An operator creates a new version (as a draft) in the Console or API based on the suggestion [dsid_9454b63eae0b4c5d8531ee013de62f18__optimization-config-versioning-design.txt].\n   - The Optimization Config Service runs schema and semantic validation on the new version [dsid_9454b63eae0b4c5d8531ee013de62f18__optimization-config-versioning-design.txt].\n\n3. **Mandatory Quality Gates**:\n   - Before applying changes to production traffic, mandatory quality gates (smoke gates and/or full gates) evaluate the proposed config diff against the baseline to check for regressions [dsid_6f86af4dec28405ba3cfbf6ed2b5c206__runbook-optimize-quality-gate-failures.txt].\n\n4. **Staged Safe Apply (Rollout)**:\n   - The operator starts a safe apply, which creates a Rollout from the currently active version to the target version [dsid_9454b63eae0b4c5d8531ee013de62f18__optimization-config-versioning-design.txt].\n   - The Canary/Rollout Controller stages traffic exposure (such as a default canary of 1% traffic for 30 minutes, or shard selection) [dsid_50290e533197425e8f84c34b49531375__optimize-lite-launch-kit-product-brief-prd-and-launch-plan-2026-05-10.txt, dsid_9454b63eae0b4c5d8531ee013de62f18__optimization-config-versioning-design.txt].\n   - Throughout the rollout, gating signals\u2014including SLO gates (5xx and p95/p99 latency), saturation/capacity signals, shadow-evaluator deltas, and error rates\u2014are continuously monitored [dsid_50290e533197425e8f84c34b49531375__optimize-lite-launch-kit-product-brief-prd-and-launch-plan-2026-05-10.txt, dsid_9454b63eae0b4c5d8531ee013de62f18__optimization-config-versioning-design.txt]. If gates pass, the rollout progresses; if thresholds are breached, it automatically pauses, fails, or triggers an auto-rollback [dsid_50290e533197425e8f84c34b49531375__optimize-lite-launch-kit-product-brief-prd-and-launch-plan-2026-05-10.txt, dsid_9454b63eae0b4c5d8531ee013de62f18__optimization-config-versioning-design.txt].\n\n5. **Promotion to Production (Active Version)**:\n   - Once the staged rollout completes successfully, the Optimization Config Service updates the scope's Active pointer to target the new version [dsid_9454b63eae0b4c5d8531ee013de62f18__optimization-config-versioning-design.txt].\n   - The serving runtime fetches this active configuration and applies it idempotently across workers [dsid_9454b63eae0b4c5d8531ee013de62f18__optimization-config-versioning-design.txt]. (A version can also later be **promoted** as a \"known-good\" baseline for a broader scope [dsid_9454b63eae0b4c5d8531ee013de62f18__optimization-config-versioning-design.txt]).",
+    "cited_documents": [
+      "dsid_50290e533197425e8f84c34b49531375__optimize-lite-launch-kit-product-brief-prd-and-launch-plan-2026-05-10.txt",
+      "dsid_6f86af4dec28405ba3cfbf6ed2b5c206__runbook-optimize-quality-gate-failures.txt",
+      "dsid_9454b63eae0b4c5d8531ee013de62f18__optimization-config-versioning-design.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 4,
+    "category": "scaled_retrieval",
+    "question": "What benchmark should be used to investigate function-call regressions caused by interactions between quantization and batching, and what metrics indicate a problem?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "GENERAL",
+    "route_pass": false,
+    "retrieval_query": "What benchmark should be used to investigate function-call regressions caused by interactions between quantization and batching, and what metrics indicate a problem?",
+    "expected_documents": [
+      "dsid_311ccbf2f5e94d37864b05c8f17ed0c4__functioncall-fidelity-lab-and-shadow-benchmarking-guide-2026.txt"
+    ],
+    "retrieved_documents": [],
+    "retrieval_pass": false,
+    "recall_at_k": {
+      "5": false,
+      "10": false,
+      "20": false,
+      "50": false
+    },
+    "retrieval_latency_ms": null,
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Investigating function-call regressions caused by the interaction between quantization (e.g., INT4, INT8, FP8) and continuous batching is a cutting-edge challenge in LLM deployment. \n\nQuantization alters weight distributions and introduces numerical noise, while continuous batching changes the decoding dynamics, KV-cache memory pressure, and attention patterns. Together, they can degrade a model's strict adherence to syntax (JSON/tool schemas) and semantic intent (choosing the right arguments).\n\nHere is the recommended benchmarking framework, datasets, and metrics to isolate and diagnose these regressions.\n\n---\n\n### 1. The Best Benchmarks to Use\n\nStandard static benchmarks (like MMLU) are insufficient because they don\u2019t test dynamic tool use under concurrent load. You need benchmarks that evaluate **multi-turn tool use, strict schema adherence, and concurrent throughput.**\n\n#### A. Industry Standard: **BFCL (Berkeley Function Calling Leaderboard)**\n* **Why:** BFCL is currently the gold standard for evaluating function calling. It tests multiple categories: simple python/REST functions, multiple functions, parallel function calling, and complex JSON schemas.\n* **Adaptation for your use case:** Do not run BFCL as a static, single-request test. You must run it **behind a load generator** (like vLLM\u2019s benchmark script or `Locust`) at varying concurrency levels (e.g., concurrency = 1, 16, 64, 128) against your quantized/batched serving engine.\n\n#### B. Production Trace Replay: **Custom Workload Traces**\n* **Why:** Synthetic benchmarks miss the specific distribution of your application's prompts and tool definitions.\n* **How:** Extract 1,000+ historical multi-turn user requests containing tool definitions from your production logs. Replay these traces at varying Request Per Second (RPS) rates comparing an unquantized/unbatched baseline against your quantized/batched candidate.\n\n#### C. Syntax & Schema Stress Testing: **IFEval (Instruction Following Evaluation)**\n* **Why:** Function calling is fundamentally about strict format compliance (e.g., \"Output valid JSON matching Schema X\"). IFEval tests constraints without requiring complex reasoning, helping isolate whether quantization breaks the model's ability to follow structural formatting rules under batch pressure.\n\n---\n\n### 2. Metrics That Indicate a Problem\n\nTo detect regressions caused by *quantization + batching* interactions, you must monitor three categories of metrics: **Functional Metrics** (did it work?), **Structural Metrics** (is the JSON valid?), and **System Metrics** (what caused the failure?).\n\n#### A. Functional Metrics (Semantic Accuracy)\n* **Exact Match (EM) / Absolute Success Rate:** \n  * *Definition:* The percentage of test cases where the model selects the correct function *and* populates 100% of the arguments correctly.\n  * *Indication of a problem:* A drop in EM specifically at high batch sizes indicates that KV-cache quantization (e.g., KV cache in INT8/FP8) or weight quantization is degrading the attention mechanism's focus during long context processing.\n* **Argument Error Rate (AER):**\n  * *Definition:* When the correct function is chosen, what percentage of arguments are missing, mistyped, or hallucinated?\n  * *Indication of a problem:* Quantization often causes numerical drift in floating-point representations, which disproportionately affects precise numerical or boolean argument generation under memory bandwidth stress induced by batching.\n\n#### B. Structural Metrics (Syntax & Parsing)\n* **Schema Validation Failure Rate (Syntax Error Rate):**\n  * *Definition:* The percentage of generations that fail to parse as valid JSON, or fail validation against the provided JSON Schema (e.g., using `jsonschema` in Python).\n  * *Indication of a problem:* This is the primary indicator of **quantization-induced generation degradation**. If this spikes under batching, it means the model is losing its \"grammar grip\" because batching forces speculative decoding or KV-cache eviction strategies that conflict with the quantized weights.\n* **Malformed Tool-Call Token Rate:**\n  * *Definition:* The frequency with which the model emits broken tool-call special tokens (e.g., unclosed XML tags like `<tool_call>` or broken JSON brackets `{}`).\n\n#### C. System-to-Functional Correlation Metrics\nTo prove the regression is caused by the *interaction* of quantization and batching (and not just one of them), you must correlate load with accuracy:\n* **Accuracy vs. Batch Size Curve:** Plot token throughput (batch size) on the X-axis and Function Success Rate on the Y-axis. \n  * *Indication of a problem:* If an unquantized model maintains 95% accuracy from batch size 1 to 64, but a quantized model (e.g., AWQ/GPTQ + FP8 KV Cache) drops from 95% to 60% as batch size increases, you have proven a negative interaction.\n* **Time-to-First-Token (TTFT) & Inter-Token Latency (ITL) Degradation:**\n  * *Indication of a problem:* High ITL variance caused by batching contention can push generation tokens outside deterministic decoding windows, leading to premature truncation or hallucinated JSON closures.\n\n---\n\n### Recommended Investigation Methodology\n\n1. **Isolate Quantization:** Run BFCL at concurrency = 1 comparing Baseline (FP16) vs. Quantized (e.g., INT4-AWQ). Measure Schema Validation Failure Rate.\n2. **Isolate Batching:** Run the Quantized model at concurrency = 1 vs. concurrency = 64. \n3. **Measure the Interaction:** Look for **non-linear drops**. If Quantization alone drops accuracy by 2%, and Batching alone drops it by 3%, but **together they drop it by 25%**, you have confirmed the regression interaction. Check specifically if your serving engine's constrained decoding (like Guidance, Outlines, or vLLM's guided decoding) is conflicting with the quantized kernels under high batch loads.",
+    "cited_documents": [],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": false,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 5,
+    "category": "scaled_retrieval",
+    "question": "What are the time-to-autonomy targets for junior, mid-level, and senior new hires?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "What are the time-to-autonomy targets for junior, mid-level, and senior new hires?",
+    "expected_documents": [
+      "dsid_5650ae3bff08466f92289cbc565c7d2b__hire-onboard-accelerate-playbook-2025.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_4e73f8c30f9149ce88e834e060191423__offer-acceptance-to-autonomy-accelerated-pathways-2027.txt",
+      "dsid_78aab86eb28941f5ad56f0cfcbe7e674__structured-peer-mentorship-and-role-immersion-guide-2027.txt",
+      "dsid_8d853f92798d435eba269fd2e4a10aae__employee-success-pathways-and-tooling-handbook-2027.txt",
+      "dsid_bfea2c3c1ff0403cbb3d999440f6b682__onboarding-toolchain-and-career-safety-net-2028.txt",
+      "dsid_ffa7f082a77c415b9b56218a9933e04f__experiential-onboarding-and-role-certification-playbook-2027.txt"
+    ],
+    "retrieval_pass": false,
+    "recall_at_k": {
+      "5": false,
+      "10": false,
+      "20": false,
+      "50": false
+    },
+    "retrieval_latency_ms": 1158,
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Based on the company documents provided, I could not find specific time-to-autonomy targets broken down by junior, mid-level, and senior new hires. \n\nThe documents do mention the following general targets and timelines:\n* An accelerated pathways playbook aims to shorten the time from offer acceptance to role autonomy with a **target of 90 days** for select new hires and internal transfers [dsid_4e73f8c30f9149ce88e834e060191423__offer-acceptance-to-autonomy-accelerated-pathways-2027.txt].\n* Target ramp (time-to-meaningful-contribution) is **60 days for individual contributors** and **90 days for managers** [dsid_8d853f92798d435eba269fd2e4a10aae__employee-success-pathways-and-tooling-handbook-2027.txt].\n* Structured peer mentorship programs aim to reduce median time-to-first-independent-deploy to **60 days for engineering roles** and **45 days for product/BA roles** [dsid_78aab86eb28941f5ad56f0cfcbe7e674__structured-peer-mentorship-and-role-immersion-guide-2027.txt].",
+    "cited_documents": [
+      "dsid_4e73f8c30f9149ce88e834e060191423__offer-acceptance-to-autonomy-accelerated-pathways-2027.txt",
+      "dsid_78aab86eb28941f5ad56f0cfcbe7e674__structured-peer-mentorship-and-role-immersion-guide-2027.txt",
+      "dsid_8d853f92798d435eba269fd2e4a10aae__employee-success-pathways-and-tooling-handbook-2027.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": false,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 6,
+    "category": "scaled_retrieval",
+    "question": "How long should audit logs be retained for hosted, dedicated customer-managed, and edge/private deployments?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "What are the audit log retention periods for hosted, dedicated customer-managed, and edge/private deployments?",
+    "expected_documents": [
+      "dsid_00597869f9744c228726d40e824e17db__hybrid-deployment-evidence-retention-and-access-reconstruction-standard-2026.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_ccc2727793b541cd9d237dca907a32b6__private-observability-and-audit-log-interactions.txt",
+      "dsid_d1a5894a308e4737a4c1a591e962d337__retention-controls-overview.txt",
+      "dsid_f59a0860f18c49acab904cea19b3a610__audit-log-backup-and-retention-private.txt"
+    ],
+    "retrieval_pass": false,
+    "recall_at_k": {
+      "5": false,
+      "10": false,
+      "20": false,
+      "50": false
+    },
+    "retrieval_latency_ms": 590,
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Based on the provided company documents, the default retention periods for Audit Logs across the different deployment tiers are:\n\n* **Hosted:** 365 days [dsid_d1a5894a308e4737a4c1a591e962d337__retention-controls-overview.txt]\n* **Dedicated:** 365 days [dsid_d1a5894a308e4737a4c1a591e962d337__retention-controls-overview.txt]\n* **Private (VPC / on-prem):** 365 days [dsid_d1a5894a308e4737a4c1a591e962d337__retention-controls-overview.txt]\n\nAdditionally, the typical customer-adjustable range for audit log retention is 90\u2013730 days, depending on deployment constraints [dsid_d1a5894a308e4737a4c1a591e962d337__retention-controls-overview.txt].",
+    "cited_documents": [
+      "dsid_d1a5894a308e4737a4c1a591e962d337__retention-controls-overview.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": false,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 7,
+    "category": "scaled_retrieval",
+    "question": "What is the target KV prefix cache hit rate for the prefetch system?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "What is the target KV prefix cache hit rate for the prefetch system?",
+    "expected_documents": [
+      "dsid_b60e13cccd3b4593b8bfafec0887180a__cross-layer-prefetch-consistency-and-rollback-playbook-2026.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_297ce53f048644ffa5fe7c180421f8af__prefetch-reliability-telemetry-fusion-actionbook-2026.txt",
+      "dsid_3585b96d39164447a9802f6c09a7af26__cache-efficiency-slo-proposal.txt",
+      "dsid_f76ba3bc1db340d1bea261cc24cfd32d__multi-signal-prefetch-governance-and-telemetry-contract-2027.txt"
+    ],
+    "retrieval_pass": false,
+    "recall_at_k": {
+      "5": false,
+      "10": false,
+      "20": false,
+      "50": false
+    },
+    "retrieval_latency_ms": 532,
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Based on the provided company documents, the target for the median prefix cache hit rate (global aggregate, 1h) is **$\\ge$ 72%** (classified as an Informational action tier) [dsid_297ce53f048644ffa5fe7c180421f8af__prefetch-reliability-telemetry-fusion-actionbook-2026.txt].",
+    "cited_documents": [
+      "dsid_297ce53f048644ffa5fe7c180421f8af__prefetch-reliability-telemetry-fusion-actionbook-2026.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 8,
+    "category": "scaled_retrieval",
+    "question": "What is the maximum allowed topology commit window, and why?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "What is the maximum allowed topology commit window and the rationale behind it?",
+    "expected_documents": [
+      "dsid_ca122b701b4d41a2bc7877f25b5c5bb4__runtime-op-pathways-and-shard-topology-2024.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_3f8b4eed72cd4540a7d1ac1eb0924519__production-rollout-approvals.txt",
+      "dsid_58937e65a65442a6935e56b1efcd642e__deployment-risk-profile-and-onboarding-runway-2025.txt",
+      "dsid_7f1129be4da0443990880e59dba6dea2__gpu-topology-resilience-checklist-and-canary-protocol.txt",
+      "dsid_bd1e8693840849b6bc678de647034618__chronological-operator-escape-hatch-topologies-and-customer-notification-protocol-2026.txt",
+      "dsid_f39e930247894dbc97e024435183da90__telemetry-feedback-kernel-autotune-playbook-2026.txt"
+    ],
+    "retrieval_pass": false,
+    "recall_at_k": {
+      "5": false,
+      "10": false,
+      "20": false,
+      "50": false
+    },
+    "retrieval_latency_ms": 607,
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "I could not find the maximum allowed topology commit window or the reasons for it in the provided company documents.",
+    "cited_documents": [],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": false,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": false
+  },
+  {
+    "id": 9,
+    "category": "scaled_retrieval",
+    "question": "What should a client do if an OpenAI-compatible SSE stream closes without receiving [DONE]?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "GENERAL",
+    "route_pass": false,
+    "retrieval_query": "What should a client do if an OpenAI-compatible SSE stream closes without receiving [DONE]?",
+    "expected_documents": [
+      "dsid_eafa1920550c4dcda1a05c19e4f613e3__openai-compat-streaming-truncation.txt"
+    ],
+    "retrieved_documents": [],
+    "retrieval_pass": false,
+    "recall_at_k": {
+      "5": false,
+      "10": false,
+      "20": false,
+      "50": false
+    },
+    "retrieval_latency_ms": null,
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "When an OpenAI-compatible Server-Sent Events (SSE) stream closes prematurely without emitting the standard `data: [DONE]` sentinel, it generally indicates an abnormal termination (e.g., a network timeout, a proxy gateway timeout, a server crash, or rate-limiting). \n\nHow a client should handle this depends on whether the stream was **complete in content** and whether you want to **retry**. Here is a recommended strategy for handling this scenario robustly:\n\n---\n\n### 1. Check Content Completeness (Graceful Degradation)\nOften, the model has finished generating the entire response, but the connection dropped *before* the server could send the final `[DONE]` message. \n* **Action:** Inspect the accumulated text/data received so far. \n* **Decision:** If the JSON payloads contained valid chunks up until the disconnect, and the sentence/JSON structure looks reasonably complete, you can treat the response as finished rather than failing the user experience.\n\n### 2. Implement Idempotent Retries (If Incomplete)\nIf the response was cut off mid-sentence, you may want to retry. However, blindly retrying an LLM stream can result in duplicate text or wasted tokens.\n* **Action:** \n  1. Count the tokens or characters received so far.\n  2. Implement an **exponential backoff** retry strategy (e.g., wait 1s, 2s, 4s).\n  3. *Advanced:* If your API usage allows, consider adjusting your prompt or using the `continue` pattern (sending the partial response back to the model and asking it to finish), though standard OpenAI API endpoints require you to manage this in your prompt history.\n\n### 3. Handle Common Root Causes\nCheck your client and network configuration for the following culprits:\n* **Timeouts:** LLM generation can take time between tokens (especially during high load). Ensure your HTTP client's **read timeout** or **idle timeout** is set high enough (e.g., 60 seconds or disabled entirely for streaming).\n* **Proxies/Load Balancers:** If you are behind Nginx, AWS ALB, or Cloudflare, intermediate proxies often drop idle connections after 60 seconds. Ensure proxy timeout settings are extended.\n* **Stream Interruption Handling:** Ensure your SSE parser doesn't crash when the connection drops abruptly. It should catch the `end` or `close` event gracefully.\n\n---\n\n### Recommended Client-Side Implementation Pattern (Pseudocode)\n\nHere is how you should structure your SSE reading logic to handle missing `[DONE]`:\n\n```javascript\nlet receivedDone = false;\nlet accumulatedContent = \"\";\n\ntry {\n  const response = await fetch(\"https://api.openai.com/v1/chat/completions\", {\n    method: \"POST\",\n    headers: {\n      Authorization: `Bearer ${API_KEY}`,\n      \"Content-Type\": \"application/json\",\n    },\n    body: JSON.stringify({ model: \"gpt-4\", messages: [...], stream: true }),\n  });\n\n  const reader = response.body.getReader();\n  const decoder = new TextDecoder();\n\n  while (true) {\n    const { value, done } = await reader.read();\n    if (done) break;\n\n    const chunk = decoder.decode(value, { stream: true });\n    // Parse SSE lines (data: {...})\n    const lines = chunk.split(\"\\n\");\n    \n    for (const line of lines) {\n      if (line.startsWith(\"data: \")) {\n        const dataStr = line.replace(\"data: \", \"\").trim();\n        \n        if (dataStr === \"[DONE]\") {\n          receivedDone = true;\n          break;\n        }\n\n        try {\n          const json = JSON.parse(dataStr);\n          const content = json.choices[0]?.delta?.content || \"\";\n          accumulatedContent += content;\n          // TODO: Update UI with new content\n        } catch (e) {\n          console.error(\"Failed to parse JSON chunk\", dataStr);\n        }\n      }\n    }\n  }\n} catch (error) {\n  console.error(\"Network or stream error:\", error);\n} finally {\n  // STREAM CLOSED\n  if (!receivedDone) {\n    console.warn(\"Stream closed without [DONE]\");\n    \n    if (accumulatedContent.length > 0) {\n      // Option A: The stream likely finished, but dropped the [DONE] packet.\n      // Gracefully close the UI stream for the user.\n      finalizeResponse(accumulatedContent, { incomplete: true });\n    } else {\n      // Option B: Failed before receiving any data. Trigger a retry or show an error.\n      handleStreamError();\n    }\n  }\n}\n```\n\n### Summary Checklist for Developers:\n1. **Don't crash** the UI when the connection drops; catch the closure in a `finally` block.\n2. **Check `receivedDone` flag:** If `false`, inspect if `accumulatedContent` exists.\n3. **If content exists:** Display it to the user (perhaps with a subtle indicator that the connection was unstable).\n4. **If no content exists:** Trigger your standard error/retry logic.\n5. **Fix timeouts:** Increase HTTP read/idle timeouts on your client and any reverse proxies (Nginx/Cloudflare) between you and the API.",
+    "cited_documents": [],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 10,
+    "category": "scaled_retrieval",
+    "question": "What evidence components are required in every RBAC evidence bundle?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "What evidence components are required in every RBAC evidence bundle?",
+    "expected_documents": [
+      "dsid_ffb6a2502acc4c7fb98b48fe778947fd__orchestrated-evidence-rbac-integration-playbook-2026.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_656134f1995b4ff78b241161dbf29d16__role-change-provenance-and-audit-correlation-playbook-2026.txt",
+      "dsid_764b30e760404c32941f9753c145ad0e__cross-domain-access-assurance-and-evidence-guidelines-2026.txt",
+      "dsid_b5ec1c6740394604836e212c2d43aeb0__authorization-evidence-sampling-and-archival-guideline-2029.txt",
+      "dsid_d726b76df4b84bec831e4f5c553c468a__entitlement-deprecation-rollforward-evidence-guideline-2027.txt",
+      "dsid_dcf3bb6adbf446dea072982d6f592b92__authorization-audit-handoff-and-retention-guideline-2026.txt"
+    ],
+    "retrieval_pass": false,
+    "recall_at_k": {
+      "5": false,
+      "10": false,
+      "20": false,
+      "50": false
+    },
+    "retrieval_latency_ms": 1342,
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Based on the provided company documents, every RBAC evidence bundle must be bundled using compliance tooling and include:\n\n* A **manifest.json** (flat key:value list) [dsid_d726b76df4b84bec831e4f5c553c468a__entitlement-deprecation-rollforward-evidence-guideline-2027.txt] (or a manifest describing included queries, time windows, schema versions used, and signature metadata [dsid_dcf3bb6adbf446dea072982d6f592b92__authorization-audit-handoff-and-retention-guideline-2026.txt]).\n* A **SHA256 checksum** (cryptographic checksum) of the evidence bundle signed by the change proposer [dsid_d726b76df4b84bec831e4f5c553c468a__entitlement-deprecation-rollforward-evidence-guideline-2027.txt].\n\nAdditionally, depending on the specific change or context, bundles may include items such as pre-change and post-change policy snapshots, mapping manifests for cross-system entitlement mappings, audit log stream slices, and runbook/test artifacts [dsid_b5ec1c6740394604836e212c2d43aeb0__authorization-evidence-sampling-and-archival-guideline-2029.txt, dsid_d726b76df4b84bec831e4f5c553c468a__entitlement-deprecation-rollforward-evidence-guideline-2027.txt].",
+    "cited_documents": [
+      "dsid_b5ec1c6740394604836e212c2d43aeb0__authorization-evidence-sampling-and-archival-guideline-2029.txt",
+      "dsid_d726b76df4b84bec831e4f5c553c468a__entitlement-deprecation-rollforward-evidence-guideline-2027.txt",
+      "dsid_dcf3bb6adbf446dea072982d6f592b92__authorization-audit-handoff-and-retention-guideline-2026.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": false,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  }
+]

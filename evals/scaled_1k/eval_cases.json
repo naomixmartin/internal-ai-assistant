@@ -1,0 +1,142 @@
+[
+  {
+    "id": 1,
+    "category": "scaled_retrieval",
+    "question": "When should an Optimization Config be rolled back in a Private deployment?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "Rollback is recommended for runtime-attributable 5xx errors or timeouts, sustained p95/p99 latency regression beyond the SLO budget, GPU saturation or queueing anomalies after batching changes, or quality-gate/customer-reported regressions after quantization changes.",
+    "expected_documents": [
+      "dsid_0a6c6e67d89c4cb4b053a7c04d780d97__private-deployment-optimization-config-rollback.txt"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 2,
+    "category": "scaled_retrieval",
+    "question": "How many cards should a GPU tile generally contain?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "GPU tiles should generally contain 4 to 16 cards. Latency-sensitive workloads should favor more tiles with fewer cards to reduce blast radius.",
+    "expected_documents": [
+      "dsid_4f6b5fa5647949f997fb3d36a7adb16f__gpu-workload-characterization-and-pool-tiling-guidelines.txt"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 3,
+    "category": "scaled_retrieval",
+    "question": "What happens between an Optimize recommendation being generated and that configuration being promoted to production?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "Optimize generates a candidate config diff, selects the baseline and gate policy, creates and runs a GateRun through the eval harness, computes and records the pass/fail result, and exposes it in Console. The Rollout Controller blocks promotion unless the gate passed or has a valid override.",
+    "expected_documents": [
+      "dsid_45d1dc582cf84e9680e6a69e5a76ffa4__optimize-quality-gates-system-design.txt"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 4,
+    "category": "scaled_retrieval",
+    "question": "What benchmark should be used to investigate function-call regressions caused by interactions between quantization and batching, and what metrics indicate a problem?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "Use the Quant + Batching Interop Sweep across FP16, int8, and int4 and multiple batch sizes with prefix-KV cache enabled and disabled. A TokenHashShiftRate of at least 0.1% should be investigated, and a FieldTruncationRate above 0.05% for batch sizes of at least 16 is considered high risk.",
+    "expected_documents": [
+      "dsid_311ccbf2f5e94d37864b05c8f17ed0c4__functioncall-fidelity-lab-and-shadow-benchmarking-guide-2026.txt"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 5,
+    "category": "scaled_retrieval",
+    "question": "What are the time-to-autonomy targets for junior, mid-level, and senior new hires?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "The time-to-autonomy targets are 45 days for junior ICs, 60 days for mid-level ICs, and 90 days for senior L4+ employees.",
+    "expected_documents": [
+      "dsid_5650ae3bff08466f92289cbc565c7d2b__hire-onboard-accelerate-playbook-2025.txt"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 6,
+    "category": "scaled_retrieval",
+    "question": "How long should audit logs be retained for hosted, dedicated customer-managed, and edge/private deployments?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "The baseline retention periods are 365 days for hosted audit logs, 180 days for dedicated customer-managed audit logs, and 90 days for edge/private audit logs.",
+    "expected_documents": [
+      "dsid_00597869f9744c228726d40e824e17db__hybrid-deployment-evidence-retention-and-access-reconstruction-standard-2026.txt"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 7,
+    "category": "scaled_retrieval",
+    "question": "What is the target KV prefix cache hit rate for the prefetch system?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "The target KV prefix cache hit rate is at least 75% over 10-minute windows.",
+    "expected_documents": [
+      "dsid_b60e13cccd3b4593b8bfafec0887180a__cross-layer-prefetch-consistency-and-rollback-playbook-2026.txt"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 8,
+    "category": "scaled_retrieval",
+    "question": "What is the maximum allowed topology commit window, and why?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "The topology commit window must be 60 seconds or less to avoid routing ambiguity for SLO-sensitive customers.",
+    "expected_documents": [
+      "dsid_ca122b701b4d41a2bc7877f25b5c5bb4__runtime-op-pathways-and-shard-topology-2024.txt"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 9,
+    "category": "scaled_retrieval",
+    "question": "What should a client do if an OpenAI-compatible SSE stream closes without receiving [DONE]?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "The client should treat the missing [DONE] event as a failure and retry. For investigation, it should capture the x-request-id, region, and last SSE event.",
+    "expected_documents": [
+      "dsid_eafa1920550c4dcda1a05c19e4f613e3__openai-compat-streaming-truncation.txt"
+    ],
+    "min_expected_documents": 1
+  },
+  {
+    "id": 10,
+    "category": "scaled_retrieval",
+    "question": "What evidence components are required in every RBAC evidence bundle?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "forbidden_documents": [],
+    "answerable": true,
+    "reference_answer": "Every evidence bundle must contain a signed manifest.json, policy-snapshot.json, pr-metadata.json, filtered auth-events.log, attestation.txt, chain_of_custody.log, and retention-policy.txt.",
+    "expected_documents": [
+      "dsid_ffb6a2502acc4c7fb98b48fe778947fd__orchestrated-evidence-rbac-integration-playbook-2026.txt"
+    ],
+    "min_expected_documents": 1
+  }
+]
