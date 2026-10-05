@@ -1,0 +1,386 @@
+[
+  {
+    "id": 1,
+    "category": "scaled_retrieval",
+    "question": "What severity levels and remediation timelines apply to API contract breaches?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "What severity levels and remediation timelines apply to API contract breaches?",
+    "expected_documents": [
+      "dsid_1b86b0fd2e4d4d40b1fbb9086d637ce2__developer-docs-api-contract-breach-runbook-and-canonical-fixes-2026.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_1b86b0fd2e4d4d40b1fbb9086d637ce2__developer-docs-api-contract-breach-runbook-and-canonical-fixes-2026.txt",
+      "dsid_a5f6556ab8db4776bc903482fd2067b5__service-strata-contract-composition-guidelines-2026.txt",
+      "dsid_cb2fc057757e4707966778f1722d5e45__structured-response-contract-testing-guidelines-2026.txt"
+    ],
+    "retrieval_pass": true,
+    "recall_at_k": {
+      "5": true,
+      "10": true,
+      "20": true,
+      "50": true
+    },
+    "retrieval_latency_ms": 1219,
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Based on the developer documentation, API contract breaches are categorized into the following severity levels and remediation timelines:\n\n* **Severity P1** (Breaks >5% of production callers or business-critical endpoints): Requires an immediate rollback or emergency patch within **4 hours** [dsid_1b86b0fd2e4d4d40b1fbb9086d637ce2__developer-docs-api-contract-breach-runbook-and-canonical-fixes-2026.txt].\n* **Severity P2** (Narrow compatibility issue, limited to specific client versions): Requires a targeted SDK hotfix and docs patch, with a rollout window of **24\u201372 hours** [dsid_1b86b0fd2e4d4d40b1fbb9086d637ce2__developer-docs-api-contract-breach-runbook-and-canonical-fixes-2026.txt].\n* **Severity P3** (Minor docs mismatch or new optional field): Handled by scheduling a patch in the regular release cycle and adding a note in the docs changelog [dsid_1b86b0fd2e4d4d40b1fbb9086d637ce2__developer-docs-api-contract-breach-runbook-and-canonical-fixes-2026.txt]. (Note: the quick reference cheat sheet lists the SLO for P3 as the \"next minor\" release) [dsid_1b86b0fd2e4d4d40b1fbb9086d637ce2__developer-docs-api-contract-breach-runbook-and-canonical-fixes-2026.txt].",
+    "cited_documents": [
+      "dsid_1b86b0fd2e4d4d40b1fbb9086d637ce2__developer-docs-api-contract-breach-runbook-and-canonical-fixes-2026.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 2,
+    "category": "scaled_retrieval",
+    "question": "What are the default gating thresholds for Scheduler Shadowplay?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "What are the default gating thresholds for Scheduler Shadowplay?",
+    "expected_documents": [
+      "dsid_1c49e7a1b2eb44a2be9ddf0f4a36dd68__scheduler-shadowplay-and-telemetry-convergence-playbook-2026.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_1c49e7a1b2eb44a2be9ddf0f4a36dd68__scheduler-shadowplay-and-telemetry-convergence-playbook-2026.txt"
+    ],
+    "retrieval_pass": true,
+    "recall_at_k": {
+      "5": true,
+      "10": true,
+      "20": true,
+      "50": true
+    },
+    "retrieval_latency_ms": 629,
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Based on the provided company documents, the default gating thresholds for Scheduler Shadowplay are:\n\n* **p95 latency:** Candidate $\\le$ baseline + 10 ms OR no statistically-significant increase ($p$-value > 0.05 for Mann-Whitney U test) [dsid_1c49e7a1b2eb44a2be9ddf0f4a36dd68__scheduler-shadowplay-and-telemetry-convergence-playbook-2026.txt].\n* **Error rate:** Candidate $\\le$ baseline + 0.1% (absolute) [dsid_1c49e7a1b2eb44a2be9ddf0f4a36dd68__scheduler-shadowplay-and-telemetry-convergence-playbook-2026.txt].\n* **KVCache hit:** No decrease greater than 1.5 percentage points (specifically for workloads with >10% cacheable prefixes) [dsid_1c49e7a1b2eb44a2be9ddf0f4a36dd68__scheduler-shadowplay-and-telemetry-convergence-playbook-2026.txt].\n* **Throughput:** Candidate $\\ge$ 95% of baseline under matched load [dsid_1c49e7a1b2eb44a2be9ddf0f4a36dd68__scheduler-shadowplay-and-telemetry-convergence-playbook-2026.txt].\n* **Cost delta:** Normalized per-token cost increase $\\le$ 8% (operations must approve anything >8%) [dsid_1c49e7a1b2eb44a2be9ddf0f4a36dd68__scheduler-shadowplay-and-telemetry-convergence-playbook-2026.txt].\n* **Stability:** No kernel panics, watchdog resets, or GPU timeout events during the shadow period [dsid_1c49e7a1b2eb44a2be9ddf0f4a36dd68__scheduler-shadowplay-and-telemetry-convergence-playbook-2026.txt].",
+    "cited_documents": [
+      "dsid_1c49e7a1b2eb44a2be9ddf0f4a36dd68__scheduler-shadowplay-and-telemetry-convergence-playbook-2026.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 3,
+    "category": "scaled_retrieval",
+    "question": "What are the remediation classes and target remediation windows for post-incident actions?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "What are the company's remediation classes and target remediation windows for post-incident actions?",
+    "expected_documents": [
+      "dsid_01f4ce1ac9ca4b85a471d39960e6be37__post-incident-action-triage-and-continuous-remediation-2026.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_01f4ce1ac9ca4b85a471d39960e6be37__post-incident-action-triage-and-continuous-remediation-2026.txt"
+    ],
+    "retrieval_pass": true,
+    "recall_at_k": {
+      "5": true,
+      "10": true,
+      "20": true,
+      "50": true
+    },
+    "retrieval_latency_ms": 552,
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Based on the Redwood Inference post-incident remediation playbook, the remediation classes and their target remediation windows are:\n\n1. **Hot (P0)**: Immediate engineering change required; target remediation window = **72 hours** [dsid_01f4ce1ac9ca4b85a471d39960e6be37__post-incident-action-triage-and-continuous-remediation-2026.txt].\n2. **Fast (P1)**: High-reduction action; target window = **30 days** [dsid_01f4ce1ac9ca4b85a471d39960e6be37__post-incident-action-triage-and-continuous-remediation-2026.txt].\n3. **Normal (P2)**: Improvements with clear benefit but lower urgency; target window = **90 days** [dsid_01f4ce1ac9ca4b85a471d39960e6be37__post-incident-action-triage-and-continuous-remediation-2026.txt].",
+    "cited_documents": [
+      "dsid_01f4ce1ac9ca4b85a471d39960e6be37__post-incident-action-triage-and-continuous-remediation-2026.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 4,
+    "category": "scaled_retrieval",
+    "question": "What conditions trigger a rollback during the standard private-deployment Helm upgrade procedure?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "standard private-deployment Helm upgrade procedure rollback conditions",
+    "expected_documents": [
+      "dsid_7b972e9b7ac847bba3f4145f56970301__private-deploy-playbook-vpc-onprem-2026.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_29a1ac52383b4537b8f51186cd151401__deployable-value-sprint-playbook-and-technical-evidence-2028.txt",
+      "dsid_5094ef74d2e249919de1aa6db7c5d0e7__private-upgrade-runbook.txt",
+      "dsid_e1d8778dfc2a42adb3e2195d3a0125a1__adr-private-upgrade-plan-and-rollback-contract.txt",
+      "dsid_e54ef48bae78474684a957cf613d47d5__perf-canary-deploy-and-roll-back.txt"
+    ],
+    "retrieval_pass": false,
+    "recall_at_k": {
+      "5": false,
+      "10": false,
+      "20": false,
+      "50": true
+    },
+    "retrieval_latency_ms": 575,
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Based on the provided documents, conditions that trigger a rollback (or serve as stop criteria to consider a rollback) during a perf-canary deployment/upgrade include:\n\n* Sustained error rate calling inference endpoints [dsid_e54ef48bae78474684a957cf613d47d5__perf-canary-deploy-and-roll-back.txt]\n* Missing baseline artifacts causing continuous alert noise [dsid_e54ef48bae78474684a957cf613d47d5__perf-canary-deploy-and-roll-back.txt]\n* Overhead increase greater than 20% relative to prior canary overhead in the same region [dsid_e54ef48bae78474684a957cf613d47d5__perf-canary-deploy-and-roll-back.txt]\n* New high-cardinality labels introduced (causing a metrics volume spike) [dsid_e54ef48bae78474684a957cf613d47d5__perf-canary-deploy-and-roll-back.txt]\n* General instability, overhead spikes, metrics breakage, or alert storms attributable to the canary itself (when it is malfunctioning, such as being in a crash loop or spamming endpoints) [dsid_e54ef48bae78474684a957cf613d47d5__perf-canary-deploy-and-roll-back.txt]",
+    "cited_documents": [
+      "dsid_e54ef48bae78474684a957cf613d47d5__perf-canary-deploy-and-roll-back.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 5,
+    "category": "scaled_retrieval",
+    "question": "What are the four execution containment rings and what is each used for?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "GENERAL",
+    "route_pass": false,
+    "retrieval_query": "What are the four execution containment rings and what is each used for?",
+    "expected_documents": [
+      "dsid_82c84230ec8e42bb9f0c1dfed50a7f61__execution-surface-containment-and-observability-guardrails-2023.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_3fcfe44a99e240a39d9041b749a41994__slo-simulation-harness-and-decision-runbook-2026.txt",
+      "dsid_67c969aea3dd43b19d22580a09eba2a1__slo-activation-circuit-and-capacity-sandbox-procedures-2026.txt",
+      "dsid_82c84230ec8e42bb9f0c1dfed50a7f61__execution-surface-containment-and-observability-guardrails-2023.txt"
+    ],
+    "retrieval_pass": true,
+    "recall_at_k": {
+      "5": true,
+      "10": true,
+      "20": true,
+      "50": true
+    },
+    "retrieval_latency_ms": 514,
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Based on your question, it appears you are referring to a specific proprietary framework, industry standard, or science fiction concept (such as containment protocols for AI, hazardous materials, or high-security systems). \n\nBecause the term **\"four execution containment rings\"** is not a standard, universally recognized term in mainstream computer science, engineering, or physics, **could you please clarify the context?** \n\nFor example, are you asking about:\n1. **Cybersecurity / AI Safety:** Sandboxing, virtual machines, or runtime containment layers?\n2. **Industrial/Nuclear Engineering:** Physical containment barriers for hazardous reactions or plasma?\n3. **A specific fictional universe:** From a book, video game, or tabletop RPG (like *Warhammer 40k*, *Dungeons & Dragons*, or a sci-fi series)?\n4. **Business/Project Management:** A specific phased risk-mitigation model?\n\nOnce you provide the context or industry, I would be happy to give you a detailed breakdown of the four rings and their specific uses!",
+    "cited_documents": [],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": false,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 6,
+    "category": "scaled_retrieval",
+    "question": "What checks are required for an SRE planned-change SLO and error-budget impact review?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "What checks are required for an SRE planned-change SLO and error-budget impact review company policy",
+    "expected_documents": [
+      "dsid_871b6712caf44f8bbfea4d8a15e436b6__planned-change-slo-error-budget-review.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_837220266405423a92a18a9c0f9ead44__slo-change-governance-and-stakeholder-signoff-for-model-rollouts-2026.txt",
+      "dsid_871b6712caf44f8bbfea4d8a15e436b6__planned-change-slo-error-budget-review.txt",
+      "dsid_a5c5f94650aa4795b9607ace51ba5ea0__request-to-contract-playbook-access-procurement-2029.txt",
+      "dsid_a82e7d66e680401d8c7a858703821b36__slo-tooling-operations-and-oncall-guide.txt"
+    ],
+    "retrieval_pass": true,
+    "recall_at_k": {
+      "5": true,
+      "10": true,
+      "20": true,
+      "50": true
+    },
+    "retrieval_latency_ms": 610,
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Based on the company documents, the required checks (with attached evidence/links) for an SRE planned-change SLO and error-budget impact review are:\n\n1. **Current SLO state**:\n   - Confirm the current 30-day error budget remaining for impacted services/tenants [dsid_871b6712caf44f8bbfea4d8a15e436b6__planned-change-slo-error-budget-review.txt].\n   - If the remaining error budget is below 25%, attach an explicit risk acceptance from the Engineering and SRE leads [dsid_871b6712caf44f8bbfea4d8a15e436b6__planned-change-slo-error-budget-review.txt].\n\n2. **Capacity + saturation**:\n   - Confirm GPU and request capacity headroom for the expected window [dsid_871b6712caf44f8bbfea4d8a15e436b6__planned-change-slo-error-budget-review.txt].\n   - Confirm there are no overlapping capacity events (such as region maintenance, fleet migrations, or known shortages) [dsid_871b6712caf44f8bbfea4d8a15e436b6__planned-change-slo-error-budget-review.txt].\n\n3. **Monitoring coverage**:\n   - Identify the \u201cwatch list\u201d metrics for the change window (at a minimum: 5xx rate, P95 latency, saturation/queue depth, restarts/OOM, and synthetic checks) [dsid_871b6712caf44f8bbfea4d8a15e436b6__planned-change-slo-error-budget-review.txt].\n   - Confirm that alerts are enabled and routed to an active on-call [dsid_871b6712caf44f8bbfea4d8a15e436b6__planned-change-slo-error-budget-review.txt].\n\n4. **Rollback feasibility**:\n   - Validate that rollback can be executed within the defined time-to-restore target for the customer or platform [dsid_871b6712caf44f8bbfea4d8a15e436b6__planned-change-slo-error-budget-review.txt].\n   - Identify the decision point for rollback (e.g., after control-plane or after data-plane) [dsid_871b6712caf44f8bbfea4d8a15e436b6__planned-change-slo-error-budget-review.txt].\n\n5. **Change overlap**:\n   - Confirm there are no concurrent high-risk changes affecting the same customer or region [dsid_871b6712caf44f8bbfea4d8a15e436b6__planned-change-slo-error-budget-review.txt].\n   - If an overlap exists, record the mitigation plan or reschedule the change [dsid_871b6712caf44f8bbfea4d8a15e436b6__planned-change-slo-error-budget-review.txt].",
+    "cited_documents": [
+      "dsid_871b6712caf44f8bbfea4d8a15e436b6__planned-change-slo-error-budget-review.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 7,
+    "category": "scaled_retrieval",
+    "question": "When does the Burst Absorber enter strict-reject mode during a burst event?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "When does the Burst Absorber enter strict-reject mode during a burst event?",
+    "expected_documents": [
+      "dsid_897e914057ba4e349f8ae444b24bd9f5__burst-absorber-architecture-and-decision-playbook-2026.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_6574ec5483bb44d39fca9eb57d75d0af__burst-pool-overload-mitigation-runbook.txt",
+      "dsid_897e914057ba4e349f8ae444b24bd9f5__burst-absorber-architecture-and-decision-playbook-2026.txt"
+    ],
+    "retrieval_pass": true,
+    "recall_at_k": {
+      "5": true,
+      "10": true,
+      "20": true,
+      "50": true
+    },
+    "retrieval_latency_ms": 604,
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Based on the company documents, the Burst Absorber enters strict-reject mode under the following conditions:\n\n* **During immediate containment (operational runbook):** If the queue depth is increasing and `burst_budget_consumption` exceeds 0.4 of its allocation, you should manually enable strict-reject mode by setting `absorber.config.rejection_mode = true` via the feature-flag CLI or HTTP API [dsid_897e914057ba4e349f8ae444b24bd9f5__burst-absorber-architecture-and-decision-playbook-2026.txt].\n* **According to the error-budget policy:** The absorber maintains a small \"burst budget\" equal to 0.5% of the weekly error budget for a service. If the consumption of this burst budget exceeds that limit, the absorber automatically switches to strict-reject mode (no buffering) and routes to fallback model variants [dsid_897e914057ba4e349f8ae444b24bd9f5__burst-absorber-architecture-and-decision-playbook-2026.txt].",
+    "cited_documents": [
+      "dsid_897e914057ba4e349f8ae444b24bd9f5__burst-absorber-architecture-and-decision-playbook-2026.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 8,
+    "category": "scaled_retrieval",
+    "question": "What are the default burst-policy and SLA-smoothing parameters?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "What are the default burst-policy and SLA-smoothing parameters?",
+    "expected_documents": [
+      "dsid_53712f917b3c470cbcd07b3f300c3ae4__burst-sla-smoothing-and-simulated-loadbook-2024.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_53712f917b3c470cbcd07b3f300c3ae4__burst-sla-smoothing-and-simulated-loadbook-2024.txt",
+      "dsid_897e914057ba4e349f8ae444b24bd9f5__burst-absorber-architecture-and-decision-playbook-2026.txt",
+      "dsid_98e1de73cbbe45e0bc02ccd37feb2220__predictive-bundling-and-sla-credit-algorithm-playbook-2027-06-18.txt"
+    ],
+    "retrieval_pass": true,
+    "recall_at_k": {
+      "5": true,
+      "10": true,
+      "20": true,
+      "50": true
+    },
+    "retrieval_latency_ms": 522,
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Based on the company documents, the default burst-policy and SLA-smoothing parameters are:\n\n**Burst-policy defaults:**\n* Burst window: 10 seconds [dsid_53712f917b3c470cbcd07b3f300c3ae4__burst-sla-smoothing-and-simulated-loadbook-2024.txt]\n* Burst budget: 500 tokens/tenant [dsid_53712f917b3c470cbcd07b3f300c3ae4__burst-sla-smoothing-and-simulated-loadbook-2024.txt]\n* Refill rate: 50 tokens/s [dsid_53712f917b3c470cbcd07b3f300c3ae4__burst-sla-smoothing-and-simulated-loadbook-2024.txt]\n\n**SLA-smoothing / smoothing-window defaults:**\n* Smoothing window: A sliding window of 5 minutes used to compute adaptive SLO targets [dsid_53712f917b3c470cbcd07b3f300c3ae4__burst-sla-smoothing-and-simulated-loadbook-2024.txt].",
+    "cited_documents": [
+      "dsid_53712f917b3c470cbcd07b3f300c3ae4__burst-sla-smoothing-and-simulated-loadbook-2024.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 9,
+    "category": "scaled_retrieval",
+    "question": "What approval thresholds apply to GPU bursts based on estimated daily cost?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "approval thresholds for GPU bursts based on estimated daily cost",
+    "expected_documents": [
+      "dsid_73753197c6eb4917a5e5ab1b5424796d__gpu-bursting-economics-and-cross-account-routing.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_38c8af278ffe402e86c9d55bcad99bec__hybrid-bursting-to-cloud-and-edge-gpu-pools.txt",
+      "dsid_73753197c6eb4917a5e5ab1b5424796d__gpu-bursting-economics-and-cross-account-routing.txt",
+      "dsid_b74190bd5a3349808f058b97f9ccb03d__gpu-scaling-decision-framework-and-burst-policy.txt",
+      "dsid_ec41b0ed6a22408aa8ef1807a6a012e9__gpu-provisioning-rate-limit-and-iac-throttling-policy.txt"
+    ],
+    "retrieval_pass": true,
+    "recall_at_k": {
+      "5": true,
+      "10": true,
+      "20": true,
+      "50": true
+    },
+    "retrieval_latency_ms": 616,
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "Based on the company documents, the approval thresholds that apply to GPU bursts based on estimated daily cost are:\n\n* **Up to $500/day:** Bursts are approved automatically for engineering experiments [dsid_73753197c6eb4917a5e5ab1b5424796d__gpu-bursting-economics-and-cross-account-routing.txt].\n* **Above $500/day:** Manual approval is required [dsid_73753197c6eb4917a5e5ab1b5424796d__gpu-bursting-economics-and-cross-account-routing.txt].\n* **At $5,000/day ($5k/day):** Finance review and security review are required [dsid_73753197c6eb4917a5e5ab1b5424796d__gpu-bursting-economics-and-cross-account-routing.txt].",
+    "cited_documents": [
+      "dsid_73753197c6eb4917a5e5ab1b5424796d__gpu-bursting-economics-and-cross-account-routing.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  },
+  {
+    "id": 10,
+    "category": "scaled_retrieval",
+    "question": "How is risk classified for a Runtime LTS backport, and when is explicit exception approval required?",
+    "role": "employee",
+    "expected_route": "COMPANY_CONTEXT_REQUIRED",
+    "actual_route": "COMPANY_CONTEXT_REQUIRED",
+    "route_pass": true,
+    "retrieval_query": "Runtime LTS backport risk classification guidelines and explicit exception approval requirements",
+    "expected_documents": [
+      "dsid_a6e9f5cd91a54fa9b07a314e24826803__runtime-lts-change-management-and-approvals.txt"
+    ],
+    "retrieved_documents": [
+      "dsid_a6e9f5cd91a54fa9b07a314e24826803__runtime-lts-change-management-and-approvals.txt"
+    ],
+    "retrieval_pass": true,
+    "recall_at_k": {
+      "5": true,
+      "10": true,
+      "20": true,
+      "50": true
+    },
+    "retrieval_latency_ms": 535,
+    "forbidden_documents": [],
+    "permission_violations": [],
+    "permission_pass": true,
+    "answer": "For a Runtime LTS backport, risk is assessed using a scoring rubric across five dimensions (scored from 1 to 5):\n* **Blast radius**\n* **Surface area**\n* **Behavior change**\n* **Test coverage confidence**\n* **Performance risk**\n\nBased on this assessment, the risk level is mapped as follows:\n* **Low**: All dimensions are $\\le 2$, and no kernel/scheduler critical path is touched [dsid_a6e9f5cd91a54fa9b07a314e24826803__runtime-lts-change-management-and-approvals.txt].\n* **Medium**: Any dimension equals 3, or the kernel/scheduler is touched with strong tests [dsid_a6e9f5cd91a54fa9b07a314e24826803__runtime-lts-change-management-and-approvals.txt].\n* **High**: Any dimension is $\\ge 4$, performance risk is $\\ge 4$, or there is an ambiguous repro/missing deterministic test [dsid_a6e9f5cd91a54fa9b07a314e24826803__runtime-lts-change-management-and-approvals.txt].\n\n**Explicit exception approval** (along with a release readiness review and rollout constraints) is required when a backport is classified as **High** risk [dsid_a6e9f5cd91a54fa9b07a314e24826803__runtime-lts-change-management-and-approvals.txt]. Additionally, changes that fall into \"generally disallowed\" categories\u2014such as new features, refactors, large kernel/scheduler redesigns, or performance optimizations not tied to a Sev1/Sev2 incident or measurable regression\u2014are treated as ineligible until an exception is approved [dsid_a6e9f5cd91a54fa9b07a314e24826803__runtime-lts-change-management-and-approvals.txt].",
+    "cited_documents": [
+      "dsid_a6e9f5cd91a54fa9b07a314e24826803__runtime-lts-change-management-and-approvals.txt"
+    ],
+    "invalid_citations": [],
+    "citation_retrieval_pass": true,
+    "answer_correct": true,
+    "grounded": true,
+    "citations_supported": true,
+    "citation_present_pass": true
+  }
+]
