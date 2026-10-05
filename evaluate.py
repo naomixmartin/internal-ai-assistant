@@ -6,15 +6,18 @@ from router import route_query
 import os
 
 
-EVAL_FILE = "eval_cases.json"
+EVAL_FILE = "evals/scaled_1k/eval_cases.json"
+RESULTS_FILE = "evals/scaled_1k/eval_results_v1.json"
+
+RECALL_K_VALUES = [5, 10, 20, 50]
+ANSWER_MATCH_COUNT = 5
 
 
 def generate_answer(question, route, retrieved_chunks):
     if route == "COMPANY_CONTEXT_REQUIRED":
         document_context = build_document_context(retrieved_chunks)
 
-        messages = [
-            {"role": "user", "content": f"""
+        messages = [{"role": "user", "content": f"""
             Relevant company information:
             
             {document_context}
@@ -121,9 +124,9 @@ def main():
 
     total_cases = len(cases)
 
-    # continue eval_results.json if a previous run failed
-    if os.path.exists("eval_results.json"):
-        with open("eval_results.json", "r", encoding="utf-8") as f:
+    # continue results file if a previous run failed
+    if os.path.exists(RESULTS_FILE):
+        with open(RESULTS_FILE, "r", encoding="utf-8") as f:
             results = json.load(f)
     else:
         results = []
@@ -141,16 +144,30 @@ def main():
         actual_route, retrieval_query, _, _ = route_query(case["question"], "")
         route_pass = actual_route == case["expected_route"]
 
-        # retrieve only if the actual router says company context is needed
+        # retrieve a larger candidate set for recall evaluation
         retrieved_chunks = []
+        evaluation_chunks = []
+        retrieval_latency_ms = None
+
         if actual_route == "COMPANY_CONTEXT_REQUIRED":
-            retrieved_chunks, _ = retrieve_chunks(retrieval_query, case["role"])
+            evaluation_chunks, retrieval_latency_ms = retrieve_chunks(retrieval_query, case["role"], match_count=max(RECALL_K_VALUES))
+
+            # preserve the current top-5 context used by the assistant
+            retrieved_chunks = evaluation_chunks[:ANSWER_MATCH_COUNT]
 
         retrieved_documents = {chunk["filename"] for chunk in retrieved_chunks}
 
         # expected-document retrieval score
         expected_documents = set(case["expected_documents"])
         min_expected = case["min_expected_documents"]
+
+        # calculate whether the expected document appears within each retrieval depth
+        recall_at_k = {}
+
+        for k in RECALL_K_VALUES:
+            documents_at_k = {chunk["filename"] for chunk in evaluation_chunks[:k]}
+
+            recall_at_k[str(k)] = bool(expected_documents & documents_at_k)
 
         if min_expected > 0:
             expected_found = len(expected_documents & retrieved_documents)
@@ -197,6 +214,8 @@ def main():
             "expected_documents": sorted(expected_documents),
             "retrieved_documents": sorted(retrieved_documents),
             "retrieval_pass": retrieval_pass,
+            "recall_at_k": recall_at_k,
+            "retrieval_latency_ms": retrieval_latency_ms,
             "forbidden_documents": sorted(forbidden_documents),
             "permission_violations": sorted(permission_violations),
             "permission_pass": permission_pass,
@@ -213,7 +232,7 @@ def main():
         results.append(result)
 
         # save progress after every completed case
-        with open("eval_results.json", "w", encoding="utf-8") as f:
+        with open(RESULTS_FILE, "w", encoding="utf-8") as f:
             json.dump(results, f, indent=2)
 
     # calculate summary metrics
@@ -227,56 +246,53 @@ def main():
     citation_retrieval_correct = sum(r["citation_retrieval_pass"] for r in results)
     citation_present_correct = sum(r["citation_present_pass"] for r in results)
     citation_support_correct = sum( r["citations_supported"] for r in results)
+    recall_results = {k: sum(r["recall_at_k"][str(k)] for r in results) for k in RECALL_K_VALUES}
+    retrieval_latencies = [r["retrieval_latency_ms"] for r in results if r["retrieval_latency_ms"] is not None]
+
+    average_retrieval_latency_ms = sum(retrieval_latencies) / len(retrieval_latencies)
 
     print("\n--- Evaluation Results ---")
-    print(
-        f"Router accuracy: "
-        f"{route_correct}/{total} "
-        f"({route_correct / total * 100:.1f}%)"
-    )
+    print(f"Router accuracy: "
+          f"{route_correct}/{total} "
+          f"({route_correct / total * 100:.1f}%)")
 
     if retrieval_results:
-        print(
-            f"Retrieval accuracy: "
-            f"{retrieval_correct}/{len(retrieval_results)} "
-            f"({retrieval_correct / len(retrieval_results) * 100:.1f}%)"
-        )
+        print(f"Retrieval accuracy: "
+              f"{retrieval_correct}/{len(retrieval_results)} "
+              f"({retrieval_correct / len(retrieval_results) * 100:.1f}%)")
 
-    print(
-        f"Permission accuracy: "
-        f"{permission_correct}/{total} "
-        f"({permission_correct / total * 100:.1f}%)"
-    )
+    print(f"Average top-50 retrieval latency: {average_retrieval_latency_ms:.1f} ms")
 
-    print(
-        f"Answer correctness: "
-        f"{answer_correct}/{total} "
-        f"({answer_correct / total * 100:.1f}%)"
-    )
+    for k in RECALL_K_VALUES:
+        recall_correct = recall_results[k]
 
-    print(
-        f"Groundedness: "
-        f"{grounded_correct}/{total} "
-        f"({grounded_correct / total * 100:.1f}%)"
-    )
+        print(f"Recall@{k}: "
+              f"{recall_correct}/{total} "
+              f"({recall_correct / total * 100:.1f}%)")
 
-    print(
-        f"Citation retrieval validity: "
-        f"{citation_retrieval_correct}/{total} "
-        f"({citation_retrieval_correct / total * 100:.1f}%)"
-    )
+    print(f"Permission accuracy: "
+          f"{permission_correct}/{total} "
+          f"({permission_correct / total * 100:.1f}%)")
 
-    print(
-        f"Citation presence: "
-        f"{citation_present_correct}/{total} "
-        f"({citation_present_correct / total * 100:.1f}%)"
-    )
+    print(f"Answer correctness: "
+          f"{answer_correct}/{total} "
+          f"({answer_correct / total * 100:.1f}%)")
 
-    print(
-        f"Citation support: "
-        f"{citation_support_correct}/{total} "
-        f"({citation_support_correct / total * 100:.1f}%)"
-    )
+    print(f"Groundedness: "
+          f"{grounded_correct}/{total} "
+          f"({grounded_correct / total * 100:.1f}%)")
+
+    print(f"Citation retrieval validity: "
+          f"{citation_retrieval_correct}/{total} "
+          f"({citation_retrieval_correct / total * 100:.1f}%)")
+
+    print(f"Citation presence: "
+          f"{citation_present_correct}/{total} "
+          f"({citation_present_correct / total * 100:.1f}%)")
+
+    print(f"Citation support: "
+          f"{citation_support_correct}/{total} "
+          f"({citation_support_correct / total * 100:.1f}%)")
 
     # show failed cases
     print("\n--- Failed Cases ---")
@@ -309,16 +325,13 @@ def main():
             failures.append("citation support")
 
         if failures:
-            print(
-                f'Case {result["id"]}: '
-                f'{", ".join(failures)}'
-            )
+            print(f'Case {result["id"]}: {", ".join(failures)}')
 
     # save detailed results for later inspection
-    with open("eval_results.json", "w", encoding="utf-8") as f:
+    with open(RESULTS_FILE, "w", encoding="utf-8") as f:
         json.dump(results, f, indent=2)
 
-    print("\nDetailed results saved to eval_results.json")
+    print(f"\nDetailed results saved to {RESULTS_FILE}")
 
 
 if __name__ == "__main__":
