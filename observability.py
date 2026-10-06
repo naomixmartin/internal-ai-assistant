@@ -21,8 +21,12 @@ def estimate_cost(model, input_tokens, output_tokens):
     # prices are USD per 1 million tokens
     pricing = {
         "gemini-3.5-flash-lite": {
-            "input": 0.00,   # currently using free tier
-            "output": 0.00
+            "input": 0.30,
+            "output": 2.50
+        },
+        "gemini-3.8-flash": {
+            "input": 0.75,
+            "output": 3.75
         }
     }
 

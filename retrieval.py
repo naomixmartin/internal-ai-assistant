@@ -10,24 +10,33 @@ supabase = create_client(os.getenv("SUPABASE_URL"), os.getenv("SUPABASE_SERVICE_
 
 
 def retrieve_chunks(query, user_role, match_count=5):
-    start_time = time.perf_counter()
+    retrieval_start = time.perf_counter()
 
     # embed the user's question
+    embedding_start = time.perf_counter()
     query_embedding = generate_embedding(query)
+    embedding_latency_ms = int((time.perf_counter() - embedding_start) * 1000)
 
     # find the most similar document chunks
+    vector_search_start = time.perf_counter()
     result = supabase.rpc(
         "match_document_chunks",
         {
             "query_embedding": query_embedding,
             "user_role": user_role,
             "match_count": match_count
-        }
-    ).execute()
+        }).execute()
 
-    retrieval_latency_ms = int((time.perf_counter() - start_time) * 1000)
+    vector_search_latency_ms = int((time.perf_counter() - vector_search_start) * 1000)
+    retrieval_latency_ms = int((time.perf_counter() - retrieval_start) * 1000)
 
-    return result.data, retrieval_latency_ms
+    metadata = {
+        "retrieval_latency_ms": retrieval_latency_ms,
+        "embedding_latency_ms": embedding_latency_ms,
+        "vector_search_latency_ms": vector_search_latency_ms
+    }
+
+    return result.data, metadata
 
 
 def build_document_context(chunks):

@@ -145,6 +145,8 @@ if user_message:
     }
     retrieved_chunks = []
     retrieval_latency_ms = None
+    embedding_latency_ms = None
+    vector_search_latency_ms = None
     llm_metadata = {
         "stage": None,
         "provider": None,
@@ -198,7 +200,12 @@ if user_message:
 
         # retrieve company information only when needed
         if route == "COMPANY_CONTEXT_REQUIRED":
-            retrieved_chunks, retrieval_latency_ms = retrieve_chunks(retrieval_query, user_role)
+            retrieved_chunks, retrieval_metadata = retrieve_chunks(retrieval_query, user_role)
+
+            retrieval_latency_ms = retrieval_metadata["retrieval_latency_ms"]
+            embedding_latency_ms = retrieval_metadata["embedding_latency_ms"]
+            vector_search_latency_ms = retrieval_metadata["vector_search_latency_ms"]
+
             document_context, source_map = build_document_context(retrieved_chunks)
 
             llm_history.insert(0, {
@@ -261,17 +268,32 @@ if user_message:
             for chunk in retrieved_chunks
         ]
 
-        # aggregate llm usage across routing and answer generation
-        input_tokens = (routing_metadata["input_tokens"] or 0) + (llm_metadata["input_tokens"] or 0)
-        output_tokens = (routing_metadata["output_tokens"] or 0) + (llm_metadata["output_tokens"] or 0)
-        total_tokens = (routing_metadata["total_tokens"] or 0) + (llm_metadata["total_tokens"] or 0)
+        # log routing and generation token usage separately
+        routing_input_tokens = routing_metadata["input_tokens"]
+        routing_output_tokens = routing_metadata["output_tokens"]
+        routing_total_tokens = routing_metadata["total_tokens"]
+
+        generation_input_tokens = llm_metadata["input_tokens"]
+        generation_output_tokens = llm_metadata["output_tokens"]
+        generation_total_tokens = llm_metadata["total_tokens"]
+
+        # calculate request-level totals
+        input_tokens = (routing_input_tokens or 0) + (generation_input_tokens or 0)
+        output_tokens = (routing_output_tokens or 0) + (generation_output_tokens or 0)
+        total_tokens = (routing_total_tokens or 0) + (generation_total_tokens or 0)
+
         retry_count = routing_metadata["retry_count"] + llm_metadata["retry_count"]
         errors_handled = routing_metadata["errors_handled"] + llm_metadata["errors_handled"]
 
         total_latency_ms = int((time.perf_counter() - request_start_time) * 1000)
         provider = llm_metadata["provider"] or routing_metadata["provider"]
         model = llm_metadata["model"] or routing_metadata["model"]
-        estimated_cost_usd = estimate_cost(model, input_tokens, output_tokens)
+
+        # calculate stage-level and total cost
+        routing_cost_usd = estimate_cost(routing_metadata["model"], routing_input_tokens, routing_output_tokens)
+        generation_cost_usd = estimate_cost(llm_metadata["model"], generation_input_tokens, generation_output_tokens)
+
+        estimated_cost_usd = (routing_cost_usd + generation_cost_usd if routing_cost_usd is not None and generation_cost_usd is not None else None)
 
         request_data = {
             "user_id": st.session_state.user.id,
@@ -281,16 +303,32 @@ if user_message:
             "retrieved_documents": retrieved_documents,
             "retrieved_chunks": retrieved_chunk_data,
             "retrieval_count": len(retrieved_chunks),
+
             "provider": provider,
             "model": model,
+
+            "routing_input_tokens": routing_input_tokens,
+            "routing_output_tokens": routing_output_tokens,
+            "routing_total_tokens": routing_total_tokens,
+            "routing_cost_usd": routing_cost_usd,
+
+            "generation_input_tokens": generation_input_tokens,
+            "generation_output_tokens": generation_output_tokens,
+            "generation_total_tokens": generation_total_tokens,
+            "generation_cost_usd": generation_cost_usd,
+
             "input_tokens": input_tokens,
             "output_tokens": output_tokens,
             "total_tokens": total_tokens,
             "estimated_cost_usd": estimated_cost_usd,
+
             "routing_latency_ms": routing_latency_ms,
+            "embedding_latency_ms": embedding_latency_ms,
+            "vector_search_latency_ms": vector_search_latency_ms,
             "retrieval_latency_ms": retrieval_latency_ms,
             "generation_latency_ms": llm_metadata["generation_latency_ms"],
             "total_latency_ms": total_latency_ms,
+
             "retry_count": retry_count,
             "errors_handled": errors_handled,
             "final_status": final_status,

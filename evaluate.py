@@ -5,10 +5,11 @@ from retrieval import retrieve_chunks, build_document_context
 from router import route_query
 import os
 import numpy as np
+from observability import estimate_cost
 
 
 EVAL_FILE = "evals/scaled/eval_cases.json"
-RESULTS_FILE = "evals/scaled/eval_results_gemini_3.8_1k_files_top10.json"
+RESULTS_FILE = "evals/scaled/eval_results_gemini_3.8_5k_files_top10_v2.json"
 
 RECALL_K_VALUES = [5, 10, 20, 50]
 ANSWER_MATCH_COUNT = 10
@@ -44,7 +45,7 @@ def generate_answer(question, route, retrieved_chunks):
         contents = question
 
     answer, metadata = generate_response(contents, stage="evaluation", return_metadata=True)
-    return answer, source_map, metadata["generation_latency_ms"]
+    return answer, source_map, metadata
 
 
 def get_cited_source_numbers(answer):
@@ -135,18 +136,18 @@ def main():
         print(f'Running case {case["id"]}/{total_cases}: {case["question"]}')
 
         # route the question
-        actual_route, retrieval_query, routing_latency_ms, _ = route_query(case["question"], "")
+        actual_route, retrieval_query, routing_latency_ms, routing_metadata = route_query(case["question"], "")
         route_pass = actual_route == case["expected_route"]
 
         # always retrieve for evaluation so retrieval is measured independently of routing
-        evaluation_chunks, retrieval_latency_ms = retrieve_chunks(retrieval_query, case["role"], match_count=max(RECALL_K_VALUES))
+        evaluation_chunks, evaluation_retrieval_metadata = retrieve_chunks( retrieval_query, case["role"], match_count=max(RECALL_K_VALUES))
 
-        # retrieve top-5 chunks for production only when company context is needed
+        # retrieve top-10 chunks for production only when company context is needed
         retrieved_chunks = []
-        retrieval_latency_ms = 0
+        retrieval_metadata = {"retrieval_latency_ms": 0, "embedding_latency_ms": 0, "vector_search_latency_ms": 0}
 
         if actual_route == "COMPANY_CONTEXT_REQUIRED":
-            retrieved_chunks, retrieval_latency_ms = retrieve_chunks(retrieval_query, case["role"], match_count=ANSWER_MATCH_COUNT)
+            retrieved_chunks, retrieval_metadata = retrieve_chunks(retrieval_query, case["role"], match_count=ANSWER_MATCH_COUNT)
 
         retrieved_documents = {chunk["filename"] for chunk in evaluation_chunks[:ANSWER_MATCH_COUNT]}
 
@@ -173,10 +174,19 @@ def main():
         permission_pass = len(permission_violations) == 0
 
         # generate the actual assistant answer
-        answer, source_map, generation_latency_ms = generate_answer(case["question"], actual_route, retrieved_chunks)
+        answer, source_map, generation_metadata = generate_answer(case["question"], actual_route, retrieved_chunks)
+        generation_latency_ms = generation_metadata["generation_latency_ms"]
 
         # calculate production end-to-end latency
-        total_latency_ms = routing_latency_ms + retrieval_latency_ms + generation_latency_ms
+        total_latency_ms = (routing_latency_ms + retrieval_metadata["retrieval_latency_ms"] + generation_latency_ms)
+
+        # calculate costs
+        routing_cost_usd = estimate_cost(routing_metadata["model"], routing_metadata["input_tokens"], routing_metadata["output_tokens"])
+        generation_cost_usd = estimate_cost(generation_metadata["model"], generation_metadata["input_tokens"], generation_metadata["output_tokens"])
+        input_tokens = ((routing_metadata["input_tokens"] or 0) + (generation_metadata["input_tokens"] or 0))
+        output_tokens = ((routing_metadata["output_tokens"] or 0) + (generation_metadata["output_tokens"] or 0))
+        total_tokens = ((routing_metadata["total_tokens"] or 0) + (generation_metadata["total_tokens"] or 0))
+        estimated_cost_usd = (routing_cost_usd + generation_cost_usd if routing_cost_usd is not None and generation_cost_usd is not None else None)
 
         # deterministic citation check: cited docs must have been retrieved
         cited_source_numbers = get_cited_source_numbers(answer)
@@ -223,7 +233,41 @@ def main():
                  "content": chunk["content"]} for i, chunk in enumerate(evaluation_chunks)],
             "retrieval_pass": retrieval_pass,
             "recall_at_k": recall_at_k,
-            "latency_ms": {"router": routing_latency_ms, "retrieval": retrieval_latency_ms, "generation": generation_latency_ms, "total": total_latency_ms},
+            "routing_metrics": {
+                "provider": routing_metadata["provider"],
+                "model": routing_metadata["model"],
+                "input_tokens": routing_metadata["input_tokens"],
+                "output_tokens": routing_metadata["output_tokens"],
+                "total_tokens": routing_metadata["total_tokens"],
+                "latency_ms": routing_latency_ms,
+                "retry_count": routing_metadata["retry_count"],
+                "errors_handled": routing_metadata["errors_handled"],
+                "cost_usd": routing_cost_usd
+            },
+            "retrieval_metrics": {
+                "embedding_latency_ms": retrieval_metadata["embedding_latency_ms"],
+                "vector_search_latency_ms": retrieval_metadata["vector_search_latency_ms"],
+                "retrieval_latency_ms": retrieval_metadata["retrieval_latency_ms"]
+            },
+            "generation_metrics": {
+                "provider": generation_metadata["provider"],
+                "model": generation_metadata["model"],
+                "input_tokens": generation_metadata["input_tokens"],
+                "output_tokens": generation_metadata["output_tokens"],
+                "total_tokens": generation_metadata["total_tokens"],
+                "latency_ms": generation_latency_ms,
+                "retry_count": generation_metadata["retry_count"],
+                "errors_handled": generation_metadata["errors_handled"],
+                "cost_usd": generation_cost_usd
+            },
+            "total_metrics": {
+                "input_tokens": input_tokens,
+                "output_tokens": output_tokens,
+                "total_tokens": total_tokens,
+                "latency_ms": total_latency_ms,
+                "cost_usd": estimated_cost_usd
+            },
+            "evaluation_retrieval_metrics": evaluation_retrieval_metadata,
             "forbidden_documents": sorted(forbidden_documents),
             "permission_violations": sorted(permission_violations),
             "permission_pass": permission_pass,
@@ -255,11 +299,18 @@ def main():
     citation_present_correct = sum(r["citation_present_pass"] for r in results)
     citation_support_correct = sum( r["citations_supported"] for r in results)
     recall_results = {k: sum(r["recall_at_k"][str(k)] for r in results) for k in RECALL_K_VALUES}
-    latency_stages = ["router", "retrieval", "generation", "total"]
+    latency_fields = {
+        "router": ("routing_metrics", "latency_ms"),
+        "embedding": ("retrieval_metrics", "embedding_latency_ms"),
+        "vector_search": ("retrieval_metrics", "vector_search_latency_ms"),
+        "retrieval": ("retrieval_metrics", "retrieval_latency_ms"),
+        "generation": ("generation_metrics", "latency_ms"),
+        "total": ("total_metrics", "latency_ms")
+    }
 
     latency_summary = {}
-    for stage in latency_stages:
-        values = [r["latency_ms"][stage] for r in results]
+    for stage, (section, field) in latency_fields.items():
+        values = [r[section][field] for r in results]
         latency_summary[stage] = {"p50": np.percentile(values, 50), "p95": np.percentile(values, 95)}
 
 
@@ -275,7 +326,7 @@ def main():
 
     print("\nLatency (ms)")
     print(f"{'Stage':<12} {'p50':>10} {'p95':>10}")
-    for stage in latency_stages:
+    for stage in latency_fields:
         print(
             f"{stage.capitalize():<12} "
             f"{latency_summary[stage]['p50']:>10.1f} "
