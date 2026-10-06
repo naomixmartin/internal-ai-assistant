@@ -199,18 +199,24 @@ if user_message:
         # retrieve company information only when needed
         if route == "COMPANY_CONTEXT_REQUIRED":
             retrieved_chunks, retrieval_latency_ms = retrieve_chunks(retrieval_query, user_role)
-            document_context = build_document_context(retrieved_chunks)
+            document_context, source_map = build_document_context(retrieved_chunks)
 
             llm_history.insert(0, {
                 "role": "user",
                 "content": f"""
                 Relevant company information:
-    
+
                 {document_context}
-    
+
                 Use this information when it is relevant to the user's question.
-                Cite factual claims from company documents using the provided source,
-                for example [EmployeeHandbook.md].
+                Cite factual claims from company documents using the numbered source
+                that supports the claim, for example [1].
+
+                Only cite source numbers provided in the company information.
+                Do not include filenames or the word "SOURCE" inside citations.
+
+                If the company information does not contain enough information to answer
+                the question, say that you could not find the answer in the company documents.
                 """
             })
 
