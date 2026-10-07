@@ -313,6 +313,11 @@ def main():
         values = [r[section][field] for r in results]
         latency_summary[stage] = {"p50": np.percentile(values, 50), "p95": np.percentile(values, 95)}
 
+    # summarize retries and handled llm errors
+    routing_retries = sum(r["routing_metrics"]["retry_count"] for r in results)
+    generation_retries = sum(r["generation_metrics"]["retry_count"] for r in results)
+    routing_errors = sum(len(r["routing_metrics"]["errors_handled"]) for r in results)
+    generation_errors = sum(len(r["generation_metrics"]["errors_handled"]) for r in results)
 
     print("\n--- Evaluation Results ---")
     print(f"Router accuracy: "
@@ -332,6 +337,12 @@ def main():
             f"{latency_summary[stage]['p50']:>10.1f} "
             f"{latency_summary[stage]['p95']:>10.1f}"
         )
+
+    print("\nLLM retries/errors")
+    print(f"Router retries: {routing_retries}")
+    print(f"Generation retries: {generation_retries}")
+    print(f"Router errors handled: {routing_errors}")
+    print(f"Generation errors handled: {generation_errors}")
 
     for k in RECALL_K_VALUES:
         recall_correct = recall_results[k]
