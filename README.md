@@ -155,14 +155,14 @@ The current test corpus contains 5,000 documents and approximately 35,000 docume
 | Recall@10 |    88% |
 | Recall@20 |    90% |
 | Recall@50 |    94% |
-| Answer correctness      |    88% |
+| Answer correctness      |    90% |
 | Groundedness            |   100% |
 | Citation validity       |   100% |
 | Citation support        |   100% |
 | Permission accuracy     |   100% |
 | Median response latency |  6.25s |
 
-The 88% answer-correctness score should be interpreted with some caution. Manual review of failed cases identified limitations in the evaluation procedure, including highly specific questions and reference criteria that could produce false negatives. Other failures were caused by the required evidence not reaching the generator rather than the generator incorrectly reasoning over the evidence it received.  For this reason, I treat answer correctness as one part of the evaluation rather than a standalone measure of generation quality. The combination of retrieval recall, answer correctness, groundedness, and citation support gives a more complete picture of system behavior.
+The 90% answer-correctness score should be interpreted with some caution. Manual review of failed cases identified limitations in the evaluation procedure, including highly specific questions and reference criteria that could produce false negatives. Other failures were caused by the required evidence not reaching the generator rather than the generator incorrectly reasoning over the evidence it received.  For this reason, I treat answer correctness as one part of the evaluation rather than a standalone measure of generation quality. The combination of retrieval recall, answer correctness, groundedness, and citation support gives a more complete picture of system behavior.
 
 See **[Development Process](docs/development_process.md)** for complete evaluation methodology, case-level failure analysis, and limitations of the current evaluation procedure.
 

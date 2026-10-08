@@ -395,11 +395,10 @@ With retrieval working again, I reran the same evaluation framework against the
 | --- |-------------:|-------------:|
 | Router accuracy |         100% |         100% |
 | Retrieval accuracy |          94% |          88% |
-| Recall@5 |          94% |          80% |
 | Recall@10 |          94% |          88% |
 | Recall@20 |          94% |          90% |
 | Recall@50 |          94% |          94% |
-| Answer correctness |          94% |          88% |
+| Answer correctness |          94% |          90% |
 | Groundedness |         100% |         100% |
 | Citation validity |         100% |         100% |
 | Citation support |         100% |         100% |
