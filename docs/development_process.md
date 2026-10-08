@@ -194,7 +194,7 @@ Before systematically evaluating or scaling the system, I added instrumentation
 so performance problems could be measured rather than guessed. The system records
 metrics including:
 - routing, embedding, vector search, retrieval, generation latency
-- input and output token usage
+- input and output token usage for each stage
 - LLM call retries
 - handled API errors
 - estimated API cost
@@ -413,56 +413,49 @@ and permission accuracy remained at 100%, indicating that the system continued
 to generate well-supported responses from retrieved context and enforce access
 controls at the larger scale.
 
-Manual error analysis showed that the lower retrieval and answer-correctness 
+Manual error analysis showed that the lower retrieval and answer correctness 
 scores at 5,000 documents did not have a single cause. The larger corpus 
-introduced substantial semantic overlap, making it harder for dense retrieval 
-to distinguish between closely related policies and systems. Some cases were
+introduced substantial semantic overlap, making it harder for retrieval 
+to distinguish between semantically similar policies and systems. Some cases were
 genuine retrieval failures where the required document or answer-bearing chunk
 never reached the generator. Other cases were evaluation false negatives: the 
 expected document was not retrieved, but other relevant documents contained 
 valid information that still allowed the system to produce a correct, grounded
-answer. The analysis also exposed failures at later stages of the pipeline. In
+answer that was incorrectly marked as incorrect. The analysis also exposed failures
+at later stages of the pipeline. In
 one case, the exact answer-bearing chunk was included in the LLM's retrieved 
 context, but it appeared alongside several semantically similar chunks containing
 different policies and values, and the generator failed to identify the 
 correct evidence. 
 
-Together, these cases showed that the aggregate scores reflect several distinct
+Together, these cases show that the results reflect several distinct
 issues, which are listed below along with possible solutions:
 
 - **Document-level retrieval failures:** In some cases, the intended document was
-  not retrieved within the top-10 results, even though it appeared in the top-50
-  set. This could potentially be improved with reranking, hybrid keyword and 
+  not retrieved within the top-10 results, but appeared in the top-50. This could 
+  potentially be improved with reranking, hybrid keyword and 
  semantic search, or better query formulation.
 
-- **Chunk-level retrieval failures:** Retrieving the correct document does not
-  guarantee that the chunk containing the required evidence reaches the
-  generator. In one case, a highly relevant chunk from the correct document was
-  retrieved, while the separate chunk containing the actual answer ranked too
-  low. Potential improvements include better chunking, reranking at the chunk 
-  level, or hybrid search.
+- **Chunk-level retrieval failures:** Chunk-level retrieval failures: The correct
+  document was retrieved, but the answer-bearing chunk ranked too low to reach the 
+  generator. Potential improvements include better chunking, chunk-level reranking, 
+  or hybrid search.
 
 - **Candidate-retrieval failures:** In harder cases, the required document or
-  answer-bearing evidence was absent even from the top-50 retrieved results. A
-  reranker cannot solve this because it can only reorder candidates that were
-  already retrieved. These failures may require improvements to query
+  was absent even from the top-50 retrieved results.
+  These failures may require improvements to query
   formulation, hybrid search, chunk representation, or metadata filtering.
 
-- **Generation over competing context:** In at least one case, the exact
-  answer-bearing chunk was included in the context sent to the LLM, but several
-  other retrieved chunks described similar policies with conflicting values.
-  The generator failed to identify and use the most directly relevant evidence.
-  This could potentially be improved through better context selection,
-  reranking, or stronger prompting around source specificity.
+- **Generation over competing context:** The correct answer-bearing chunk reached
+  the LLM, but the generator selected conflicting information from other similar
+  chunks. Potential improvements include reranking, better context selection, or
+  stronger source-specific prompting.
 
-- **Evaluation ambiguity:** The synthetic corpus contains many overlapping
-  policies with different valid values. Some evaluation questions were too broad
-  to uniquely identify the document expected by the evaluator. As a result, the
-  system could retrieve a different but highly relevant source and produce a
-  valid, grounded answer while still being marked as a retrieval or answer
-  failure. These cases suggest that the evaluation questions should be made more
-  specific and that retrieval quality should not be measured solely by whether
-  one predetermined document was returned.
+- **Evaluation ambiguity:** Some broad questions had multiple valid answers across
+  overlapping documents, while the evaluator expected one specific source. This
+  caused valid, grounded responses to be counted as failures. More specific
+  evaluation questions or relevance-based retrieval metrics could reduce these
+  false negatives.
 
 - **Safe failures:** When the required evidence was genuinely unavailable to the
   generator, the model often stated that the information was unavailable rather
@@ -472,16 +465,15 @@ issues, which are listed below along with possible solutions:
 ## 16. Investigating latency
 
 After retrieval quality reached a reasonable MVP point, latency became
-the next obvious bottleneck.
+the next obvious bottleneck. The initial 5,000-document top-10 measurements 
+were approximately:
 
-The initial 5,000-document top-10 measurements were approximately:
-
-  Stage                             p50
-  ---------------------------- --------
-  Router                         1.58 s
-  Retrieval                      0.49 s
-  Generation                     3.87 s
-  Total measured AI pipeline     6.25 s
+| Stage | p50 |
+| --- | ---: |
+| Router | 1.58 s |
+| Retrieval | 0.49 s |
+| Generation | 3.87 s |
+| Total measured AI pipeline | 6.25 s |
 
 Retrieval was no longer the main latency problem. Generation dominated,
 with routing adding another substantial sequential LLM request.
@@ -489,9 +481,6 @@ with routing adding another substantial sequential LLM request.
 This changed the optimization priority. Further pgvector tuning was
 unlikely to make the application feel dramatically faster when
 generation alone took several seconds.
-
-I expanded observability to separate embedding time from vector-search
-time and to record stage-level tokens, retries, errors, and cost.
 
 A later evaluation unexpectedly showed both routing and generation at
 roughly twice their earlier latency while retrieval remained almost
@@ -501,139 +490,88 @@ slowdown came from retries, timing bugs, network conditions, or the
 model/API itself.
 
 A minimal repeated Gemini test using the prompt `Reply with exactly: OK`
-still produced calls in roughly the 1.5--3.4 second range with **zero
-retries and zero handled errors** in the observed samples. That
-supported the conclusion that the remote model/API latency itself was a
-meaningful contributor rather than the new observability code.
+still produced calls in roughly the 1.5-3.4 second range with zero
+retries and zero handled errors in the observed samples. That
+supported the conclusion that the API itself was a
+meaningful contributor rather than the new observability code. There have
+also been recent reports from other developers of increased latencies 
+with the API, so some of the measured latency may reflect temporary provider-side 
+conditions rather than an inherent limitation of the application architecture.
 
 This investigation is still ongoing. The important architectural result
-is already clear: the largest optimization opportunity has shifted from
-vector retrieval to the **LLM stages**, especially generation and
-potentially the LLM-based router.
+is already clear: an additional optimization opportunity includes latency.
 
-## 17. The router is now an optimization target
+## 16. Investigating latency
 
-The router currently performs two related tasks in one LLM call:
+After retrieval accuracy reached a reasonable MVP point, I shifted attention to overall
+system latency. Retrieval had presented scaling and ranking challenges, but its latency 
+was relatively low. Initial measurements on the 5,000-document system were approximately:
 
-1.  classify the request as general or company-context-required
-2.  rewrite context-dependent company questions into self-contained
-    retrieval queries
+| Stage | p50 |
+| --- | ---: |
+| Router | 1.58 s |
+| Retrieval | 0.49 s |
+| Generation | 3.87 s |
+| Total measured AI pipeline | 6.25 s |
 
-The evaluation suite has shown excellent routing accuracy, but the
-router adds a sequential model call before retrieval.
+The results showed that retrieval contributed relatively little to overall response time. 
+Generation was the largest source of latency, with routing also contributing 
+because it requires an additional sequential LLM call before retrieval.
 
-A faster rules-based, embedding-based, or learned classifier could
-reduce latency and cost. However, replacing the LLM router is not just a
-classification experiment because the current call also performs
-contextual query rewriting.
+A later evaluation unexpectedly showed both routing and generation taking roughly twice as 
+long, while retrieval latency remained nearly unchanged. Since no changes had been made to
+the LLM code, I investigated whether the increase was caused by retries, instrumentation,
+network conditions, or the Gemini API itself.
 
-A meaningful comparison therefore needs to evaluate more than router
-accuracy. Future router experiments should measure:
+A minimal repeated Gemini test using the prompt `Reply with exactly: OK` still produced calls 
+in roughly the 1.5–3.4 second range, with zero retries or handled errors. This indicated that
+the API itself was a meaningful contributor to the measured latency rather than the retrieval 
+pipeline or new observability code. Recent reports from other Gemini API users have also 
+described increased latency, so some of the observed slowdown may reflect temporary 
+provider-side conditions rather than an inherent limitation of the application architecture.
 
--   route classification accuracy
--   downstream Recall@K
--   answer correctness
--   latency
--   token usage and cost
+Latency therefore remains an area for further investigation, particularly the sequential 
+router call and final generation step.
 
-Possible designs include a lightweight classifier for routing while
-invoking rewriting only for company follow-ups that actually need
-conversational reference resolution.
+## 17. Next steps
 
-## 18. Frontend performance is a separate problem
+The current system provides a measured baseline for future improvements. Rather
+than adding additional complexity by default, the next steps will focus on the
+specific limitations identified through evaluation and latency analysis.
 
-The Streamlit application also exhibits latency on interactions such as
-login and starting a new chat, which cannot be explained by Gemini
-generation.
+Additional investigations include:
+- replacing the LLM router to reduce latency while preserving contextual query rewriting
+- comparing generation models on answer quality, latency, and cost
+- testing reranking or hybrid search to improve retrieval quality
+- reducing generation context where possible to improve latency
+- improving Streamlit responsiveness or replacing the frontend if application
+  latency becomes a priority
+- refining ambiguous evaluation cases where multiple documents provide valid answers but 
+  the evaluator expects one specific source or answer
 
-Streamlit reruns the application script on interactions, and the current
-app restores the Supabase auth session, loads the user's role, and
-fetches conversation metadata during reruns.
+## 18. Conclusion
 
-This means there are now two different performance questions:
+The project began as a basic internal chatbot and evolved into a permissions-aware
+RAG system with persistent conversation memory, scalable vector retrieval, automated
+evaluation, and stage-level observability.
 
--   **ML pipeline latency:** routing, embedding, retrieval, generation
--   **application/UI latency:** Streamlit reruns, authentication, and
-    database requests
+The architecture was shaped by both deliberate design decisions and iterative
+evaluation. Features such as permissions-aware retrieval, conversation summarization, 
+context-aware query rewriting, and grounded generation were designed
+around the requirements of an internal company assistant. As the system was tested
+at larger scales, measured failures then guided further engineering decisions, such
+as introducing HNSW indexing when vector search failed at 5,000 documents and
+investigating retrieval ranking as semantic overlap increased.
 
-I considered replacing the frontend with React/Next.js and exposing the
-existing Python system through FastAPI. That would provide more control
-over application responsiveness, but I postponed the rewrite because the
-project's primary goal is to demonstrate ML and backend engineering.
-Most of the existing Python modules could remain unchanged if the
-frontend is replaced later.
-
-## 19. Where the system stands
-
-The project began as a basic authenticated chatbot and evolved through a
-sequence of measured engineering problems:
-
-``` text
-Persistent chat
-    ↓
-Conversation memory
-    ↓
-Document RAG
-    ↓
-Context-aware query rewriting
-    ↓
-Permission-aware retrieval
-    ↓
-Evaluation
-    ↓
-Scalable ingestion
-    ↓
-5K-document retrieval timeout
-    ↓
-HNSW indexing
-    ↓
-Citation redesign
-    ↓
-1K vs. 5K scaling experiment
-    ↓
-Failure analysis
-    ↓
-Stage-level observability
-    ↓
-Latency/model optimization
-```
-
-The most useful lesson from the project has been that the interesting
-engineering decisions were rarely the features I could have added in
-advance. They came from measuring actual failures.
-
-I did not add HNSW until vector search timed out. I did not add a
-reranker simply because modern RAG systems often use one. I did not
-adopt asynchronous batch ingestion when synchronous concurrency was
-sufficient. I did not rewrite the frontend before determining whether
-frontend engineering was the most valuable next step.
-
-The current system is therefore intentionally not the most complicated
-architecture possible. It is a measured baseline with known strengths,
-known failure modes, and instrumentation that makes future changes
-testable.
-
-## 20. Next experiments
-
-The next phase is focused less on adding features and more on testing
-targeted improvements:
-
--   benchmark alternative routing approaches while preserving contextual
-    query rewriting
--   compare generator models on quality, latency, and cost
--   reduce generation prompt/context size where possible
--   evaluate reranking or hybrid retrieval specifically against
-    demonstrated retrieval failures
--   improve evidence-level retrieval metrics beyond document-level
-    Recall@K
--   produce final latency and cost comparisons
--   improve Streamlit responsiveness or replace the frontend after the
-    ML system is stable
--   revisit richer project/team permissions and long-term conversational
-    retrieval if they become important to the target use case
-
-The goal for each change is the same: establish a baseline, identify a
-specific limitation, make one targeted change, and measure whether it
-actually improves the system.
+The resulting system is not intended to represent the most complex possible RAG
+architecture. Instead, it provides a tested baseline with known strengths,
+identified failure modes, and instrumentation that makes future improvements
+measurable. More broadly, the project demonstrates how a relatively lightweight
+custom architecture can provide a practical alternative to expensive enterprise AI
+platforms. By combining managed infrastructure, usage-based model APIs, and a
+purpose-built RAG pipeline, an organization can build an internal assistant around
+its own requirements at relatively low infrastructure cost, with the tradeoff of
+taking on the engineering and maintenance that an enterprise platform would
+otherwise provide.
 
 ## TODO: COST ANALYSIS 
