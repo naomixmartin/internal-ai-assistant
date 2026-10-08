@@ -258,7 +258,8 @@ original eight-document system to establish an initial baseline.
 | Citation validity | 98% (49/50) |
 | Citation support | 100% (50/50) |
 | Permission accuracy | 100% (50/50) |
- **[Evaluation Results](evals/mvp/eval_results_v1.json)**
+
+ **[Evaluation Results](results/mvp/eval_results_v1.json)**
 
 *Retrieval accuracy is calculated only across the 32 cases where retrieval
 of a specific expected document was applicable.
@@ -345,6 +346,7 @@ larger-corpus baseline before scaling further. The 1,000-document system achieve
 | Citation support    |   100% |
 | Permission accuracy |   100% |
 
+ **[Evaluation Results](results/scaled/eval_results_gemini_3.8_1k_files_top10.json)**
 
 The flat Recall@K curve was particularly useful. When the expected document was
 retrieved, it was generally already ranked within the first five results.
@@ -402,6 +404,8 @@ With retrieval working again, I reran the same evaluation framework against the
 | Citation validity |         100% |         100% |
 | Citation support |         100% |         100% |
 | Permission accuracy |         100% |         100% |
+
+ **[Evaluation Results](results/scaled/eval_results_gemini_3.8_5k_files_top10.json)**
 
 The results showed that retrieval remained effective as the corpus scaled, 
 although ranking became more difficult as more semantically similar documents 

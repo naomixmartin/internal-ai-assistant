@@ -12,7 +12,7 @@ For a detailed walkthrough of the system's development, design decisions, scalin
 
 ![Internal AI Assistant demo](results/demo.gif)
 
-### Tech Stack
+## Tech Stack
 
 - Python
 - Streamlit
@@ -111,7 +111,7 @@ Using an LLM call, each request is classified as either `GENERAL` or `COMPANY_CO
 
 ### Source-Grounded Citations
 
-Retrieved documents are assigned numbered source identifiers. The model cites sources using identifiers such as `[1]` and `[2]`, which are mapped back to the original documents by the application. This prevents the model from generating arbitrary filenames, citing sources with long filenames, and simpilfies citation validation.
+Retrieved documents are assigned numbered source identifiers. The model cites sources using identifiers such as `[1]` and `[2]`, which are mapped back to the original documents by the application. This prevents the model from generating arbitrary filenames, citing sources with long filenames, and simplifies citation validation.
 
 ### Persistent Conversation Memory
 
@@ -136,6 +136,7 @@ I built a 50-case evaluation suite containing company-specific questions, permis
 |---|--------------------------------------------------------------------------------|
 | Router accuracy | Was the query routed correctly?                                                |
 | Retrieval accuracy | Was the expected document retrieved within the production Top-K retrieval set? |
+| Recall@K | Was the expected document retrieved within the top K chunks? |
 | Groundedness | Were company-specific claims supported by retrieved context?                   |
 | Answer correctness | Did the final response answer the evaluation question?                         |
 | Citation validity | Did cited sources actually come from retrieval?                                |
@@ -151,6 +152,9 @@ The current test corpus contains 5,000 documents and approximately 35,000 docume
 |-------------------------|-------:|
 | Router accuracy         |   100% |
 | Retrieval accuracy      |    88% | 
+| Recall@10 |    88% |
+| Recall@20 |    90% |
+| Recall@50 |    94% |
 | Answer correctness      |    88% |
 | Groundedness            |   100% |
 | Citation validity       |   100% |
@@ -158,7 +162,7 @@ The current test corpus contains 5,000 documents and approximately 35,000 docume
 | Permission accuracy     |   100% |
 | Median response latency |  6.25s |
 
-The 90% answer-correctness score should be interpreted with some caution. Manual review of failed cases identified limitations in the evaluation procedure, including highly specific questions and reference criteria that could produce false negatives. Other failures were caused by the required evidence not reaching the generator rather than the generator incorrectly reasoning over the evidence it received.  For this reason, I treat answer correctness as one part of the evaluation rather than a standalone measure of generation quality. The combination of retrieval recall, answer correctness, groundedness, and citation support gives a more complete picture of system behavior.
+The 88% answer-correctness score should be interpreted with some caution. Manual review of failed cases identified limitations in the evaluation procedure, including highly specific questions and reference criteria that could produce false negatives. Other failures were caused by the required evidence not reaching the generator rather than the generator incorrectly reasoning over the evidence it received.  For this reason, I treat answer correctness as one part of the evaluation rather than a standalone measure of generation quality. The combination of retrieval recall, answer correctness, groundedness, and citation support gives a more complete picture of system behavior.
 
 See **[Development Process](docs/development_process.md)** for complete evaluation methodology, case-level failure analysis, and limitations of the current evaluation procedure.
 
@@ -186,10 +190,9 @@ identified through evaluation and latency analysis.
 
 - investigate opportunities to reduce overall system latency, particularly routing and generation overhead 
 - test reranking or hybrid retrieval against identified retrieval failures
+- explore organization-wide and project-level memory to improve context sharing across collaborative work
 - compare generation models on answer quality, latency, and cost
 - improve frontend responsiveness or replace Streamlit if application latency becomes a priority
-- explore richer long-term conversational memory if required by the use case
-- explore organization-wide and project-level memory to improve context sharing across collaborative work
 
 ---
 
@@ -199,6 +202,6 @@ The core system is complete as an evaluated prototype. It implements permission-
 RAG, persistent conversation memory, contextual query rewriting, grounded citations,
 automated evaluation, scalable vector retrieval, and stage-level observability.
 
-The system has been evaluated at up to 5,000 documents, with remaining work focused
-on targeted experiments around retrieval quality, model and router selection,
-latency, evaluation design, and production-level application infrastructure.
+The system has been evaluated at up to 5,000 documents, with remaining work focused on 
+targeted experiments around retrieval quality, latency, shared 
+organizational memory, and production-level application infrastructure.
