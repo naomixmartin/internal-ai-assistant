@@ -8,8 +8,8 @@ import numpy as np
 from observability import estimate_cost
 
 
-EVAL_FILE = "evals/scaled/eval_cases.json"
-RESULTS_FILE = "evals/scaled/eval_results_gemini_3.8_5k_files_top10_v2.json"
+EVAL_FILE = "results/scaled/eval_cases.json"
+RESULTS_FILE = "results/scaled/eval_results_gemini_3.8_5k_files_top10_v2.json"
 
 RECALL_K_VALUES = [5, 10, 20, 50]
 ANSWER_MATCH_COUNT = 10
