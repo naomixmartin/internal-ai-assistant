@@ -2,7 +2,7 @@
 .venv/
 __pycache__/
 .idea/
-data/
+mvp_data/
 enterprise_rag_data/
 .DS_Store
 supabase/.temp/
