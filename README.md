@@ -6,8 +6,8 @@ The system routes queries based on whether company context is required, retrieve
 
 For a detailed walkthrough of the system's development, design decisions, scaling challenges, and failure analysis, see [Development Process](docs/development_process.md).
 
-TODO: Add demo GIF or screenshot. Example login → company-specific question → response with citations
 
+![Internal AI Assistant demo](results/demo.gif)
 
 ## Architecture
 TODO: ARCHITECTURE DIAGRAM 
