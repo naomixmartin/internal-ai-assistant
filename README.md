@@ -177,56 +177,6 @@ Manual review showed that failed evaluation cases fell into several distinct cat
 These distinctions are important because they point to different improvements. The full case-level analysis and potential improvements are documented in **[Detailed Evaluation & Error Analysis](docs/evaluation.md)**.
 
 ---
-## Cost Comparison
-
-To estimate operating costs under heavy usage, I modeled an organization with
-100 employees, each making approximately 100 queries per workday across
-22 workdays per month. This corresponds to approximately 220,000 queries per month.
-
-| Solution | Pricing Model | Estimated Monthly Cost |
-| --- | --- | ---: |
-| Custom Assistant — Gemini 3.8 Flash | Usage-based API | ~$1,100 |
-| Custom Assistant — GPT-5.6 Sol | Usage-based API | ~$5,500 |
-| Custom Assistant — Claude Sonnet 5.5 | Usage-based API | ~$2,800 |
-| Gemini Enterprise Business | Per-user subscription | ~$2,100+ |
-| ChatGPT Business | Per-user subscription | ~$2,000 |
-| Microsoft 365 Copilot Business | Per-user subscription | ~$2,100 |
-| Glean | Enterprise contract | ~$4,000–7,500* |
-
-\*Glean pricing is uncertain because contracts may include minimum
-commitments and negotiated rates.*
-
-*Pricing estimates as of October 2026.*
-
-Custom assistant API costs were estimated using the token consumption measured during
-the 5,000-document evaluation: approximately 4,345 input tokens and 366 output
-tokens per query. These values were applied to each provider's API pricing and
-scaled to 220,000 monthly queries.
-
-The custom Gemini implementation also includes an estimated \$25–75 per month for Supabase
-and \$25–85 per month for application hosting. The custom OpenAI and Claude estimates use
-the same infrastructure assumptions, only the model API provider and associated
-token costs are changed.
-
-Enterprise costs are based on published per-user pricing where available. These
-subscription prices are not necessarily complete estimates of an organization's
-total software costs. For example, Microsoft 365 Copilot requires an eligible
-Microsoft 365 subscription, while other platforms may incur additional charges for
-higher usage, advanced reasoning, additional storage, or connected services.
-Since organizations may already pay for products such as Microsoft 365 or Google
-Workspace independently of their AI assistant, the table compares
-the incremental cost of adopting each AI solution rather than attempting to estimate
-the organization's entire software stack.
-
-The comparison suggests that a custom architecture can reduce direct software costs,
-particularly when using lower-cost models such as Gemini, but the advantage is not
-universal. Managed enterprise platforms charge more while providing mature
-integrations, administration, compliance tooling, support, and reduced maintenance
-burden. A custom system is therefore most compelling when an organization values control,
-customization, specialized workflows, or the ability to choose and change model
-providers enough to justify owning and maintaining the underlying system.
-
----
 
 ## Future Work
 
@@ -240,6 +190,8 @@ identified through evaluation and latency analysis.
 - improve frontend responsiveness or replace Streamlit if application latency becomes a priority
 - explore richer long-term conversational memory if required by the use case
 - explore organization-wide and project-level memory to improve context sharing across collaborative work
+
+---
 
 ## Project Status
 
