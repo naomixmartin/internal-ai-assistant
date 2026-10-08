@@ -573,5 +573,3 @@ purpose-built RAG pipeline, an organization can build an internal assistant arou
 its own requirements at relatively low infrastructure cost, with the tradeoff of
 taking on the engineering and maintenance that an enterprise platform would
 otherwise provide.
-
-## TODO: COST ANALYSIS 
