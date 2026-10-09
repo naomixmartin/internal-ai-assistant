@@ -30,11 +30,9 @@ def retrieve_chunks(query, user_role, match_count=5):
     vector_search_latency_ms = int((time.perf_counter() - vector_search_start) * 1000)
     retrieval_latency_ms = int((time.perf_counter() - retrieval_start) * 1000)
 
-    metadata = {
-        "retrieval_latency_ms": retrieval_latency_ms,
-        "embedding_latency_ms": embedding_latency_ms,
-        "vector_search_latency_ms": vector_search_latency_ms
-    }
+    metadata = {"retrieval_latency_ms": retrieval_latency_ms,
+                "embedding_latency_ms": embedding_latency_ms,
+                "vector_search_latency_ms": vector_search_latency_ms}
 
     return result.data, metadata
 

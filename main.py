@@ -259,14 +259,10 @@ if user_message:
         # build retrieval metadata from whatever was successfully retrieved
         retrieved_documents = list(dict.fromkeys(chunk["filename"] for chunk in retrieved_chunks))
         retrieved_chunk_data = [
-            {
-                "document_id": chunk["document_id"],
-                "filename": chunk["filename"],
-                "chunk_index": chunk["chunk_index"],
-                "similarity": chunk["similarity"]
-            }
-            for chunk in retrieved_chunks
-        ]
+            {"document_id": chunk["document_id"],
+             "filename": chunk["filename"],
+             "chunk_index": chunk["chunk_index"],
+             "similarity": chunk["similarity"]} for chunk in retrieved_chunks]
 
         # log routing and generation token usage separately
         routing_input_tokens = routing_metadata["input_tokens"]
