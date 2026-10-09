@@ -6,7 +6,7 @@ The system routes queries based on whether company context is required, retrieve
 
 A primary motivation for this project was exploring how an internal AI assistant could maintain context beyond an individual user's conversations. In collaborative environments, useful knowledge is distributed across employees, teams, projects, and documents. Shared organizational memory could allow this context to persist and become available to other authorized users rather than remaining isolated within individual conversations.
 
-The current architecture provides a foundation for this capability through persistent conversation storage, permission-aware retrieval, and role-based access controls. The same retrieval and authorization mechanisms could be extended to organization-wide, team, and project-level memory, with explicit access and privacy boundaries controlling which context can be shared.
+The current architecture provides a foundation for this capability. The same retrieval and authorization mechanisms could be extended to organization-wide, team, and project-level memory, with explicit access and privacy boundaries controlling which context can be shared.
 
 For a detailed walkthrough of the system's development, design decisions, scaling challenges, and failure analysis, see [Development Process](docs/development_process.md).
 
@@ -17,7 +17,7 @@ For a detailed walkthrough of the system's development, design decisions, scalin
 - Python
 - Streamlit
 - Supabase (PostgreSQL, Auth, RLS)
-- pgvector / HNSW
+- pgvector (HNSW indexing)
 - Gemini API
 
 ---
@@ -73,7 +73,7 @@ Gemini Embedding 2
     │                     │
  GENERAL        COMPANY_CONTEXT_REQUIRED
     │                     │
-    │                     
+    │                     ↓
     │            Context-Aware Query
     │                  Rewrite
     │                     ↓
@@ -99,7 +99,7 @@ Gemini Embedding 2
 
 ## Key Features
 
-### Permission-Aware RAG
+### Permissions-Aware RAG
 
 Company documents are split into overlapping chunks and converted into 768-dimensional embeddings during ingestion. For company-specific queries, the user's question is rewritten into a self-contained retrieval query and embedded using the same embedding model. PostgreSQL/pgvector then uses vector similarity search with an HNSW index to retrieve the most semantically relevant document chunks.
 
@@ -146,7 +146,7 @@ I built a 50-case evaluation suite containing company-specific questions, permis
 
 ### 5,000-Document Evaluation
 
-The current test corpus contains 5,000 documents and approximately 35,000 document chunks.
+The current test corpus contains 5,000 documents and approximately 35,000 document chunks. Evaluation results are as follows.
 
 | Metric                  | Result |
 |-------------------------|-------:|
@@ -162,9 +162,9 @@ The current test corpus contains 5,000 documents and approximately 35,000 docume
 | Permission accuracy     |   100% |
 | Median response latency |  6.25s |
 
-The 90% answer-correctness score should be interpreted with some caution. Manual review of failed cases identified limitations in the evaluation procedure, including highly specific questions and reference criteria that could produce false negatives. Other failures were caused by the required evidence not reaching the generator rather than the generator incorrectly reasoning over the evidence it received.  For this reason, I treat answer correctness as one part of the evaluation rather than a standalone measure of generation quality. The combination of retrieval recall, answer correctness, groundedness, and citation support gives a more complete picture of system behavior.
+The 90% answer-correctness score should be interpreted with some caution. Manual review of failed cases identified limitations in the evaluation procedure, including highly specific questions and reference criteria that could produce false negatives. Other failures were caused by the required evidence not reaching the generator rather than the generator incorrectly reasoning over the evidence it received.  For this reason, I treat answer correctness as only one part of the evaluation. The combination of retrieval recall, answer correctness, groundedness, and citation support gives a more complete picture of system behavior.
 
-See **[Development Process](docs/development_process.md)** for complete evaluation methodology, case-level failure analysis, and limitations of the current evaluation procedure.
+See **[Development Process](docs/development_process.md)** Sections 7 and 12 for complete evaluation methodology, case-level failure analysis, and limitations of the current evaluation procedure.
 
 ---
 
@@ -174,19 +174,17 @@ Manual review showed that failed evaluation cases fell into several distinct cat
 
 - **Document-level ranking failures** — the intended document was not retrieved within the top-10 results but appeared at larger retrieval depths.
 - **Chunk-level ranking failures** — the correct document was retrieved, but the answer-bearing chunk ranked too low to reach the generator.
-- **Candidate retrieval failures** — the required evidence was absent even from the larger retrieval candidate set.
+- **Candidate retrieval failures** — the required evidence was absent even from the larger retrieved candidate set.
 - **Generation failures** — the correct evidence reached the LLM, but competing context caused the generator to select the wrong information.
 - **Evaluation ambiguity** — some broad questions had multiple valid answers, while the evaluator expected one specific source or answer.
 
-These distinctions are important because they point to different improvements. The full case-level analysis and potential improvements are documented in **[Detailed Evaluation & Error Analysis](docs/evaluation.md)**.
+These distinctions are important because they point to different improvements. The full case-level analysis and potential improvements are documented in **[Development Process](docs/development_process.md)**, Section 12.
 
 ---
 
 ## Future Work
 
-The current system provides a measured baseline for future improvements. Rather than
-adding additional complexity by default, future work will focus on limitations
-identified through evaluation and latency analysis.
+The current system provides a measured baseline for future improvements: 
 
 - investigate opportunities to reduce overall system latency, particularly routing and generation overhead 
 - test reranking or hybrid retrieval against identified retrieval failures
@@ -198,7 +196,7 @@ identified through evaluation and latency analysis.
 
 ## Project Status
 
-The core system is complete as an evaluated prototype. It implements permission-aware
+The core system is complete as an evaluated prototype, with further work ongoing. It implements permission-aware
 RAG, persistent conversation memory, contextual query rewriting, grounded citations,
 automated evaluation, scalable vector retrieval, and stage-level observability.
 

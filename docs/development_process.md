@@ -11,15 +11,14 @@ concrete need for it.
 ## 1. Starting with the application foundation
 
 I started with a simple goal: build an internal company assistant that
-could eventually answer questions using private company information
+could eventually answer questions using internal company information
 while maintaining user-specific conversations and access controls.
-
 
 For the initial prototype, I chose Streamlit because it allowed me to
 build a functional chat interface entirely in Python and focus development 
-time on the backend and ML system rather than frontend engineering. 
-I chose **Supabase/PostgreSQL** for the database
-because it provided several pieces I expected to need in one platform:
+time on the backend system and ML features rather than frontend engineering. 
+I chose Supabase/PostgreSQL for the database
+because it provided several features I expected to need in one platform:
 authentication, PostgreSQL, Row Level Security (RLS), and pgvector for
 later semantic retrieval.
 
@@ -33,8 +32,7 @@ to be changed without restructuring the rest of the application.
 
 The first version established a simple application data model in which 
 Supabase Auth manages authenticated users, each user can own multiple 
-conversations, and each conversation contains its associated messages.
-
+conversations, and each conversation contains its associated messages. 
 I implemented email/password authentication and connected Supabase Auth
 users to a public user profile table using the same UUID. This UUID 
 provides a consistent identity across authentication, user profiles, 
@@ -47,7 +45,7 @@ to how conversation context would be managed for the LLM.
 
 ## 2. Adding conversation memory
 
-Sending the entire conversation history to the LLM indefinitely is highly
+Sending the entire conversation history to the LLM indefinitely is 
 inefficient, so I implemented a simple rolling summarization strategy. 
 The 20 most recent messages are provided to the LLM, while older history
 is compressed into a running summary. The full raw conversation is still
@@ -64,21 +62,19 @@ memory.
 
 The next major step was allowing the assistant to answer questions using
 internal company documents. For the initial prototype, I created a small
-test corpus of eight synthetic company documents covering areas such as HR 
-policies, security procedures, and organizational information. I added 
+test corpus of eight synthetic company documents. I added 
 `documents` and `document_chunks` tables 
 and enabled pgvector in PostgreSQL. The ingestion pipeline supports Markdown, 
 TXT, PDF, and DOCX files. Documents are split into overlapping chunks of 
 approximately 250 words with 50 words of overlap. Each chunk is converted 
 into a 768-dimensional Gemini embedding and stored in PostgreSQL. 
 
-I chose 
-Gemini Embedding 2 partly because the application was already using the Gemini 
+I chose Gemini Embedding 2 because the application was already using the Gemini 
 API, which kept the initial RAG architecture simple. I kept the embedding and 
-generation components separate, however, so the response-generating LLM could 
+generation components separate, so the response-generating LLM could 
 later be changed without requiring the document corpus to be re-embedded. 
-I chose 768 dimensions rather than the model's larger default
-representation because it reduces vector storage and similarity-search 
+I chose 768 dimensions rather than the model's larger default 
+because it reduces vector storage and similarity-search 
 computation. The dimensionality can be tuned if later experiments show that 
 retrieval quality requires a larger representation. 
 
@@ -113,7 +109,7 @@ cite the relevant company documents.
 
 Once RAG was implemented, I had to handle the fact that every request did not 
 actually need retrieval. A user might ask a general question such as a 
-programming question, request writing help, or continue a normal conversation. 
+programming question, so
 I added an LLM router that runs before retrieval and classifies each request
 into one of two categories:
 - `GENERAL` — the question can be answered without internal company information,
@@ -191,7 +187,7 @@ on a company's specific requirements.
 ## 6. Adding observability and failure handling
 
 Before systematically evaluating or scaling the system, I added instrumentation
-so performance problems could be measured rather than guessed. The system records
+so performance problems could be measured. The system records
 metrics including:
 - routing, embedding, vector search, retrieval, generation latency
 - input and output token usage for each stage
@@ -207,9 +203,9 @@ originate from several independent components rather than retrieval alone.
 ## 7. Building an evaluation harness
 
 Once the core pipeline worked, manually asking questions in the
-Stremlit interface was no longer sufficient. I built an extensive 
+Streamlit interface was no longer sufficient. I built an extensive 
 evaluation suite with questions related to the company documents and
-general queries. The evaluator records multiple dimensions of system
+general queries. The evaluator records multiple aspects of system
 behavior rather than reducing performance to a single answer score.
 
 The main metrics include:
@@ -361,12 +357,7 @@ roughly 35,000 document chunks. The ingestion pipeline was capable of handling
 the larger corpus, but scaling exposed a different bottleneck: retrieval.
 
 After ingesting the 5,000-document corpus, evaluation began failing immediately
-with PostgreSQL:
-
-```text
-canceling statement due to statement timeout
-code: 57014
-```
+with PostgreSQL due to timeout errors. 
 The retrieval query ordered document chunks by cosine vector distance. At the
 larger corpus size, the database could no longer reliably complete the search
 within the configured statement timeout. To solve this retrieval at scale 
@@ -414,7 +405,10 @@ relevant documents being ranked too low rather than being entirely absent
 from the candidate set. At the same time, groundedness, citation support, 
 and permission accuracy remained at 100%, indicating that the system continued
 to generate well-supported responses from retrieved context and enforce access
-controls at the larger scale.
+controls at the larger scale. When the required evidence was genuinely unavailable to the
+  generator, the model often stated that the information was unavailable rather
+  than inventing an answer. This helps explain why answer correctness can fall
+  below 100% while groundedness remains 100%.
 
 Manual error analysis showed that the lower retrieval and answer correctness 
 scores at 5,000 documents did not have a single cause. The larger corpus 
@@ -439,12 +433,12 @@ issues, which are listed below along with possible solutions:
   potentially be improved with reranking, hybrid keyword and 
  semantic search, or better query formulation.
 
-- **Chunk-level retrieval failures:** Chunk-level retrieval failures: The correct
+- **Chunk-level retrieval failures:** The correct
   document was retrieved, but the answer-bearing chunk ranked too low to reach the 
   generator. Potential improvements include better chunking, chunk-level reranking, 
   or hybrid search.
 
-- **Candidate-retrieval failures:** In harder cases, the required document or
+- **Candidate-retrieval failures:** In harder cases, the required document
   was absent even from the top-50 retrieved results.
   These failures may require improvements to query
   formulation, hybrid search, chunk representation, or metadata filtering.
@@ -459,50 +453,6 @@ issues, which are listed below along with possible solutions:
   caused valid, grounded responses to be counted as failures. More specific
   evaluation questions or relevance-based retrieval metrics could reduce these
   false negatives.
-
-- **Safe failures:** When the required evidence was genuinely unavailable to the
-  generator, the model often stated that the information was unavailable rather
-  than inventing an answer. This helps explain why answer correctness can fall
-  below 100% while groundedness remains 100%.
-
-## 16. Investigating latency
-
-After retrieval quality reached a reasonable MVP point, latency became
-the next obvious bottleneck. The initial 5,000-document top-10 measurements 
-were approximately:
-
-| Stage | p50 |
-| --- | ---: |
-| Router | 1.58 s |
-| Retrieval | 0.49 s |
-| Generation | 3.87 s |
-| Total measured AI pipeline | 6.25 s |
-
-Retrieval was no longer the main latency problem. Generation dominated,
-with routing adding another substantial sequential LLM request.
-
-This changed the optimization priority. Further pgvector tuning was
-unlikely to make the application feel dramatically faster when
-generation alone took several seconds.
-
-A later evaluation unexpectedly showed both routing and generation at
-roughly twice their earlier latency while retrieval remained almost
-unchanged. Because the instrumentation around the Gemini calls was
-simple and retrieval timing was stable, I investigated whether the
-slowdown came from retries, timing bugs, network conditions, or the
-model/API itself.
-
-A minimal repeated Gemini test using the prompt `Reply with exactly: OK`
-still produced calls in roughly the 1.5-3.4 second range with zero
-retries and zero handled errors in the observed samples. That
-supported the conclusion that the API itself was a
-meaningful contributor rather than the new observability code. There have
-also been recent reports from other developers of increased latencies 
-with the API, so some of the measured latency may reflect temporary provider-side 
-conditions rather than an inherent limitation of the application architecture.
-
-This investigation is still ongoing. The important architectural result
-is already clear: an additional optimization opportunity includes latency.
 
 ## 16. Investigating latency
 
@@ -521,13 +471,13 @@ The results showed that retrieval contributed relatively little to overall respo
 Generation was the largest source of latency, with routing also contributing 
 because it requires an additional sequential LLM call before retrieval.
 
-A later evaluation unexpectedly showed both routing and generation taking roughly twice as 
-long, while retrieval latency remained nearly unchanged. Since no changes had been made to
+A later evaluation unexpectedly showed both routing and generation latencies doubled, 
+while retrieval latency remained nearly unchanged. Since no changes had been made to
 the LLM code, I investigated whether the increase was caused by retries, instrumentation,
 network conditions, or the Gemini API itself.
 
-A minimal repeated Gemini test using the prompt `Reply with exactly: OK` still produced calls 
-in roughly the 1.5–3.4 second range, with zero retries or handled errors. This indicated that
+A minimal repeated Gemini test using the prompt `Reply with exactly: OK` produced calls 
+in roughly the 1.5–3.5 seconds, with zero retries or handled errors. This indicated that
 the API itself was a meaningful contributor to the measured latency rather than the retrieval 
 pipeline or new observability code. Recent reports from other Gemini API users have also 
 described increased latency, so some of the observed slowdown may reflect temporary 
@@ -544,9 +494,9 @@ specific limitations identified through evaluation and latency analysis.
 
 Additional investigations include:
 - replacing the LLM router to reduce latency while preserving contextual query rewriting
-- comparing generation models on answer quality, latency, and cost
 - testing reranking or hybrid search to improve retrieval quality
-- reducing generation context where possible to improve latency
+- explore organization-wide and project-level memory to improve context sharing across collaborative work
+- comparing generation models on answer quality, latency, and cost
 - improving Streamlit responsiveness or replacing the frontend if application
   latency becomes a priority
 - refining ambiguous evaluation cases where multiple documents provide valid answers but 
